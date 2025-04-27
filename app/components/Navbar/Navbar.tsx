@@ -1,10 +1,25 @@
 import { assets } from '@/assets/assets';
 import Image from 'next/image';
-import React from 'react';
+import React, { useRef } from 'react';
 
 const Navbar = () => {
+    const sideMenuRef = useRef<HTMLUListElement | null>(null);
+    const openMenu = () => {
+        if (sideMenuRef.current) {
+            sideMenuRef.current.style.transform = 'translateX(-16rem)';
+        }
+    };
+    const closeMenu = () => {
+        if (sideMenuRef.current) {
+            sideMenuRef.current.style.transform = 'translateX(16rem)';
+        }
+    };
+
     return (
         <>
+            <div className="fixed top-0 right-0 -z-12 w-11/10 translate-y-[-80%]">
+                <Image src={assets.header_bg_color} alt="" className="w-full" />
+            </div>
             <nav className="fixed z-50 flex w-full items-center justify-between px-5 py-4 lg:px-8 xl:px-[8%]">
                 <a href="#top">
                     <Image
@@ -40,7 +55,10 @@ const Navbar = () => {
                         </a>
                     </li>
                 </ul>
-                <div>
+                <div className="flex items-center gap-4">
+                    <button className="cursor-pointer">
+                        <Image src={assets.moon_icon} alt="" className="w-6" />
+                    </button>
                     <a
                         href="#contact"
                         className="font-Ovo! ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 lg:flex"
@@ -52,7 +70,75 @@ const Navbar = () => {
                             alt="Arrow Icon"
                         />
                     </a>
+                    <button
+                        className="ml-3 block cursor-pointer md:hidden"
+                        onClick={openMenu}
+                    >
+                        <Image
+                            src={assets.menu_black}
+                            alt="Menu Icon"
+                            className="w-6"
+                        />
+                    </button>
                 </div>
+                {/* Mobile Menu  */}
+                <ul
+                    ref={sideMenuRef}
+                    className="fixed top-0 -right-64 bottom-0 z-50 flex h-screen w-64 flex-col gap-4 bg-rose-50 px-10 py-20 transition duration-500 md:hidden"
+                >
+                    <div className="absolute top-6 right-6" onClick={closeMenu}>
+                        <Image
+                            src={assets.close_black}
+                            alt="Close Icon"
+                            className="w-5 cursor-pointer"
+                        />
+                    </div>
+                    <li>
+                        <a
+                            href="#top"
+                            onClick={closeMenu}
+                            className="font-Ovo!"
+                        >
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#about"
+                            onClick={closeMenu}
+                            className="font-Ovo!"
+                        >
+                            About me
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#services"
+                            onClick={closeMenu}
+                            className="font-Ovo!"
+                        >
+                            Services
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#work"
+                            onClick={closeMenu}
+                            className="font-Ovo!"
+                        >
+                            My Work
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#contact"
+                            onClick={closeMenu}
+                            className="font-Ovo!"
+                        >
+                            Contact me
+                        </a>
+                    </li>
+                </ul>
             </nav>
         </>
     );
