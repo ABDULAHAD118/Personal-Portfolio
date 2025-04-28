@@ -23,7 +23,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="scroll-smooth">
             <body
                 className={`${OutfitFont.className} ${OvoFont.className} overflow-x-hidden leading-8 antialiased`}
             >
