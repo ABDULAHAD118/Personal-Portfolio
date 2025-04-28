@@ -13,7 +13,7 @@ const Header = () => {
                 />
             </div>
             <h3 className="font-Ovo! mb-3 flex items-center gap-2 text-xl md:text-2xl">
-                Hi! I'm Abdulahad Hussain{' '}
+                {`Hi! I'm Abdulahad Hussain{' '}`}
                 <Image src={assets.hand_icon} alt="" className="w-6" />
             </h3>
             <h1 className="lg:tet-[66px] font-Ovo! text-3xl sm:text-6xl">
