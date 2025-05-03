@@ -12,14 +12,14 @@ const Header = () => {
                     className="w-32 rounded-full"
                 />
             </div>
-            <h3 className="font-Ovo! mb-3 flex items-center gap-2 text-xl md:text-2xl">
+            <h3 className="font-Ovo mb-3 flex items-center gap-2 text-xl md:text-2xl">
                 {`Hi! I'm Abdulahad Hussain`}
                 <Image src={assets.hand_icon} alt="" className="w-6" />
             </h3>
-            <h1 className="lg:tet-[66px] font-Ovo! text-3xl sm:text-6xl">
+            <h1 className="lg:tet-[66px] font-Ovo text-3xl sm:text-6xl">
                 Full Stack Web Developer
             </h1>
-            <p className="font-Ovo! mx-auto max-w-2xl">
+            <p className="font-Ovo mx-auto max-w-2xl">
                 I am a passionate Full Stack Web Developer from Pakistan with
                 over 3 years of professional experience building dynamic and
                 user-centric web applications.

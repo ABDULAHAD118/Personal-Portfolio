@@ -45,27 +45,27 @@ const Navbar = () => {
                     className={`hidden items-center gap-6 rounded-full px-12 py-3 md:flex lg:gap-8 ${isScroll ? '' : 'bg-white/50 shadow-sm'}`}
                 >
                     <li>
-                        <a href="#top" className="font-Ovo!">
+                        <a href="#top" className="font-Ovo">
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="#about" className="font-Ovo!">
+                        <a href="#about" className="font-Ovo">
                             About me
                         </a>
                     </li>
                     <li>
-                        <a href="#services" className="font-Ovo!">
+                        <a href="#services" className="font-Ovo">
                             Services
                         </a>
                     </li>
                     <li>
-                        <a href="#work" className="font-Ovo!">
+                        <a href="#work" className="font-Ovo">
                             My Work
                         </a>
                     </li>
                     <li>
-                        <a href="#contact" className="font-Ovo!">
+                        <a href="#contact" className="font-Ovo">
                             Contact me
                         </a>
                     </li>
@@ -76,7 +76,7 @@ const Navbar = () => {
                     </button>
                     <a
                         href="#contact"
-                        className="font-Ovo! ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 lg:flex"
+                        className="font-Ovo ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 lg:flex"
                     >
                         Contact{' '}
                         <Image
@@ -109,11 +109,7 @@ const Navbar = () => {
                         />
                     </div>
                     <li>
-                        <a
-                            href="#top"
-                            onClick={closeMenu}
-                            className="font-Ovo!"
-                        >
+                        <a href="#top" onClick={closeMenu} className="font-Ovo">
                             Home
                         </a>
                     </li>
@@ -121,7 +117,7 @@ const Navbar = () => {
                         <a
                             href="#about"
                             onClick={closeMenu}
-                            className="font-Ovo!"
+                            className="font-Ovo"
                         >
                             About me
                         </a>
@@ -130,7 +126,7 @@ const Navbar = () => {
                         <a
                             href="#services"
                             onClick={closeMenu}
-                            className="font-Ovo!"
+                            className="font-Ovo"
                         >
                             Services
                         </a>
@@ -139,7 +135,7 @@ const Navbar = () => {
                         <a
                             href="#work"
                             onClick={closeMenu}
-                            className="font-Ovo!"
+                            className="font-Ovo"
                         >
                             My Work
                         </a>
@@ -148,7 +144,7 @@ const Navbar = () => {
                         <a
                             href="#contact"
                             onClick={closeMenu}
-                            className="font-Ovo!"
+                            className="font-Ovo"
                         >
                             Contact me
                         </a>

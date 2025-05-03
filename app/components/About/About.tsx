@@ -5,8 +5,8 @@ import React from 'react';
 const About = () => {
     return (
         <div className="w-full scroll-mt-20 px-[12%] py-10" id="about">
-            <h4 className="font-Ovo! mb-2 text-center text-lg">Introduction</h4>
-            <h2 className="font-Ovo! text-center text-5xl">About me</h2>
+            <h4 className="font-Ovo mb-2 text-center text-lg">Introduction</h4>
+            <h2 className="font-Ovo text-center text-5xl">About me</h2>
             <div className="my-20 flex w-full flex-col items-center gap-20 lg:flex-row">
                 <div className="w-64 max-w-none rounded-3xl sm:w-80">
                     <Image
@@ -16,7 +16,7 @@ const About = () => {
                     />
                 </div>
                 <div className="flex-1">
-                    <p className="font-Ovo! mb-10 max-w-2xl">
+                    <p className="font-Ovo mb-10 max-w-2xl">
                         I am an experienced Full Stack Developer with over a
                         decade of expertise in building scalable, user-centric
                         applications. I have collaborated with prestigious
@@ -43,7 +43,7 @@ const About = () => {
                             </li>
                         ))}
                     </ul>
-                    <h4 className="font-Ovo! my-6 text-gray-700">Tool I Use</h4>
+                    <h4 className="font-Ovo my-6 text-gray-700">Tool I Use</h4>
                     <ul className="flex items-center gap-3 sm:gap-5">
                         {toolsData.map((tool, index) => (
                             <li
