@@ -15,7 +15,7 @@
   --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-@layer base {
+@layer utilities {
   .grid-cols-auto {
     grid-template-columns: var(--grid-cols-auto);
   }
