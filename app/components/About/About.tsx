@@ -2,7 +2,7 @@ import { assets, infoList, toolsData } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 
-const About = () => {
+const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
     return (
         <div className="w-full scroll-mt-20 px-[12%] py-10" id="about">
             <h4 className="font-Ovo mb-2 text-center text-lg">Introduction</h4>
@@ -24,26 +24,30 @@ const About = () => {
                         drive growth and success.
                     </p>
                     <ul className="grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-3">
-                        {infoList.map(({ icon, title, description }, index) => (
-                            <li
-                                key={index}
-                                className="hover:bg-lightHover! cursor-pointer rounded-xl border-[0.5px] border-gray-400 p-6 duration-500 hover:-translate-y-1 hover:shadow-black"
-                            >
-                                <Image
-                                    src={icon}
-                                    alt={title}
-                                    className="mt-3 w-7"
-                                />
-                                <h3 className="my-4 font-semibold text-gray-700">
-                                    {title}
-                                </h3>
-                                <p className="text-sm text-gray-600">
-                                    {description}
-                                </p>
-                            </li>
-                        ))}
+                        {infoList.map(
+                            ({ icon, iconDark, title, description }, index) => (
+                                <li
+                                    key={index}
+                                    className="hover:bg-lightHover dark:hover:bg-darkHover/50 cursor-pointer rounded-xl border-[0.5px] border-gray-400 p-6 duration-500 hover:-translate-y-1 hover:shadow-black dark:border-white dark:hover:shadow-white"
+                                >
+                                    <Image
+                                        src={isDarkMode ? iconDark : icon}
+                                        alt={title}
+                                        className="mt-3 w-7"
+                                    />
+                                    <h3 className="my-4 font-semibold text-gray-700 dark:text-white">
+                                        {title}
+                                    </h3>
+                                    <p className="text-sm text-gray-600 dark:text-white/80">
+                                        {description}
+                                    </p>
+                                </li>
+                            )
+                        )}
                     </ul>
-                    <h4 className="font-Ovo my-6 text-gray-700">Tool I Use</h4>
+                    <h4 className="font-Ovo my-6 text-gray-700 dark:text-white/80">
+                        Tool I Use
+                    </h4>
                     <ul className="flex items-center gap-3 sm:gap-5">
                         {toolsData.map((tool, index) => (
                             <li

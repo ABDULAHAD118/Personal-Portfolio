@@ -10,7 +10,7 @@ interface FormSubmitEvent extends FormEvent<HTMLFormElement> {
     target: FormDataEventTarget;
 }
 
-const Contact = () => {
+const Contact = ({ isDarkMode }: { isDarkMode: boolean }) => {
     const [result, setResult] = useState('');
 
     const onSubmit = async (event: FormSubmitEvent): Promise<void> => {
@@ -37,7 +37,7 @@ const Contact = () => {
     };
     return (
         <div
-            className="w-full scroll-mt-20 bg-[url(/footer-bg-color.png)] bg-[length:90%_auto] bg-center bg-no-repeat px-[12%] py-10"
+            className="w-full scroll-mt-20 bg-[url(/footer-bg-color.png)] bg-[length:90%_auto] bg-center bg-no-repeat px-[12%] py-10 dark:bg-none"
             id="contact"
         >
             <h4 className="font-Ovo mb-2 text-center text-lg">
@@ -64,13 +64,13 @@ const Contact = () => {
                         type="text"
                         name="name"
                         placeholder="Enter Your Name"
-                        className="flex-1 rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none"
+                        className="dark:bg-darkHover/30 flex-1 rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none dark:border-white/90"
                         required
                     />
                     <input
                         type="email"
                         name="email"
-                        className="flex-1 rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none"
+                        className="dark:bg-darkHover/30 flex-1 rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none dark:border-white/90"
                         placeholder="Enter Your Email"
                         required
                     />
@@ -78,13 +78,13 @@ const Contact = () => {
                 <textarea
                     name="message"
                     placeholder="Enter Your Message"
-                    className="mb-6 w-full rounded-md border-[0.5px] border-gray-400 bg-white p-4 outline-none"
+                    className="dark:bg-darkHover/30 mb-6 w-full rounded-md border-[0.5px] border-gray-400 bg-white p-4 outline-none dark:border-white/90"
                     rows={6}
                     required
                 ></textarea>
                 <button
                     type="submit"
-                    className="mx-auto flex w-max cursor-pointer items-center justify-between gap-2 rounded-full bg-black/80 px-8 py-3 text-white duration-500 hover:bg-black"
+                    className="dark:hover:bg-darkHover mx-auto flex w-max cursor-pointer items-center justify-between gap-2 rounded-full bg-black/80 px-8 py-3 text-white duration-500 hover:bg-black dark:border-[0.5px] dark:bg-transparent"
                 >
                     Submit Now{' '}
                     <Image

@@ -2,7 +2,7 @@ import { assets, workData } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 
-const Work = () => {
+const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
     return (
         <div className="w-full scroll-mt-20 px-[12%] py-10" id="work">
             <h4 className="font-Ovo mb-2 text-center text-lg">My Portfolio</h4>
@@ -11,7 +11,7 @@ const Work = () => {
                 Welcome to my web development portfolio! Explore a collection of
                 projects showcasing my expertise in full stack development.
             </p>
-            <div className="grid-cols-auto my-10 grid gap-5">
+            <div className="grid-cols-auto my-10 grid gap-5 dark:text-black">
                 {workData.map((project, index) => (
                     <div
                         className="group relative aspect-square cursor-pointer rounded-lg bg-cover bg-center bg-no-repeat"
@@ -40,11 +40,15 @@ const Work = () => {
             </div>
             <a
                 href=""
-                className="hover:bg-lightHover mx-auto my-20 flex w-max items-center justify-center gap-2 rounded-full border-[0.5px] border-gray-700 px-10 py-3 text-gray-700 duration-500"
+                className="hover:bg-lightHover dark:hover:bg-darkHover mx-auto my-20 flex w-max items-center justify-center gap-2 rounded-full border-[0.5px] border-gray-700 px-10 py-3 text-gray-700 duration-500 dark:border-white dark:text-white"
             >
                 Show more{' '}
                 <Image
-                    src={assets.right_arrow_bold}
+                    src={
+                        isDarkMode
+                            ? assets.right_arrow_bold_dark
+                            : assets.right_arrow_bold
+                    }
                     alt="Send Icon"
                     className="w-4"
                 />

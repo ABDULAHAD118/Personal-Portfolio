@@ -13,7 +13,10 @@
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
   --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
+
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer utilities {
   .grid-cols-auto {
