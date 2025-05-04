@@ -37,7 +37,7 @@ const Header = () => {
                     />
                 </a>
                 <a
-                    href="/sample-resume.pdf"
+                    href="/Abdulahad-Hussain-Resume.pdf"
                     download
                     className="flex items-center gap-2 rounded-full border border-gray-500 px-10 py-3"
                 >
