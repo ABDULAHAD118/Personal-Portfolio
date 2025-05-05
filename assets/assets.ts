@@ -112,23 +112,23 @@ export const workData = [
 export const serviceData = [
     {
         icon: assets.web_icon,
-        title: 'Web design',
+        title: 'Frontend Developer',
         description:
             'Web development is the process of building, programming...',
         link: '',
     },
     {
-        icon: assets.mobile_icon,
-        title: 'Mobile app',
+        icon: assets.ui_icon,
+        title: 'Backend Developer',
         description:
-            'Mobile app development involves creating software for mobile devices...',
+            'Backend development focuses on building robust server-side logic...',
         link: '',
     },
     {
-        icon: assets.ui_icon,
-        title: 'UI/UX design',
+        icon: assets.mobile_icon,
+        title: 'Mobile App',
         description:
-            'UI/UX design focuses on creating a seamless user experience...',
+            'Mobile app development involves creating software for mobile devices...',
         link: '',
     },
     {
