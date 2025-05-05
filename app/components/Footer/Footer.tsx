@@ -26,8 +26,8 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
             </div>
             <div className="mx-[10%] mt-12 items-center justify-between border-t border-gray-400 py-6 text-center sm:flex">
                 <p>
-                    &copy; {new Date().getFullYear()} Abdulahad Hussain. All
-                    rights reserved.
+                    &copy; {new Date().getFullYear()} Abdulahad. All rights
+                    reserved.
                 </p>
                 <ul className="mt-4 flex items-center justify-center gap-10 sm:mt-0">
                     <li>

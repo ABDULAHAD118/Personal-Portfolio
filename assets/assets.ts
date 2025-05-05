@@ -146,7 +146,7 @@ export const infoList = [
         iconDark: assets.code_icon_dark,
         title: 'Languages',
         description:
-            'HTML, CSS, JavaScript, Node Js, Express, MongoDB, TypeScript, React Js, Next Js',
+            'HTML, CSS, JavaScript, Node Js, Express, MongoDB, TypeScript, React Js, Next Js, React Native',
     },
     {
         icon: assets.edu_icon,

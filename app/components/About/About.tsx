@@ -129,7 +129,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             <motion.li
                                 whileHover={{ scale: 1.1 }}
                                 key={index}
-                                className="hover:bg-lightHover! flex aspect-square w-12 cursor-pointer items-center justify-center rounded-lg border border-gray-400 duration-500 hover:-translate-y-1 sm:w-14"
+                                className="hover:bg-lightHover! dark:bg-lightHover! flex aspect-square w-12 cursor-pointer items-center justify-center rounded-lg border border-gray-400 duration-500 hover:-translate-y-1 sm:w-14"
                             >
                                 <Image
                                     src={tool}
