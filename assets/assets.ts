@@ -40,6 +40,7 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+import { url } from 'inspector';
 
 export const assets = {
     user_image,
@@ -88,55 +89,55 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Frontend project',
-        description: 'Web Design',
+        title: 'Bite Savor',
+        description: 'Full Stack Project',
         bgImage: '/work-1.png',
+        url: 'https://bitesavor.vercel.app/',
     },
     {
-        title: 'Geo based app',
-        description: 'Mobile App',
+        title: 'WealthSync',
+        description: 'Full Stack Project',
         bgImage: '/work-2.png',
+        url: 'https://wealthsync-expense-tracking-system.vercel.app/',
     },
     {
-        title: 'Photography site',
-        description: 'Web Design',
+        title: 'Url Shortener',
+        description: 'Backend Project',
         bgImage: '/work-3.png',
+        url: 'https://myurlshort.vercel.app/',
     },
     {
-        title: 'UI/UX designing',
-        description: 'UI/UX Design',
+        title: 'Weather App',
+        description: 'Mobile App',
         bgImage: '/work-4.png',
+        url: 'https://mega.nz/file/myJQgJ5B#iYi9wFctf4cXXrLMD2BLm4fwgEVdLmmxFlfgHQsp2P8',
     },
 ];
 
 export const serviceData = [
     {
         icon: assets.web_icon,
+        title: 'Full Stack Developer',
+        description:
+            'Full-stack development combines front-end and back-end to build...',
+    },
+    {
+        icon: assets.web_icon,
         title: 'Frontend Developer',
         description:
             'Web development is the process of building, programming...',
-        link: '',
     },
     {
         icon: assets.ui_icon,
         title: 'Backend Developer',
         description:
             'Backend development focuses on building robust server-side logic...',
-        link: '',
     },
     {
         icon: assets.mobile_icon,
         title: 'Mobile App',
         description:
             'Mobile app development involves creating software for mobile devices...',
-        link: '',
-    },
-    {
-        icon: assets.graphics_icon,
-        title: 'Graphics design',
-        description:
-            'Creative design solutions to enhance visual communication...',
-        link: '',
     },
 ];
 

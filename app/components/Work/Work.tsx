@@ -73,13 +73,17 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                                     {project.description}
                                 </p>
                             </div>
-                            <div className="flex aspect-square w-9 items-center justify-center rounded-full border border-black shadow-[2px_2px_0_#000] transition group-hover:bg-lime-300">
+                            <a
+                                href={project.url}
+                                target="_blank"
+                                className="flex aspect-square w-9 items-center justify-center rounded-full border border-black shadow-[2px_2px_0_#000] transition group-hover:bg-lime-300"
+                            >
                                 <Image
                                     src={assets.send_icon}
                                     alt="Send Icon"
                                     className="w-5"
                                 />
-                            </div>
+                            </a>
                         </div>
                     </motion.div>
                 ))}
@@ -91,10 +95,11 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     duration: 0.5,
                     delay: 1.1,
                 }}
-                href=""
+                href="https://github.com/ABDULAHAD118"
+                target="_blank"
                 className="hover:bg-lightHover dark:hover:bg-darkHover mx-auto my-20 flex w-max items-center justify-center gap-2 rounded-full border-[0.5px] border-gray-700 px-10 py-3 text-gray-700 duration-500 dark:border-white dark:text-white"
             >
-                Show more{' '}
+                Visit Other Project{' '}
                 <Image
                     src={
                         isDarkMode

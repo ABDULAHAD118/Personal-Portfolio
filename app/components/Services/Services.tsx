@@ -60,34 +60,21 @@ const Services = () => {
                 }}
                 className="grid-cols-auto my-10 grid gap-6"
             >
-                {serviceData.map(
-                    ({ icon, title, description, link }, index) => (
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            key={index}
-                            className="hover:bg-lightHover dark:hover:bg-darkHover cursor-pointer rounded-lg border border-gray-400 px-8 py-12 duration-500 hover:-translate-y-1 hover:shadow-black dark:hover:shadow-white"
-                        >
-                            <Image src={icon} alt="Icon" className="w-10" />
-                            <h3 className="my-4 text-lg text-gray-700 dark:text-white">
-                                {title}
-                            </h3>
-                            <p className="text-sm leading-5 text-gray-600 dark:text-white/80">
-                                {description}
-                            </p>
-                            <a
-                                href={link}
-                                className="mt-5 flex items-center gap-2 text-sm"
-                            >
-                                Read More{' '}
-                                <Image
-                                    src={assets.right_arrow}
-                                    alt="Right Arrow"
-                                    className="w-4"
-                                />
-                            </a>
-                        </motion.div>
-                    )
-                )}
+                {serviceData.map(({ icon, title, description }, index) => (
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        key={index}
+                        className="hover:bg-lightHover dark:hover:bg-darkHover cursor-pointer rounded-lg border border-gray-400 px-8 py-12 duration-500 hover:-translate-y-1 hover:shadow-black dark:hover:shadow-white"
+                    >
+                        <Image src={icon} alt="Icon" className="w-10" />
+                        <h3 className="my-4 text-lg text-gray-700 dark:text-white">
+                            {title}
+                        </h3>
+                        <p className="text-sm leading-5 text-gray-600 dark:text-white/80">
+                            {description}
+                        </p>
+                    </motion.div>
+                ))}
             </motion.div>
         </motion.div>
     );
