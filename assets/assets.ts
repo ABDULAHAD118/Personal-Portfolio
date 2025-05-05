@@ -7,7 +7,12 @@ import project_icon from './project-icon.png';
 import project_icon_dark from './project-icon-dark.png';
 import vscode from './vscode.png';
 import firebase from './firebase.png';
+import github from './github.png';
 import figma from './figma.png';
+import vite from './vite.png';
+import npm from './npm.png';
+import vercel from './vercel.svg';
+import postman from './postman.png';
 import git from './git.png';
 import mongodb from './mongodb.png';
 import right_arrow_white from './right-arrow-white.png';
@@ -45,9 +50,14 @@ export const assets = {
     project_icon,
     project_icon_dark,
     vscode,
+    vite,
+    npm,
+    vercel,
     firebase,
     figma,
     git,
+    github,
+    postman,
     mongodb,
     right_arrow_white,
     logo,
@@ -154,8 +164,12 @@ export const infoList = [
 
 export const toolsData = [
     assets.vscode,
-    assets.firebase,
     assets.mongodb,
     assets.figma,
     assets.git,
+    assets.github,
+    assets.postman,
+    assets.npm,
+    assets.vercel,
+    assets.vite,
 ];
