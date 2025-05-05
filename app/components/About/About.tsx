@@ -123,7 +123,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             duration: 0.6,
                             delay: 1.5,
                         }}
-                        className="flex items-center gap-3 sm:gap-5"
+                        className="flex flex-wrap items-center gap-3 sm:gap-5"
                     >
                         {toolsData.map((tool, index) => (
                             <motion.li
