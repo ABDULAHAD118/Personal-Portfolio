@@ -14,7 +14,7 @@ const Header = () => {
                 <Image
                     src={assets.profile_img}
                     alt=""
-                    className="mt-2 w-32 rounded-full"
+                    className="w-32 rounded-full"
                 />
             </motion.div>
             <motion.h3
