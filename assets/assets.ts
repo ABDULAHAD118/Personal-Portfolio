@@ -15,6 +15,10 @@ import vercel from './vercel.svg';
 import postman from './postman.png';
 import git from './git.png';
 import mongodb from './mongodb.png';
+import webstorm from './webstorm.svg';
+import pycharm from './pycharm.svg';
+import apidog from './apidog.ico';
+import docker from './docker.svg';
 import right_arrow_white from './right-arrow-white.png';
 import logo from './logo.png';
 import logo_dark from './logo_dark.png';
@@ -40,8 +44,6 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
-import { url } from 'inspector';
-
 export const assets = {
     user_image,
     code_icon,
@@ -60,6 +62,10 @@ export const assets = {
     github,
     postman,
     mongodb,
+    webstorm,
+    pycharm,
+    apidog,
+    docker,
     right_arrow_white,
     logo,
     logo_dark,
@@ -114,30 +120,153 @@ export const workData = [
     },
 ];
 
+export const experienceData = [
+    {
+        role: 'Full-Stack Web Developer',
+        company: 'BitLogicx',
+        period: 'June 2025 - Present',
+        location: 'On-site · Lahore, Pakistan',
+        summary:
+            'Contributing to enterprise-grade frontend and backend systems using Vue, Nuxt, React, Next.js, Node.js, and AdonisJS.',
+        highlights: [
+            'Designed and optimized 15+ RESTful APIs, improving response performance by 30%.',
+            'Implemented JWT authentication, role-based authorization, and scalable MongoDB, MySQL, and Redis integrations.',
+            'Automated Docker-based CI/CD workflows, reducing deployment time by 40%.',
+        ],
+    },
+    {
+        role: 'Frontend Web Development Intern',
+        company: 'WebDev Masters × ECC International',
+        period: 'May 2024 - August 2024',
+        location: 'Remote',
+        summary:
+            'Built responsive web interfaces and reusable components with HTML, CSS, JavaScript, React.js, and Bootstrap.',
+        highlights: [
+            'Improved interface consistency, maintainability, performance, and responsiveness across devices.',
+            'Collaborated with mentors and team members on real-world frontend projects.',
+            'Achieved 1st position among internship participants for performance and project delivery.',
+        ],
+    },
+];
+
+export const professionalStats = [
+    { value: '1+', label: 'Year Professional Experience' },
+    { value: '15+', label: 'REST APIs Built' },
+    { value: '30%', label: 'API Performance Improvement' },
+    { value: '40%', label: 'Faster Deployments' },
+];
+
+export const certificateData = [
+    {
+        title: 'Full-Stack Development Internship',
+        issuer: 'BitLogicx',
+        date: 'June - September 2025',
+        image: '/Certificates/bitlogicx-internship-preview.png',
+        href: '/Certificates/A.%20Ahad%20EL.pdf',
+    },
+    {
+        title: 'Frontend Web Development Internship',
+        issuer: 'WebDev Masters × ECC International',
+        date: 'May - August 2024',
+        image: '/Certificates/Abdulahad%20Hussain%20Front%20End%20Internship.png',
+        href: '/Certificates/Abdulahad%20Hussain%20Front%20End%20Internship.png',
+    },
+    {
+        title: 'Become a Professional React Developer',
+        issuer: 'Scrimba · Coursera',
+        date: 'February 2025',
+        image: '/Certificates/coursera-react-developer.png',
+        href: '/Certificates/Coursera%20Become%20a%20Professional%20React%20Developer.pdf',
+    },
+    {
+        title: 'Developing Back-End Apps with Node.js and Express',
+        issuer: 'IBM · Coursera',
+        date: 'January 2025',
+        image: '/Certificates/coursera-node-express.png',
+        href: '/Certificates/Coursera%20Developing%20Backend%20Apps%20With%20Nodejs%20and%20Express.pdf',
+    },
+    {
+        title: 'Introduction to MongoDB',
+        issuer: 'MongoDB · Coursera',
+        date: 'August 2024',
+        image: '/Certificates/coursera-mongodb.png',
+        href: '/Certificates/Coursera%20Introduction%20to%20MongoDB.pdf',
+    },
+    {
+        title: 'AI For Everyone',
+        issuer: 'DeepLearning.AI · Coursera',
+        date: 'January 2025',
+        image: '/Certificates/coursera-ai-for-everyone.png',
+        href: '/Certificates/Coursera%20AI%20for%20Everyone.pdf',
+    },
+    {
+        title: 'Developing Front-End Apps with React',
+        issuer: 'IBM · Coursera',
+        date: 'February 2025',
+        image: '/Certificates/coursera-frontend-react.png',
+        href: '/Certificates/Coursera%20Developing%20Front-End%20Apps%20with%20React.pdf',
+    },
+    {
+        title: 'JavaScript Programming Essentials',
+        issuer: 'IBM · Coursera',
+        date: 'January 2025',
+        image: '/Certificates/coursera-javascript-essentials.png',
+        href: '/Certificates/Coursera%20Javascript%20Essentials.pdf',
+    },
+    {
+        title: 'Learn Advanced React',
+        issuer: 'Scrimba · Coursera',
+        date: 'February 2025',
+        image: '/Certificates/coursera-advanced-react.png',
+        href: '/Certificates/Coursera%20Learn%20Advanced%20React.pdf',
+    },
+    {
+        title: 'Learn React',
+        issuer: 'Scrimba · Coursera',
+        date: 'October 2024',
+        image: '/Certificates/coursera-learn-react.png',
+        href: '/Certificates/Coursera%20Learn%20React%20Certificate.pdf',
+    },
+    {
+        title: 'Introduction to Git and GitHub',
+        issuer: 'Google · Coursera',
+        date: 'January 2025',
+        image: '/Certificates/coursera-git-github.png',
+        href: '/Certificates/Coursera%20Introduction%20to%20Git%20%26%20GitHub.pdf',
+    },
+    {
+        title: 'Programming with JavaScript',
+        issuer: 'Meta · Coursera',
+        date: 'July 2026',
+        image: '/Certificates/coursera-programming-javascript.png',
+        href: '/Certificates/Coursera%20Programming%20with%20JavaScript.pdf',
+    },
+];
+
 export const serviceData = [
     {
         icon: assets.web_icon,
         title: 'Full Stack Developer',
         description:
-            'Full-stack development combines front-end and back-end to build...',
+            'End-to-end web applications with responsive interfaces, secure APIs, databases, testing, and production deployment.',
     },
     {
         icon: assets.web_icon,
         title: 'Frontend Developer',
         description:
-            'Web development is the process of building, programming...',
+            'Accessible, responsive interfaces built with React, Next.js, Vue, Nuxt, TypeScript, and modern CSS.',
     },
     {
         icon: assets.ui_icon,
         title: 'Backend Developer',
         description:
-            'Backend development focuses on building robust server-side logic...',
+            'Scalable Node.js and AdonisJS services with REST APIs, JWT authorization, MySQL, MongoDB, and Redis.',
     },
     {
         icon: assets.mobile_icon,
         title: 'Mobile App',
         description:
-            'Mobile app development involves creating software for mobile devices...',
+            'Cross-platform mobile experiences using React Native, API integrations, and user-focused interaction design.',
     },
 ];
 
@@ -147,13 +276,13 @@ export const infoList = [
         iconDark: assets.code_icon_dark,
         title: 'Languages',
         description:
-            'HTML, CSS, JavaScript, Node Js, Express, MongoDB, TypeScript, React Js, Next Js, React Native',
+            'TypeScript, JavaScript, Python, C++, SQL, React, Next.js, Vue, Nuxt, Node.js, AdonisJS',
     },
     {
         icon: assets.edu_icon,
         iconDark: assets.edu_icon_dark,
         title: 'Education',
-        description: 'B.Sc in Computer Science',
+        description: 'B.Sc. Computer Science · UET Lahore · Completed',
     },
     {
         icon: assets.project_icon,
@@ -173,4 +302,8 @@ export const toolsData = [
     assets.npm,
     assets.vercel,
     assets.vite,
+    assets.webstorm,
+    assets.pycharm,
+    assets.apidog,
+    assets.docker,
 ];

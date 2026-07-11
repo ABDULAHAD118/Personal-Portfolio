@@ -45,11 +45,9 @@ const Services = () => {
                 }}
                 className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center"
             >
-                I am a passionate Full Stack Web Developer from Pakistan with
-                over 3 years of professional experience building dynamic and
-                user-centric web applications. I specialize in creating
-                responsive and user-friendly web applications using the latest
-                technologies and best practices.
+                From responsive interfaces to secure APIs and database-backed
+                systems, I deliver maintainable web applications using modern
+                technologies and production-focused development practices.
             </motion.p>
             <motion.div
                 initial={{ opacity: 0 }}

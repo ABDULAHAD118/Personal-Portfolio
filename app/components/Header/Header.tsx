@@ -1,11 +1,14 @@
-import { assets } from '@/assets/assets';
+import { assets, professionalStats } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'motion/react';
 
 const Header = () => {
     return (
-        <div className="mx-auto flex h-screen w-11/12 max-w-3xl flex-col items-center justify-center gap-4 text-center">
+        <header
+            id="top"
+            className="mx-auto flex min-h-screen w-11/12 max-w-3xl scroll-mt-20 flex-col items-center justify-center gap-4 py-24 text-center"
+        >
             <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
@@ -13,7 +16,7 @@ const Header = () => {
             >
                 <Image
                     src={assets.profile_img}
-                    alt=""
+                    alt="Portrait of Abdulahad Hussain"
                     className="w-32 rounded-full"
                 />
             </motion.div>
@@ -38,7 +41,7 @@ const Header = () => {
                 }}
                 className="lg:tet-[66px] font-Ovo text-3xl sm:text-6xl"
             >
-                Full Stack Web Developer
+                Full-Stack Web Developer
             </motion.h1>
             <motion.p
                 initial={{ opacity: 0 }}
@@ -49,10 +52,33 @@ const Header = () => {
                 }}
                 className="font-Ovo mx-auto max-w-2xl"
             >
-                I am a passionate Full Stack Web Developer from Pakistan with
-                over 3 years of professional experience building dynamic and
-                user-centric web applications.
+                I build scalable, high-performance web applications with
+                React, Next.js, Vue, Nuxt, Node.js, and modern backend systems.
             </motion.p>
+            <motion.div
+                className="mt-3 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
+                initial={{ y: 25, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.85 }}
+            >
+                {professionalStats.map((stat, index) => (
+                    <motion.div
+                        key={stat.label}
+                        className="rounded-xl border border-gray-300 bg-white/50 px-3 py-3 backdrop-blur-sm dark:border-white/20 dark:bg-white/5"
+                        initial={{ scale: 0.85, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.4, delay: 0.9 + index * 0.08 }}
+                        whileHover={{ y: -4, scale: 1.03 }}
+                    >
+                        <p className="text-xl font-semibold text-purple-700 dark:text-purple-300">
+                            {stat.value}
+                        </p>
+                        <p className="text-xs leading-4 text-gray-600 dark:text-white/70">
+                            {stat.label}
+                        </p>
+                    </motion.div>
+                ))}
+            </motion.div>
             <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row">
                 <motion.a
                     initial={{ y: 30, opacity: 0 }}
@@ -86,7 +112,7 @@ const Header = () => {
                     <Image src={assets.download_icon} alt="" className="w-4" />
                 </motion.a>
             </div>
-        </div>
+        </header>
     );
 };
 

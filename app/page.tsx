@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
+import Certificates from './components/Certificates/Certificates';
+import Experience from './components/Experience/Experience';
+import Education from './components/Education/Education';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -11,15 +14,16 @@ import Work from './components/Work/Work';
 export default function Home() {
     const [isDarkMode, setIsDarkMode] = useState(false);
     useEffect(() => {
-        if (
+        const prefersDarkMode =
             localStorage.getItem('theme') === 'dark' ||
             (!('theme' in localStorage) &&
-                window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
-            setIsDarkMode(true);
-        } else {
-            setIsDarkMode(false);
-        }
+                window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+        const animationFrame = requestAnimationFrame(() => {
+            setIsDarkMode(prefersDarkMode);
+        });
+
+        return () => cancelAnimationFrame(animationFrame);
     }, []);
 
     useEffect(() => {
@@ -32,14 +36,19 @@ export default function Home() {
         }
     }, [isDarkMode]);
     return (
-        <div>
+        <>
             <Navbar isDarkMode={isDarkMode} setDarkMode={setIsDarkMode} />
-            <Header />
-            <About isDarkMode={isDarkMode} />
-            <Services />
-            <Work isDarkMode={isDarkMode} />
-            <Contact />
+            <main>
+                <Header />
+                <About isDarkMode={isDarkMode} />
+                <Education />
+                <Experience />
+                <Services />
+                <Work isDarkMode={isDarkMode} />
+                <Certificates />
+                <Contact />
+            </main>
             <Footer isDarkMode={isDarkMode} />
-        </div>
+        </>
     );
 }

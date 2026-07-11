@@ -44,6 +44,7 @@ const Navbar = ({
                 <Image src={assets.header_bg_color} alt="" className="w-full" />
             </div>
             <nav
+                aria-label="Primary navigation"
                 className={`fixed z-50 flex w-full items-center justify-between px-5 py-4 lg:px-8 xl:px-[8%] ${isScroll ? 'dark:bg-darkTheme bg-white/50 shadow-sm backdrop-blur-lg dark:shadow-white/20' : ''}`}
             >
                 <a href="#top">
@@ -54,7 +55,7 @@ const Navbar = ({
                     />
                 </a>
                 <ul
-                    className={`hidden items-center gap-6 rounded-full px-12 py-3 md:flex lg:gap-8 ${isScroll ? '' : 'bg-white/50 shadow-sm dark:border dark:border-white/50 dark:bg-transparent'}`}
+                    className={`hidden items-center gap-4 rounded-full px-6 py-3 text-sm md:flex lg:gap-5 xl:px-8 xl:text-base ${isScroll ? '' : 'bg-white/50 shadow-sm dark:border dark:border-white/50 dark:bg-transparent'}`}
                 >
                     <li>
                         <a href="#top" className="font-Ovo">
@@ -77,6 +78,11 @@ const Navbar = ({
                         </a>
                     </li>
                     <li>
+                        <a href="#certificates" className="font-Ovo">
+                            Certificates
+                        </a>
+                    </li>
+                    <li>
                         <a href="#contact" className="font-Ovo">
                             Contact me
                         </a>
@@ -84,6 +90,12 @@ const Navbar = ({
                 </ul>
                 <div className="flex items-center gap-4">
                     <button
+                        type="button"
+                        aria-label={
+                            isDarkMode
+                                ? 'Switch to light mode'
+                                : 'Switch to dark mode'
+                        }
                         className="cursor-pointer"
                         onClick={() => setDarkMode(!isDarkMode)}
                     >
@@ -97,7 +109,7 @@ const Navbar = ({
                     </button>
                     <a
                         href="#contact"
-                        className="font-Ovo ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 lg:flex dark:border-white/50"
+                        className="font-Ovo ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-8 py-2.5 xl:flex dark:border-white/50"
                     >
                         Contact{' '}
                         <Image
@@ -111,6 +123,8 @@ const Navbar = ({
                         />
                     </a>
                     <button
+                        type="button"
+                        aria-label="Open navigation menu"
                         className="ml-3 block cursor-pointer md:hidden"
                         onClick={openMenu}
                     >
@@ -130,7 +144,12 @@ const Navbar = ({
                     ref={sideMenuRef}
                     className="dark:bg-darkHover fixed top-0 -right-64 bottom-0 z-50 flex h-screen w-64 flex-col gap-4 bg-rose-50 px-10 py-20 transition duration-500 md:hidden dark:text-white"
                 >
-                    <div className="absolute top-6 right-6" onClick={closeMenu}>
+                    <button
+                        type="button"
+                        aria-label="Close navigation menu"
+                        className="absolute top-6 right-6"
+                        onClick={closeMenu}
+                    >
                         <Image
                             src={
                                 isDarkMode
@@ -140,7 +159,7 @@ const Navbar = ({
                             alt="Close Icon"
                             className="w-5 cursor-pointer"
                         />
-                    </div>
+                    </button>
                     <li>
                         <a href="#top" onClick={closeMenu} className="font-Ovo">
                             Home
@@ -153,6 +172,24 @@ const Navbar = ({
                             className="font-Ovo"
                         >
                             About me
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#experience"
+                            onClick={closeMenu}
+                            className="font-Ovo"
+                        >
+                            Experience
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#education"
+                            onClick={closeMenu}
+                            className="font-Ovo"
+                        >
+                            Education
                         </a>
                     </li>
                     <li>
@@ -171,6 +208,15 @@ const Navbar = ({
                             className="font-Ovo"
                         >
                             My Work
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#certificates"
+                            onClick={closeMenu}
+                            className="font-Ovo"
+                        >
+                            Certificates
                         </a>
                     </li>
                     <li>

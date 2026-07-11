@@ -1,4 +1,8 @@
-import { assets, infoList, toolsData } from '@/assets/assets';
+import {
+    assets,
+    infoList,
+    toolsData,
+} from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
 import { motion } from 'motion/react';
@@ -68,11 +72,15 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     className="flex-1"
                 >
                     <p className="font-Ovo mb-10 max-w-2xl">
-                        I am an experienced Full Stack Developer with over a
-                        decade of expertise in building scalable, user-centric
-                        applications. I have collaborated with prestigious
-                        organizations, delivering end-to-end solutions that
-                        drive growth and success.
+                        I am a full-stack web developer based in Lahore,
+                        Pakistan, with hands-on experience across frontend,
+                        backend, databases, and deployment workflows. I build
+                        responsive interfaces, RESTful APIs, authentication
+                        systems, and production-ready applications with a focus
+                        on performance and scalability. My professional work
+                        includes 15+ REST APIs, a 30% improvement in API
+                        performance, and deployment workflows that reduced
+                        delivery time by 40%.
                     </p>
                     <motion.ul
                         initial={{ opacity: 0 }}

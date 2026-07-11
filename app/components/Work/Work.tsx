@@ -76,6 +76,8 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             <a
                                 href={project.url}
                                 target="_blank"
+                                rel="noreferrer"
+                                aria-label={`View ${project.title} project`}
                                 className="flex aspect-square w-9 items-center justify-center rounded-full border border-black shadow-[2px_2px_0_#000] transition group-hover:bg-lime-300"
                             >
                                 <Image
@@ -97,6 +99,7 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 }}
                 href="https://github.com/ABDULAHAD118"
                 target="_blank"
+                rel="me noreferrer"
                 className="hover:bg-lightHover dark:hover:bg-darkHover mx-auto my-20 flex w-max items-center justify-center gap-2 rounded-full border-[0.5px] border-gray-700 px-10 py-3 text-gray-700 duration-500 dark:border-white dark:text-white"
             >
                 Visit Other Project{' '}
