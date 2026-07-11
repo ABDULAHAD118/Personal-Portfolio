@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/api/'],
         },
-        sitemap: 'https://abdulahadhussain.tech/sitemap.xml',
-        host: 'https://abdulahadhussain.tech',
+        sitemap: 'https://www.abdulahadhussain.tech/sitemap.xml',
+        host: 'https://www.abdulahadhussain.tech',
     };
 }

@@ -13,7 +13,7 @@ const OvoFont = Ovo({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://abdulahadhussain.tech'),
+    metadataBase: new URL('https://www.abdulahadhussain.tech'),
     title: {
         default: 'Abdulahad Hussain | Full-Stack Web Developer',
         template: '%s | Abdulahad Hussain',
@@ -96,18 +96,20 @@ const structuredData = {
     '@graph': [
         {
             '@type': 'ProfilePage',
-            '@id': 'https://abdulahadhussain.tech/#profile-page',
-            url: 'https://abdulahadhussain.tech',
+            '@id': 'https://www.abdulahadhussain.tech/#profile-page',
+            url: 'https://www.abdulahadhussain.tech',
             name: 'Abdulahad Hussain - Full-Stack Web Developer',
             description:
                 'Professional portfolio of Abdulahad Hussain, a full-stack web developer in Lahore, Pakistan.',
-            mainEntity: { '@id': 'https://abdulahadhussain.tech/#person' },
+            mainEntity: {
+                '@id': 'https://www.abdulahadhussain.tech/#person',
+            },
         },
         {
             '@type': 'Person',
-            '@id': 'https://abdulahadhussain.tech/#person',
+            '@id': 'https://www.abdulahadhussain.tech/#person',
             name: 'Abdulahad Hussain',
-            url: 'https://abdulahadhussain.tech',
+            url: 'https://www.abdulahadhussain.tech',
             jobTitle: 'Full-Stack Web Developer',
             email: 'mailto:abdulahadhussain60@gmail.com',
             address: {
@@ -146,11 +148,13 @@ const structuredData = {
         },
         {
             '@type': 'WebSite',
-            '@id': 'https://abdulahadhussain.tech/#website',
-            url: 'https://abdulahadhussain.tech',
+            '@id': 'https://www.abdulahadhussain.tech/#website',
+            url: 'https://www.abdulahadhussain.tech',
             name: 'Abdulahad Hussain Portfolio',
             inLanguage: 'en',
-            publisher: { '@id': 'https://abdulahadhussain.tech/#person' },
+            publisher: {
+                '@id': 'https://www.abdulahadhussain.tech/#person',
+            },
         },
     ],
 };
