@@ -150,7 +150,7 @@ export const experienceData = [
 ];
 
 export const professionalStats = [
-    { value: '1+', label: 'Year Professional Experience' },
+    { value: '2+', label: 'Year Professional Experience' },
     { value: '15+', label: 'REST APIs Built' },
     { value: '30%', label: 'API Performance Improvement' },
     { value: '40%', label: 'Faster Deployments' },

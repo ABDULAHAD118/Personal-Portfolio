@@ -41,7 +41,7 @@ const Navbar = ({
     return (
         <>
             <div className="fixed top-0 right-0 -z-12 w-11/10 translate-y-[-80%] dark:hidden">
-                <Image src={assets.header_bg_color} alt="" className="w-full" />
+                <Image src={assets.header_bg_color} alt="" className="w-full" loading="eager" priority />
             </div>
             <nav
                 aria-label="Primary navigation"

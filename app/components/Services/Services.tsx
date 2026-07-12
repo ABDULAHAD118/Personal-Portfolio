@@ -43,7 +43,7 @@ const Services = () => {
                     duration: 0.5,
                     delay: 0.7,
                 }}
-                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center"
+                className="font-Ovo mx-auto mt-5 mb-8 max-w-2xl text-center"
             >
                 From responsive interfaces to secure APIs and database-backed
                 systems, I deliver maintainable web applications using modern
@@ -56,7 +56,7 @@ const Services = () => {
                     duration: 0.6,
                     delay: 0.9,
                 }}
-                className="grid-cols-auto my-10 grid gap-6"
+                className="grid-cols-auto mt-8 grid gap-6"
             >
                 {serviceData.map(({ icon, title, description }, index) => (
                     <motion.div
