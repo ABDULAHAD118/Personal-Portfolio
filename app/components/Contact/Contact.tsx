@@ -131,27 +131,44 @@ const Contact = () => {
                         required
                     />
                 </div>
-                <motion.select
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{
-                        duration: 0.6,
-                        delay: 1.2,
-                    }}
-                    name="service"
-                    className="dark:bg-darkHover/30 mb-6 w-full rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none dark:border-white/90"
-                    required
-                    defaultValue=""
-                >
-                    <option value="" disabled>
-                        Select a Service
-                    </option>
-                    {serviceData.map(({ title }) => (
-                        <option key={title} value={title}>
-                            {title}
+                <div className="relative mb-6">
+                    <motion.select
+                        initial={{ x: -50, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{
+                            duration: 0.6,
+                            delay: 1.2,
+                        }}
+                        name="service"
+                        className="dark:bg-darkHover/30 w-full appearance-none rounded-md border-[0.5px] border-gray-400 bg-white py-3 pr-10 pl-3 outline-none dark:border-white/90"
+                        required
+                        defaultValue=""
+                    >
+                        <option value="" disabled>
+                            Select a Service
                         </option>
-                    ))}
-                </motion.select>
+                        {serviceData.map(({ title }) => (
+                            <option key={title} value={title}>
+                                {title}
+                            </option>
+                        ))}
+                    </motion.select>
+                    <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 dark:text-white/50">
+                        <svg
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M19 9l-7 7-7-7"
+                            />
+                        </svg>
+                    </span>
+                </div>
                 <motion.textarea
                     initial={{ y: 100, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
