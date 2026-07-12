@@ -38,7 +38,13 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             href="https://github.com/ABDULAHAD118"
                             target="_blank"
                             rel="me noreferrer"
+                            className="flex items-center gap-2"
                         >
+                            <Image
+                                src={assets.github}
+                                alt="GitHub"
+                                className={`w-5 ${isDarkMode ? 'invert' : ''}`}
+                            />
                             GitHub
                         </a>
                     </li>
@@ -47,7 +53,17 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             href="https://www.linkedin.com/in/abdulahad018/"
                             target="_blank"
                             rel="me noreferrer"
+                            className="flex items-center gap-2"
                         >
+                            <Image
+                                src={
+                                    isDarkMode
+                                        ? assets.linkedin_icon_dark
+                                        : assets.linkedin_icon
+                                }
+                                alt="LinkedIn"
+                                className="w-5"
+                            />
                             LinkedIn
                         </a>
                     </li>
@@ -56,7 +72,17 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             href="https://www.instagram.com/abdulahadhussain8/"
                             target="_blank"
                             rel="me noreferrer"
+                            className="flex items-center gap-2"
                         >
+                            <Image
+                                src={
+                                    isDarkMode
+                                        ? assets.instagram_icon_dark
+                                        : assets.instagram_icon
+                                }
+                                alt="Instagram"
+                                className="w-5"
+                            />
                             Instagram
                         </a>
                     </li>

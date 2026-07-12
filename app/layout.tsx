@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Outfit, Ovo } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 import './globals.css';
 
 const OutfitFont = Outfit({
@@ -176,6 +177,30 @@ export default function RootLayout({
                             /</g,
                             '\\u003c',
                         ),
+                    }}
+                />
+                <Toaster
+                    position="top-right"
+                    toastOptions={{
+                        duration: 4000,
+                        style: {
+                            borderRadius: '12px',
+                            background: '#1f2937',
+                            color: '#fff',
+                            fontSize: '14px',
+                        },
+                        success: {
+                            iconTheme: {
+                                primary: '#7c3aed',
+                                secondary: '#fff',
+                            },
+                        },
+                        error: {
+                            iconTheme: {
+                                primary: '#ef4444',
+                                secondary: '#fff',
+                            },
+                        },
                     }}
                 />
                 {children}

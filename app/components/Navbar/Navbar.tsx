@@ -55,7 +55,7 @@ const Navbar = ({
                     />
                 </a>
                 <ul
-                    className={`hidden items-center gap-4 rounded-full px-6 py-3 text-sm md:flex lg:gap-5 xl:px-8 xl:text-base ${isScroll ? '' : 'bg-white/50 shadow-sm dark:border dark:border-white/50 dark:bg-transparent'}`}
+                    className={`hidden items-center gap-4 rounded-full px-6 py-3 text-base md:flex lg:gap-5 lg:text-lg ${isScroll ? '' : 'bg-white/50 shadow-sm dark:border dark:border-white/50 dark:bg-transparent'}`}
                 >
                     <li>
                         <a href="#top" className="font-Ovo">
@@ -68,6 +68,11 @@ const Navbar = ({
                         </a>
                     </li>
                     <li>
+                        <a href="#experience" className="font-Ovo">
+                            Experience
+                        </a>
+                    </li>
+                    <li>
                         <a href="#services" className="font-Ovo">
                             Services
                         </a>
@@ -75,11 +80,6 @@ const Navbar = ({
                     <li>
                         <a href="#work" className="font-Ovo">
                             My Work
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#certificates" className="font-Ovo">
-                            Certificates
                         </a>
                     </li>
                     <li>
@@ -176,20 +176,20 @@ const Navbar = ({
                     </li>
                     <li>
                         <a
-                            href="#experience"
-                            onClick={closeMenu}
-                            className="font-Ovo"
-                        >
-                            Experience
-                        </a>
-                    </li>
-                    <li>
-                        <a
                             href="#education"
                             onClick={closeMenu}
                             className="font-Ovo"
                         >
                             Education
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#experience"
+                            onClick={closeMenu}
+                            className="font-Ovo"
+                        >
+                            Experience
                         </a>
                     </li>
                     <li>

@@ -44,6 +44,10 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+import linkedin_icon from './InBug-Black.png';
+import linkedin_icon_dark from './InBug-White.png';
+import instagram_icon from './Instagram_Glyph_Black.png';
+import instagram_icon_dark from './Instagram_Glyph_White.png';
 export const assets = {
     user_image,
     code_icon,
@@ -91,6 +95,10 @@ export const assets = {
     send_icon,
     right_arrow_bold,
     right_arrow_bold_dark,
+    linkedin_icon,
+    linkedin_icon_dark,
+    instagram_icon,
+    instagram_icon_dark,
 };
 
 export const workData = [

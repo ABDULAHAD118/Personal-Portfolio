@@ -1,39 +1,54 @@
-import { assets } from '@/assets/assets';
+import { assets, serviceData } from '@/assets/assets';
 import Image from 'next/image';
 import React, { FormEvent, useState } from 'react';
 import { motion } from 'motion/react';
-interface FormDataEventTarget extends EventTarget {
-    reset: () => void;
-}
-interface FormSubmitEvent extends FormEvent<HTMLFormElement> {
-    target: FormDataEventTarget;
-}
+import toast from 'react-hot-toast';
 
 const Contact = () => {
-    const [result, setResult] = useState('');
+    const [isSending, setIsSending] = useState(false);
 
-    const onSubmit = async (event: FormSubmitEvent): Promise<void> => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        setResult('Sending....');
-        const formData = new FormData(event.target as HTMLFormElement);
+        setIsSending(true);
 
-        formData.append('access_key', 'b06d4454-5db9-4a51-b7f4-af6e03cab169');
+        const form = event.currentTarget;
+        const formData = new FormData(form);
 
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData,
-        });
+        const payload = {
+            name: formData.get('name') as string,
+            email: formData.get('email') as string,
+            service: formData.get('service') as string,
+            message: formData.get('message') as string,
+        };
 
-        const data = await response.json();
+        const loadingToast = toast.loading('Sending your message...');
 
-        if (data.success) {
-            setResult('Form Submitted Successfully');
-            event.target.reset();
-        } else {
-            console.log('Error', data);
-            setResult(data.message);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                toast.success('Message sent successfully!', { id: loadingToast });
+                form.reset();
+            } else {
+                toast.error(data.message || 'Something went wrong.', {
+                    id: loadingToast,
+                });
+            }
+        } catch {
+            toast.error('Something went wrong. Please try again.', {
+                id: loadingToast,
+            });
+        } finally {
+            setIsSending(false);
         }
     };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -89,16 +104,6 @@ const Contact = () => {
                 onSubmit={onSubmit}
             >
                 <div className="grid-cols-auto mt-10 mb-8 grid gap-6">
-                    <input
-                        type="hidden"
-                        name="subject"
-                        value="📢 Contact Request via Portfolio – Check it Out!"
-                    />
-                    <input
-                        type="hidden"
-                        name="from_name"
-                        value="Contact Gateway – Abdulahad Hussain"
-                    />
                     <motion.input
                         initial={{ x: -50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
@@ -126,6 +131,27 @@ const Contact = () => {
                         required
                     />
                 </div>
+                <motion.select
+                    initial={{ x: -50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{
+                        duration: 0.6,
+                        delay: 1.2,
+                    }}
+                    name="service"
+                    className="dark:bg-darkHover/30 mb-6 w-full rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none dark:border-white/90"
+                    required
+                    defaultValue=""
+                >
+                    <option value="" disabled>
+                        Select a Service
+                    </option>
+                    {serviceData.map(({ title }) => (
+                        <option key={title} value={title}>
+                            {title}
+                        </option>
+                    ))}
+                </motion.select>
                 <motion.textarea
                     initial={{ y: 100, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -142,16 +168,16 @@ const Contact = () => {
                         duration: 0.3,
                     }}
                     type="submit"
-                    className="dark:hover:bg-darkHover mx-auto flex w-max cursor-pointer items-center justify-between gap-2 rounded-full bg-black/80 px-8 py-3 text-white duration-500 hover:bg-black dark:border-[0.5px] dark:bg-transparent"
+                    disabled={isSending}
+                    className="dark:hover:bg-darkHover mx-auto flex w-max cursor-pointer items-center justify-between gap-2 rounded-full bg-black/80 px-8 py-3 text-white duration-500 hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 dark:border-[0.5px] dark:bg-transparent"
                 >
-                    Submit Now{' '}
+                    {isSending ? 'Sending...' : 'Submit Now'}{' '}
                     <Image
                         src={assets.right_arrow_white}
                         alt="Arrow Icon"
                         className="w-4"
                     />
                 </motion.button>
-                <p className="mt-4">{result}</p>
             </motion.form>
         </motion.div>
     );
