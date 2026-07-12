@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Outfit, Ovo } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
 
@@ -204,6 +206,8 @@ export default function RootLayout({
                     }}
                 />
                 {children}
+                <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
