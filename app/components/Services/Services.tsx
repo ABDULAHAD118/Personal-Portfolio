@@ -14,17 +14,17 @@ const Services = () => {
             className="w-full scroll-mt-20 px-[12%] py-10"
             id="services"
         >
-            <motion.h4
+            <motion.p
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{
                     duration: 0.5,
                     delay: 0.3,
                 }}
-                className="font-Ovo mb-2 text-center text-lg"
+                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
             >
                 What I Offer
-            </motion.h4>
+            </motion.p>
             <motion.h2
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -32,7 +32,7 @@ const Services = () => {
                     duration: 0.5,
                     delay: 0.5,
                 }}
-                className="font-Ovo text-center text-5xl"
+                className="font-Ovo text-center text-5xl font-bold"
             >
                 My Services
             </motion.h2>
@@ -43,7 +43,7 @@ const Services = () => {
                     duration: 0.5,
                     delay: 0.7,
                 }}
-                className="font-Ovo mx-auto mt-5 mb-8 max-w-2xl text-center"
+                className="font-Ovo mx-auto mt-5 mb-8 max-w-2xl text-center text-gray-700 dark:text-white/80"
             >
                 From responsive interfaces to secure APIs and database-backed
                 systems, I deliver maintainable web applications using modern
@@ -64,8 +64,8 @@ const Services = () => {
                         key={index}
                         className="hover:bg-lightHover dark:hover:bg-darkHover cursor-pointer rounded-lg border border-gray-400 px-8 py-12 duration-500 hover:-translate-y-1 hover:shadow-black dark:hover:shadow-white"
                     >
-                        <Image src={icon} alt="Icon" className="w-10" />
-                        <h3 className="my-4 text-lg text-gray-700 dark:text-white">
+                        <Image src={icon} alt={`${title} icon`} className="w-10" />
+                        <h3 className="my-4 text-lg font-semibold text-gray-700 dark:text-white">
                             {title}
                         </h3>
                         <p className="text-sm leading-5 text-gray-600 dark:text-white/80">

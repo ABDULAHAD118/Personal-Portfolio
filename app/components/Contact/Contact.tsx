@@ -59,17 +59,17 @@ const Contact = () => {
             className="w-full scroll-mt-20 bg-[url(/footer-bg-color.png)] bg-[length:90%_auto] bg-center bg-no-repeat px-[12%] py-10 dark:bg-none"
             id="contact"
         >
-            <motion.h4
+            <motion.p
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{
                     duration: 0.5,
                     delay: 0.3,
                 }}
-                className="font-Ovo mb-2 text-center text-lg"
+                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
             >
                 Connect With Me
-            </motion.h4>
+            </motion.p>
             <motion.h2
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -77,7 +77,7 @@ const Contact = () => {
                     duration: 0.5,
                     delay: 0.5,
                 }}
-                className="font-Ovo text-center text-5xl"
+                className="font-Ovo text-center text-5xl font-bold"
             >
                 Get In Touch
             </motion.h2>
@@ -88,7 +88,7 @@ const Contact = () => {
                     duration: 0.5,
                     delay: 0.7,
                 }}
-                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center"
+                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center text-gray-700 dark:text-white/80"
             >
                 {`I'd`} love to hear from you! If you have any questions,
                 comments or feedback, please use the form below.

@@ -29,19 +29,22 @@ const Navbar = ({
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
-            if (scrollY > 50) {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
                 setIsScroll(true);
             } else {
                 setIsScroll(false);
             }
-        });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <>
             <div className="fixed top-0 right-0 -z-12 w-11/10 translate-y-[-80%] dark:hidden">
-                <Image src={assets.header_bg_color} alt="" className="w-full" loading="eager" priority />
+                <Image src={assets.header_bg_color} alt="Header decorative background" className="w-full" loading="eager" priority />
             </div>
             <nav
                 aria-label="Primary navigation"
@@ -50,7 +53,7 @@ const Navbar = ({
                 <a href="#top">
                     <Image
                         src={isDarkMode ? assets.logo_dark : assets.logo}
-                        alt="Logo"
+                        alt="Abdulahad Hussain - Portfolio Home"
                         className="mr-14 w-36 cursor-pointer"
                     />
                 </a>
@@ -103,7 +106,7 @@ const Navbar = ({
                             src={
                                 isDarkMode ? assets.sun_icon : assets.moon_icon
                             }
-                            alt=""
+                            alt={isDarkMode ? 'Light mode icon' : 'Dark mode icon'}
                             className="w-6"
                         />
                     </button>

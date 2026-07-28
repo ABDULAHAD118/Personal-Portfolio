@@ -16,33 +16,45 @@ const Header = () => {
             >
                 <Image
                     src={assets.profile_img}
-                    alt="Portrait of Abdulahad Hussain"
+                    alt="Abdulahad Hussain - Full Stack Software Engineer"
                     className="w-32 rounded-full"
+                    priority
                 />
             </motion.div>
-            <motion.h3
+            <motion.p
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{
                     duration: 0.6,
                     delay: 0.3,
                 }}
-                className="font-Ovo mb-3 flex items-center gap-2 text-xl md:text-2xl"
+                className="font-Ovo mb-1 flex items-center gap-2 text-xl md:text-2xl"
             >
-                {`Hi! I'm Abdulahad Hussain`}
-                <Image src={assets.hand_icon} alt="" className="w-6" />
-            </motion.h3>
+                {`Hi! I'm`}
+                <Image src={assets.hand_icon} alt="Waving hand icon" className="w-6" />
+            </motion.p>
             <motion.h1
                 initial={{ y: -30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{
                     duration: 0.8,
-                    delay: 0.5,
+                    delay: 0.4,
                 }}
-                className="lg:tet-[66px] font-Ovo text-3xl sm:text-6xl"
+                className="font-Ovo text-4xl tracking-tight sm:text-6xl lg:text-[66px]"
             >
-                Full-Stack Web Developer
+                Abdulahad Hussain
             </motion.h1>
+            <motion.h2
+                initial={{ y: -20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{
+                    duration: 0.8,
+                    delay: 0.55,
+                }}
+                className="font-Ovo text-xl font-medium text-purple-700 dark:text-purple-300 sm:text-2xl"
+            >
+                Full Stack Software Engineer
+            </motion.h2>
             <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -50,10 +62,10 @@ const Header = () => {
                     duration: 0.6,
                     delay: 0.7,
                 }}
-                className="font-Ovo mx-auto max-w-2xl"
+                className="font-Ovo mx-auto max-w-2xl text-gray-700 dark:text-white/80"
             >
                 I build scalable, high-performance web applications with
-                React, Next.js, Vue, Nuxt, Node.js, and modern backend systems.
+                React, Next.js, Vue, Nuxt, Node.js, AdonisJS, and modern cloud backend architectures.
             </motion.p>
             <motion.div
                 className="mt-3 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
@@ -93,7 +105,7 @@ const Header = () => {
                     Contact me
                     <Image
                         src={assets.right_arrow_white}
-                        alt=""
+                        alt="Arrow right"
                         className="w-4"
                     />
                 </motion.a>
@@ -109,7 +121,7 @@ const Header = () => {
                     className="flex items-center gap-2 rounded-full border border-gray-500 px-10 py-3 dark:bg-white dark:text-black"
                 >
                     My Resume
-                    <Image src={assets.download_icon} alt="" className="w-4" />
+                    <Image src={assets.download_icon} alt="Download icon" className="w-4" />
                 </motion.a>
             </div>
         </header>

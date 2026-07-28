@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { siteConfig } from './lib/site-config';
 
 export default function robots(): MetadataRoute.Robots {
     return {
@@ -7,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/api/'],
         },
-        sitemap: 'https://www.abdulahadhussain.tech/sitemap.xml',
-        host: 'https://www.abdulahadhussain.tech',
+        sitemap: `${siteConfig.url}/sitemap.xml`,
+        host: siteConfig.url,
     };
 }

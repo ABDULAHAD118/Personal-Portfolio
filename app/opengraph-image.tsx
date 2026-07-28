@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
+import { siteConfig } from './lib/site-config';
 
-export const alt = 'Abdulahad Hussain - Full-Stack Web Developer';
+export const alt = `${siteConfig.name} - ${siteConfig.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -36,7 +37,7 @@ export default function OpenGraphImage() {
                         textTransform: 'uppercase',
                     }}
                 >
-                    Portfolio · Lahore, Pakistan
+                    Official Portfolio · Lahore, Pakistan
                 </div>
                 <div
                     style={{
@@ -46,7 +47,7 @@ export default function OpenGraphImage() {
                         lineHeight: 1.05,
                     }}
                 >
-                    Abdulahad Hussain
+                    {siteConfig.name}
                 </div>
                 <div
                     style={{
@@ -56,7 +57,7 @@ export default function OpenGraphImage() {
                         marginTop: 24,
                     }}
                 >
-                    Full-Stack Web Developer
+                    {siteConfig.role}
                 </div>
                 <div
                     style={{
@@ -66,7 +67,7 @@ export default function OpenGraphImage() {
                         marginTop: 42,
                     }}
                 >
-                    React · Next.js · Vue · Node.js · TypeScript
+                    React · Next.js · Vue · Node.js · TypeScript · Software Engineering
                 </div>
             </div>
         </div>,

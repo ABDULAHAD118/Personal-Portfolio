@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import About from './components/About/About';
+import Tools from './components/Tools/Tools';
 import Contact from './components/Contact/Contact';
 import Certificates from './components/Certificates/Certificates';
 import Experience from './components/Experience/Experience';
@@ -13,6 +14,7 @@ import Work from './components/Work/Work';
 
 export default function Home() {
     const [isDarkMode, setIsDarkMode] = useState(false);
+
     useEffect(() => {
         const prefersDarkMode =
             localStorage.getItem('theme') === 'dark' ||
@@ -35,12 +37,23 @@ export default function Home() {
             localStorage.removeItem('theme');
         }
     }, [isDarkMode]);
+
+    useEffect(() => {
+        if (!window.location.hash) {
+            if ('scrollRestoration' in window.history) {
+                window.history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+        }
+    }, []);
+
     return (
         <>
             <Navbar isDarkMode={isDarkMode} setDarkMode={setIsDarkMode} />
             <main>
                 <Header />
                 <About isDarkMode={isDarkMode} />
+                <Tools />
                 <Education />
                 <Experience />
                 <Services />

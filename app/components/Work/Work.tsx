@@ -13,17 +13,17 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
             className="w-full scroll-mt-20 px-[12%] py-10"
             id="work"
         >
-            <motion.h4
+            <motion.p
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{
                     duration: 0.5,
                     delay: 0.3,
                 }}
-                className="font-Ovo mb-2 text-center text-lg"
+                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
             >
                 My Portfolio
-            </motion.h4>
+            </motion.p>
             <motion.h2
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -31,7 +31,7 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     duration: 0.5,
                     delay: 0.5,
                 }}
-                className="font-Ovo text-center text-5xl"
+                className="font-Ovo text-center text-5xl font-bold"
             >
                 My Latest Work
             </motion.h2>
@@ -42,7 +42,7 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     duration: 0.5,
                     delay: 0.7,
                 }}
-                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center"
+                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center text-gray-700 dark:text-white/80"
             >
                 Welcome to my web development portfolio! Explore a collection of
                 projects showcasing my expertise in full stack development.
@@ -66,9 +66,9 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     >
                         <div className="absolute bottom-5 left-1/2 flex w-10/12 -translate-x-1/2 items-center justify-between rounded-md bg-white px-5 py-3 duration-500 group-hover:bottom-7">
                             <div>
-                                <h2 className="font-semibold">
+                                <h3 className="font-semibold text-lg text-gray-900">
                                     {project.title}
-                                </h2>
+                                </h3>
                                 <p className="text-sm text-gray-700">
                                     {project.description}
                                 </p>
@@ -82,7 +82,7 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             >
                                 <Image
                                     src={assets.send_icon}
-                                    alt="Send Icon"
+                                    alt={`View ${project.title}`}
                                     className="w-5"
                                 />
                             </a>
@@ -102,14 +102,14 @@ const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 rel="me noreferrer"
                 className="hover:bg-lightHover dark:hover:bg-darkHover mx-auto my-20 flex w-max items-center justify-center gap-2 rounded-full border-[0.5px] border-gray-700 px-10 py-3 text-gray-700 duration-500 dark:border-white dark:text-white"
             >
-                Visit Other Project{' '}
+                Visit Other Projects{' '}
                 <Image
                     src={
                         isDarkMode
                             ? assets.right_arrow_bold_dark
                             : assets.right_arrow_bold
                     }
-                    alt="Send Icon"
+                    alt="Arrow right icon"
                     className="w-4"
                 />
             </motion.a>

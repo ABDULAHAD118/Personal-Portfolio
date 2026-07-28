@@ -3,6 +3,8 @@ import { Outfit, Ovo } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'react-hot-toast';
+import { siteConfig } from './lib/site-config';
+import { generateStructuredData } from './lib/schema';
 import './globals.css';
 
 const OutfitFont = Outfit({
@@ -16,57 +18,55 @@ const OvoFont = Ovo({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://www.abdulahadhussain.tech'),
+    metadataBase: new URL(siteConfig.url),
     title: {
-        default: 'Abdulahad Hussain | Full-Stack Web Developer',
-        template: '%s | Abdulahad Hussain',
+        default: siteConfig.title,
+        template: `%s | ${siteConfig.name}`,
     },
-    description:
-        'Portfolio of Abdulahad Hussain, a full-stack web developer in Lahore building scalable applications with React, Next.js, Vue, Node.js and AdonisJS.',
-    applicationName: 'Abdulahad Hussain Portfolio',
-    authors: [{ name: 'Abdulahad Hussain', url: '/' }],
-    creator: 'Abdulahad Hussain',
-    publisher: 'Abdulahad Hussain',
+    description: siteConfig.description,
+    applicationName: `${siteConfig.name} Portfolio`,
+    authors: [{ name: siteConfig.name, url: siteConfig.url }],
+    creator: siteConfig.name,
+    publisher: siteConfig.name,
     category: 'technology',
-    keywords: [
-        'Abdulahad Hussain',
-        'full-stack web developer',
-        'full stack developer Lahore',
-        'Next.js developer Pakistan',
-        'React developer',
-        'Node.js developer',
-        'Vue.js developer',
-        'AdonisJS developer',
-        'backend developer',
-        'frontend developer',
-        'TypeScript developer',
-    ],
+    keywords: siteConfig.keywords,
     alternates: {
         canonical: '/',
     },
     openGraph: {
         type: 'profile',
-        locale: 'en_PK',
+        firstName: siteConfig.givenName,
+        lastName: siteConfig.familyName,
+        username: 'ABDULAHAD118',
+        gender: 'male',
+        locale: 'en_US',
         url: '/',
-        siteName: 'Abdulahad Hussain Portfolio',
-        title: 'Abdulahad Hussain | Full-Stack Web Developer',
-        description:
-            'Full-stack developer building scalable React, Next.js, Vue and Node.js applications in Lahore, Pakistan.',
+        siteName: siteConfig.siteName,
+        title: siteConfig.title,
+        description: siteConfig.shortDescription,
         images: [
             {
                 url: '/opengraph-image',
                 width: 1200,
                 height: 630,
-                alt: 'Abdulahad Hussain - Full-Stack Web Developer',
+                alt: `${siteConfig.name} - ${siteConfig.role}`,
+                type: 'image/png',
+            },
+            {
+                url: '/profile-img.png',
+                width: 800,
+                height: 800,
+                alt: `${siteConfig.name} Profile Photo`,
+                type: 'image/png',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Abdulahad Hussain | Full-Stack Web Developer',
-        description:
-            'Full-stack developer building scalable React, Next.js, Vue and Node.js applications.',
-        images: ['/twitter-image'],
+        title: siteConfig.title,
+        description: siteConfig.shortDescription,
+        creator: '@abdulahadhussain',
+        images: ['/opengraph-image'],
     },
     robots: {
         index: true,
@@ -80,87 +80,24 @@ export const metadata: Metadata = {
         },
     },
     icons: {
-        icon: '/favicon.ico',
+        icon: [
+            { url: '/favicon.ico', sizes: 'any' },
+            { url: '/profile-img.png', sizes: '192x192', type: 'image/png' },
+        ],
         shortcut: '/favicon.ico',
-        apple: '/favicon.ico',
+        apple: [{ url: '/profile-img.png', sizes: '180x180', type: 'image/png' }],
     },
     manifest: '/manifest.webmanifest',
     verification: process.env.GOOGLE_SITE_VERIFICATION
         ? { google: process.env.GOOGLE_SITE_VERIFICATION }
         : undefined,
     other: {
-        'geo.region': 'PK-PB',
-        'geo.placename': 'Lahore',
+        'geo.region': `${siteConfig.location.country}-${siteConfig.location.region}`,
+        'geo.placename': siteConfig.location.locality,
     },
 };
 
-const structuredData = {
-    '@context': 'https://schema.org',
-    '@graph': [
-        {
-            '@type': 'ProfilePage',
-            '@id': 'https://www.abdulahadhussain.tech/#profile-page',
-            url: 'https://www.abdulahadhussain.tech',
-            name: 'Abdulahad Hussain - Full-Stack Web Developer',
-            description:
-                'Professional portfolio of Abdulahad Hussain, a full-stack web developer in Lahore, Pakistan.',
-            mainEntity: {
-                '@id': 'https://www.abdulahadhussain.tech/#person',
-            },
-        },
-        {
-            '@type': 'Person',
-            '@id': 'https://www.abdulahadhussain.tech/#person',
-            name: 'Abdulahad Hussain',
-            url: 'https://www.abdulahadhussain.tech',
-            jobTitle: 'Full-Stack Web Developer',
-            email: 'mailto:abdulahadhussain60@gmail.com',
-            address: {
-                '@type': 'PostalAddress',
-                addressLocality: 'Lahore',
-                addressCountry: 'PK',
-            },
-            worksFor: {
-                '@type': 'Organization',
-                name: 'BitLogicx',
-            },
-            alumniOf: {
-                '@type': 'CollegeOrUniversity',
-                name: 'University of Engineering and Technology, Lahore',
-            },
-            sameAs: [
-                'https://github.com/ABDULAHAD118',
-                'https://www.linkedin.com/in/abdulahad018/',
-                'https://www.instagram.com/abdulahadhussain8/',
-            ],
-            knowsAbout: [
-                'Full-stack web development',
-                'React',
-                'Next.js',
-                'Vue.js',
-                'Nuxt',
-                'Node.js',
-                'AdonisJS',
-                'TypeScript',
-                'MongoDB',
-                'MySQL',
-                'Redis',
-                'Docker',
-                'REST APIs',
-            ],
-        },
-        {
-            '@type': 'WebSite',
-            '@id': 'https://www.abdulahadhussain.tech/#website',
-            url: 'https://www.abdulahadhussain.tech',
-            name: 'Abdulahad Hussain Portfolio',
-            inLanguage: 'en',
-            publisher: {
-                '@id': 'https://www.abdulahadhussain.tech/#person',
-            },
-        },
-    ],
-};
+const structuredData = generateStructuredData();
 
 export default function RootLayout({
     children,

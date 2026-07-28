@@ -1,7 +1,6 @@
 import {
     assets,
     infoList,
-    toolsData,
 } from '@/assets/assets';
 import Image from 'next/image';
 import React from 'react';
@@ -18,17 +17,17 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
             className="w-full scroll-mt-20 px-[12%] py-10"
             id="about"
         >
-            <motion.h4
+            <motion.p
                 initial={{ y: -20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{
                     duration: 0.5,
                     delay: 0.3,
                 }}
-                className="font-Ovo mb-2 text-center text-lg"
+                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
             >
                 Introduction
-            </motion.h4>
+            </motion.p>
             <motion.h2
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -36,7 +35,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     duration: 0.5,
                     delay: 0.5,
                 }}
-                className="font-Ovo text-center text-5xl"
+                className="font-Ovo text-center text-5xl font-bold"
             >
                 About me
             </motion.h2>
@@ -46,7 +45,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 transition={{
                     duration: 0.8,
                 }}
-                className="my-20 flex w-full flex-col items-center gap-20 lg:flex-row"
+                className="my-14 flex w-full flex-col items-center gap-16 lg:flex-row"
             >
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
@@ -58,7 +57,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 >
                     <Image
                         src={assets.user_image}
-                        alt="User Image"
+                        alt="Abdulahad Hussain - Full Stack Software Engineer"
                         className="w-full rounded-3xl"
                     />
                 </motion.div>
@@ -71,8 +70,8 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                     }}
                     className="flex-1"
                 >
-                    <p className="font-Ovo mb-10 max-w-2xl">
-                        I am a full-stack web developer based in Lahore,
+                    <p className="font-Ovo mb-10 max-w-2xl text-gray-700 dark:text-white/80">
+                        I am a full-stack software engineer based in Lahore,
                         Pakistan, with hands-on experience across frontend,
                         backend, databases, and deployment workflows. I build
                         responsive interfaces, RESTful APIs, authentication
@@ -100,7 +99,7 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                                 >
                                     <Image
                                         src={isDarkMode ? iconDark : icon}
-                                        alt={title}
+                                        alt={`${title} icon`}
                                         className="mt-3 w-7"
                                     />
                                     <h3 className="my-4 font-semibold text-gray-700 dark:text-white">
@@ -112,40 +111,6 @@ const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
                                 </motion.li>
                             )
                         )}
-                    </motion.ul>
-                    <motion.h4
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{
-                            duration: 0.5,
-                            delay: 1.3,
-                        }}
-                        className="font-Ovo my-6 text-gray-700 dark:text-white/80"
-                    >
-                        Tool I Use
-                    </motion.h4>
-                    <motion.ul
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{
-                            duration: 0.6,
-                            delay: 1.5,
-                        }}
-                        className="flex flex-wrap items-center justify-center gap-3 sm:gap-5"
-                    >
-                        {toolsData.map((tool, index) => (
-                            <motion.li
-                                whileHover={{ scale: 1.1 }}
-                                key={index}
-                                className="hover:bg-lightHover! dark:bg-lightHover! flex aspect-square w-12 cursor-pointer items-center justify-center rounded-lg border border-gray-400 duration-500 hover:-translate-y-1 sm:w-14"
-                            >
-                                <Image
-                                    src={tool}
-                                    alt="Tool"
-                                    className="w-5 sm:w-7"
-                                />
-                            </motion.li>
-                        ))}
                     </motion.ul>
                 </motion.div>
             </motion.div>

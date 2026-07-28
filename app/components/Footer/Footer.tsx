@@ -8,12 +8,12 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
             <div className="text-center">
                 <Image
                     src={isDarkMode ? assets.logo_dark : assets.logo}
-                    alt="Abdulahad Hussain"
+                    alt="Abdulahad Hussain - Portfolio Home"
                     className="mx-auto mb-2 w-36"
                 />
                 <a
                     href="mailto:abdulahadhussain60@gmail.com"
-                    className="mx-auto flex w-max items-center gap-2"
+                    className="mx-auto flex w-max items-center gap-2 text-gray-700 dark:text-white/80"
                 >
                     <Image
                         src={
@@ -21,7 +21,7 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                                 ? assets.mail_icon_dark
                                 : assets.mail_icon
                         }
-                        alt="Mail Icon"
+                        alt="Email Icon"
                         className="w-6"
                     />
                     abdulahadhussain60@gmail.com
@@ -29,7 +29,7 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
             </div>
             <div className="mx-[10%] mt-12 items-center justify-between border-t border-gray-400 py-6 text-center sm:flex">
                 <p>
-                    &copy; {new Date().getFullYear()} Abdulahad. All rights
+                    &copy; {new Date().getFullYear()} Abdulahad Hussain. All rights
                     reserved.
                 </p>
                 <ul className="mt-4 flex items-center justify-center gap-10 sm:mt-0">
@@ -38,11 +38,11 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             href="https://github.com/ABDULAHAD118"
                             target="_blank"
                             rel="me noreferrer"
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-purple-600"
                         >
                             <Image
                                 src={assets.github}
-                                alt="GitHub"
+                                alt="GitHub Profile"
                                 className={`w-5 ${isDarkMode ? 'invert' : ''}`}
                             />
                             GitHub
@@ -53,7 +53,7 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             href="https://www.linkedin.com/in/abdulahad018/"
                             target="_blank"
                             rel="me noreferrer"
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-purple-600"
                         >
                             <Image
                                 src={
@@ -61,7 +61,7 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                                         ? assets.linkedin_icon_dark
                                         : assets.linkedin_icon
                                 }
-                                alt="LinkedIn"
+                                alt="LinkedIn Profile"
                                 className="w-5"
                             />
                             LinkedIn
@@ -72,7 +72,7 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                             href="https://www.instagram.com/abdulahadhussain8/"
                             target="_blank"
                             rel="me noreferrer"
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-purple-600"
                         >
                             <Image
                                 src={
@@ -80,7 +80,7 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
                                         ? assets.instagram_icon_dark
                                         : assets.instagram_icon
                                 }
-                                alt="Instagram"
+                                alt="Instagram Profile"
                                 className="w-5"
                             />
                             Instagram
