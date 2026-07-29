@@ -13,7 +13,7 @@ export const siteConfig = {
         'Full Stack Software Engineer specializing in scalable web applications, React, Next.js, Vue, Node.js, and modern cloud backend architectures.',
     email: 'abdulahadhussain60@gmail.com',
     emailUrl: 'mailto:abdulahadhussain60@gmail.com',
-    profileImage: 'https://www.abdulahadhussain.tech/profile-img.png',
+    profileImage: 'https://www.abdulahadhussain.tech/abdulahad-hussain.png',
     ogImage: 'https://www.abdulahadhussain.tech/opengraph-image',
     location: {
         locality: 'Lahore',

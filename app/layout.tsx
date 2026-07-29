@@ -53,7 +53,7 @@ export const metadata: Metadata = {
                 type: 'image/png',
             },
             {
-                url: '/profile-img.png',
+                url: '/abdulahad-hussain.png',
                 width: 800,
                 height: 800,
                 alt: `${siteConfig.name} Profile Photo`,
