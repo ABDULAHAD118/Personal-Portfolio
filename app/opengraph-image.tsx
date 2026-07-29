@@ -123,6 +123,7 @@ export default function OpenGraphImage() {
                                 height: 308,
                                 borderRadius: 154,
                                 objectFit: 'cover',
+                                objectPosition: 'top'
                             }}
                         />
                     </div>
