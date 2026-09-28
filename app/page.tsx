@@ -11,6 +11,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Services from './components/Services/Services';
 import Work from './components/Work/Work';
+import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Home() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -62,6 +63,7 @@ export default function Home() {
                 <Contact />
             </main>
             <Footer isDarkMode={isDarkMode} />
+            <Chatbot isDarkMode={isDarkMode} />
         </>
     );
 }
