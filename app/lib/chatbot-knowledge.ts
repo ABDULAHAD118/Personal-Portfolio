@@ -7,6 +7,7 @@ import {
     workData,
 } from '@/assets/assets';
 import { siteConfig } from './site-config';
+import type { QuickLabel } from './quick-prompts';
 
 // Everything below is built from the same data the site renders, so Jinny never drifts from the pages.
 
@@ -99,3 +100,59 @@ ${services}
 ## Certificates
 ${certificates}
 `;
+
+// Ready-made answers for the quick-prompt buttons, built from the same data, so they appear instantly.
+const clientWork = workData.filter((p) => p.kind === 'client');
+const personalWork = workData.filter((p) => p.kind === 'personal');
+const projectLine = (p: (typeof workData)[number]) =>
+    `- **[${p.title}](/work/${p.slug})** — ${p.summary} _${p.stack.slice(0, 5).join(', ')}_`;
+
+export const QUICK_ANSWERS: Record<QuickLabel, string> = {
+    experience: [
+        `Abdulahad has ${professionalStats[0].value} years of professional experience.`,
+        '',
+        ...experienceData.map(
+            (e) =>
+                `- **${e.role}** at **${e.company}** (${e.period}) — ${e.highlights[0]} [Details](/experience/${e.slug})`
+        ),
+        '',
+        `Highlights: ${professionalStats
+            .slice(1)
+            .map((s) => `**${s.value}** ${s.label.toLowerCase()}`)
+            .join(', ')}. See the full timeline on the [experience page](/experience).`,
+    ].join('\n'),
+    projects: [
+        'Client work at BitLogicx, where he handles the frontend, APIs, CI/CD and servers:',
+        ...clientWork.map(projectLine),
+        '',
+        'Personal projects:',
+        ...personalWork.map(projectLine),
+        '',
+        'Browse them all on the [work page](/work).',
+    ].join('\n'),
+    services: [
+        'Abdulahad offers:',
+        ...serviceData.map((s) => `- **[${s.title}](/services/${s.slug})** — ${s.description}`),
+        '',
+        'To discuss a project, use the [contact page](/contact).',
+    ].join('\n'),
+    education: [
+        `- **${educationData.degree}**, ${educationData.school} (${educationData.period}).`,
+        `- **Final year project: ${fyp.title}** — ${fyp.summary} It includes ${fyp.features
+            .slice(0, 4)
+            .map((f) => f.title.toLowerCase())
+            .join(', ')} and more.`,
+        `- **${certificateData.length} certificates** from ${[...new Set(certificateData.map((c) => c.issuer))].join(', ')}.`,
+        '',
+        'Details on the [education page](/education) and [certificates page](/certificates).',
+    ].join('\n'),
+    'contact & hire': [
+        'Abdulahad is open to full-time roles and freelance projects, remote or in Lahore.',
+        '',
+        `- **Email:** [${siteConfig.email}](mailto:${siteConfig.email})`,
+        '- **Contact form:** [contact page](/contact)',
+        `- **LinkedIn:** [${siteConfig.socialLinks[1].replace('https://www.', '')}](${siteConfig.socialLinks[1]})`,
+        `- **GitHub:** [${siteConfig.socialLinks[0].replace('https://', '')}](${siteConfig.socialLinks[0]})`,
+        '- **Resume:** [download PDF](/Abdulahad-Hussain-Resume.pdf)',
+    ].join('\n'),
+};

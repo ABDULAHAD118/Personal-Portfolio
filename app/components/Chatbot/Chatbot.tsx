@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Ghost, SendHorizontal, Trash2, X } from 'lucide-react';
+import { QUICK_PROMPTS } from '@/app/lib/quick-prompts';
 
 interface Message {
     id: string;
@@ -10,13 +11,6 @@ interface Message {
     timestamp: string;
 }
 
-const QUICK_PROMPTS = [
-    { label: 'experience', prompt: 'Tell me about Abdulahad’s work experience and achievements.' },
-    { label: 'projects', prompt: 'What key projects has Abdulahad built and what tech stack was used?' },
-    { label: 'services', prompt: 'What services does Abdulahad offer to clients and teams?' },
-    { label: 'education', prompt: 'What is Abdulahad’s educational background and certifications?' },
-    { label: 'contact & hire', prompt: 'How can I get in touch with or hire Abdulahad?' },
-];
 
 let messageCounter = 0;
 const generateId = (prefix: string) => {
@@ -58,7 +52,7 @@ function renderInlineContent(text: string): React.ReactNode[] {
         if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
             return (
                 <strong key={index} className="text-fg font-semibold">
-                    {part.slice(2, -2)}
+                    {renderInlineContent(part.slice(2, -2))}
                 </strong>
             );
         }
