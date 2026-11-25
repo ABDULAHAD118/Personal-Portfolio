@@ -1,240 +1,161 @@
-import { assets } from '@/assets/assets';
-import Image from 'next/image';
-import React, {
-    Dispatch,
-    SetStateAction,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+'use client';
+import { useState } from 'react';
+import {
+    AnimatePresence,
+    motion,
+    useMotionValueEvent,
+    useScroll,
+} from 'motion/react';
+import { navLinks } from '@/app/lib/content';
+import { useTheme } from '@/app/lib/use-theme';
 
-const Navbar = ({
-    isDarkMode,
-    setDarkMode,
-}: {
-    isDarkMode: boolean;
-    setDarkMode: Dispatch<SetStateAction<boolean>>;
-}) => {
-    const [isScroll, setIsScroll] = useState(false);
-    const sideMenuRef = useRef<HTMLUListElement | null>(null);
-    const openMenu = () => {
-        if (sideMenuRef.current) {
-            sideMenuRef.current.style.transform = 'translateX(-16rem)';
-        }
-    };
-    const closeMenu = () => {
-        if (sideMenuRef.current) {
-            sideMenuRef.current.style.transform = 'translateX(16rem)';
-        }
-    };
+const Navbar = () => {
+    const { isDarkMode, toggleTheme } = useTheme();
+    const { scrollY } = useScroll();
+    const [hidden, setHidden] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setIsScroll(true);
-            } else {
-                setIsScroll(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    useMotionValueEvent(scrollY, 'change', (y) => {
+        const prev = scrollY.getPrevious() ?? 0;
+        setScrolled(y > 40);
+        setHidden(y > prev && y > 200 && !menuOpen);
+    });
 
     return (
         <>
-            <div className="fixed top-0 right-0 -z-12 w-11/10 translate-y-[-80%] dark:hidden">
-                <Image src={assets.header_bg_color} alt="Header decorative background" className="w-full" loading="eager" priority />
-            </div>
-            <nav
-                aria-label="Primary navigation"
-                className={`fixed z-50 flex w-full items-center justify-between px-5 py-4 lg:px-8 xl:px-[8%] ${isScroll ? 'dark:bg-darkTheme bg-white/50 shadow-sm backdrop-blur-lg dark:shadow-white/20' : ''}`}
+            <motion.header
+                animate={{ y: hidden ? '-110%' : '0%' }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="fixed inset-x-0 top-0 z-50 px-4 pt-4"
             >
-                <a href="#top">
-                    <Image
-                        src={isDarkMode ? assets.logo_dark : assets.logo}
-                        alt="Abdulahad Hussain - Portfolio Home"
-                        className="mr-14 w-36 cursor-pointer"
-                    />
-                </a>
-                <ul
-                    className={`hidden items-center gap-4 rounded-full px-6 py-3 text-base md:flex lg:gap-5 lg:text-lg ${isScroll ? '' : 'bg-white/50 shadow-sm dark:border dark:border-white/50 dark:bg-transparent'}`}
+                <nav
+                    aria-label="Primary navigation"
+                    className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-4 py-2.5 transition-colors duration-300 sm:px-6 ${
+                        scrolled
+                            ? 'border-line bg-panel/70 backdrop-blur-xl'
+                            : 'border-transparent'
+                    }`}
                 >
-                    <li>
-                        <a href="#top" className="font-Ovo">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#about" className="font-Ovo">
-                            About me
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#experience" className="font-Ovo">
-                            Experience
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#services" className="font-Ovo">
-                            Services
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#work" className="font-Ovo">
-                            My Work
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contact" className="font-Ovo">
-                            Contact me
-                        </a>
-                    </li>
-                </ul>
-                <div className="flex items-center gap-4">
-                    <button
-                        type="button"
-                        aria-label={
-                            isDarkMode
-                                ? 'Switch to light mode'
-                                : 'Switch to dark mode'
-                        }
-                        className="cursor-pointer"
-                        onClick={() => setDarkMode(!isDarkMode)}
-                    >
-                        <Image
-                            src={
-                                isDarkMode ? assets.sun_icon : assets.moon_icon
-                            }
-                            alt={isDarkMode ? 'Light mode icon' : 'Dark mode icon'}
-                            className="w-6"
-                        />
-                    </button>
                     <a
-                        href="#contact"
-                        className="font-Ovo ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-8 py-2.5 xl:flex dark:border-white/50"
+                        href="#top"
+                        aria-label="Abdulahad Hussain, back to top"
+                        className="font-mono text-sm font-medium tracking-tight"
                     >
-                        Contact{' '}
-                        <Image
-                            src={
-                                isDarkMode
-                                    ? assets.arrow_icon_dark
-                                    : assets.arrow_icon
-                            }
-                            className="w-3"
-                            alt="Arrow Icon"
-                        />
+                        <span className="text-accent">&lt;</span>
+                        Abdulahad
+                        <span className="text-accent"> /&gt;</span>
                     </a>
-                    <button
-                        type="button"
-                        aria-label="Open navigation menu"
-                        className="ml-3 block cursor-pointer md:hidden"
-                        onClick={openMenu}
-                    >
-                        <Image
-                            src={
+
+                    <ul className="hidden items-center gap-1 md:flex">
+                        {navLinks.map((link) => (
+                            <li key={link.href}>
+                                <a
+                                    href={link.href}
+                                    className="text-muted hover:text-fg rounded-lg px-3 py-1.5 text-sm transition-colors"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="flex items-center gap-2">
+                        <button
+                            type="button"
+                            onClick={toggleTheme}
+                            aria-label={
                                 isDarkMode
-                                    ? assets.menu_white
-                                    : assets.menu_black
+                                    ? 'Switch to light mode'
+                                    : 'Switch to dark mode'
                             }
-                            alt="Menu Icon"
-                            className="w-6"
-                        />
-                    </button>
-                </div>
-                {/* Mobile Menu  */}
-                <ul
-                    ref={sideMenuRef}
-                    className="dark:bg-darkHover fixed top-0 -right-64 bottom-0 z-50 flex h-screen w-64 flex-col gap-4 bg-rose-50 px-10 py-20 transition duration-500 md:hidden dark:text-white"
-                >
-                    <button
-                        type="button"
-                        aria-label="Close navigation menu"
-                        className="absolute top-6 right-6"
-                        onClick={closeMenu}
-                    >
-                        <Image
-                            src={
-                                isDarkMode
-                                    ? assets.close_white
-                                    : assets.close_black
-                            }
-                            alt="Close Icon"
-                            className="w-5 cursor-pointer"
-                        />
-                    </button>
-                    <li>
-                        <a href="#top" onClick={closeMenu} className="font-Ovo">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#about"
-                            onClick={closeMenu}
-                            className="font-Ovo"
+                            className="border-line hover:border-accent grid size-9 cursor-pointer place-items-center rounded-full border transition-colors"
                         >
-                            About me
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#education"
-                            onClick={closeMenu}
-                            className="font-Ovo"
-                        >
-                            Education
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#experience"
-                            onClick={closeMenu}
-                            className="font-Ovo"
-                        >
-                            Experience
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#services"
-                            onClick={closeMenu}
-                            className="font-Ovo"
-                        >
-                            Services
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#work"
-                            onClick={closeMenu}
-                            className="font-Ovo"
-                        >
-                            My Work
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#certificates"
-                            onClick={closeMenu}
-                            className="font-Ovo"
-                        >
-                            Certificates
-                        </a>
-                    </li>
-                    <li>
+                            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+                        </button>
                         <a
                             href="#contact"
-                            onClick={closeMenu}
-                            className="font-Ovo"
+                            className="bg-accent hidden rounded-full px-4 py-1.5 text-sm font-medium text-white shadow-[0_0_24px_-6px_var(--color-accent)] transition-transform hover:-translate-y-0.5 sm:block"
                         >
-                            Contact me
+                            Hire me
                         </a>
-                    </li>
-                </ul>
-            </nav>
+                        <button
+                            type="button"
+                            onClick={() => setMenuOpen(true)}
+                            aria-label="Open navigation menu"
+                            aria-expanded={menuOpen}
+                            className="border-line grid size-9 cursor-pointer place-items-center rounded-full border md:hidden"
+                        >
+                            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+                                <path d="M2 5h12M2 11h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+            </motion.header>
+
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="bg-bg/95 fixed inset-0 z-[60] flex flex-col px-6 pt-6 backdrop-blur-xl md:hidden"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Navigation menu"
+                        onKeyDown={(e) => e.key === 'Escape' && setMenuOpen(false)}
+                    >
+                        <button
+                            type="button"
+                            onClick={() => setMenuOpen(false)}
+                            autoFocus
+                            aria-label="Close navigation menu"
+                            className="border-line ml-auto grid size-9 cursor-pointer place-items-center rounded-full border"
+                        >
+                            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                                <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                        <ul className="mt-12 flex flex-col gap-2">
+                            {navLinks.map((link, i) => (
+                                <motion.li
+                                    key={link.href}
+                                    initial={{ opacity: 0, y: 16 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.05 * i }}
+                                >
+                                    <a
+                                        href={link.href}
+                                        onClick={() => setMenuOpen(false)}
+                                        className="font-heading flex items-baseline gap-3 py-2 text-4xl font-semibold"
+                                    >
+                                        <span className="text-accent font-mono text-sm">
+                                            0{i + 1}
+                                        </span>
+                                        {link.label}
+                                    </a>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };
+
+const SunIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+);
+
+const MoonIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    </svg>
+);
 
 export default Navbar;

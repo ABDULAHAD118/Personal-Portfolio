@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit, Ovo } from 'next/font/google';
+import { Inter, JetBrains_Mono, Sora } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'react-hot-toast';
@@ -7,14 +7,16 @@ import { siteConfig } from './lib/site-config';
 import { generateStructuredData } from './lib/schema';
 import './globals.css';
 
-const OutfitFont = Outfit({
-    weight: ['400', '500', '600', '700'],
-    subsets: ['latin'],
-});
+import SmoothScroll from './components/providers/SmoothScroll';
 
-const OvoFont = Ovo({
-    weight: ['400'],
+// Runs before paint: dark by default, light only if the visitor chose it (read by app/lib/use-theme.ts).
+const themeScript = `try{document.documentElement.classList.toggle('dark',localStorage.getItem('theme')!=='light')}catch(e){}`;
+
+const sora = Sora({ subsets: ['latin'], variable: '--font-sora' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const jetbrains = JetBrains_Mono({
     subsets: ['latin'],
+    variable: '--font-jetbrains',
 });
 
 export const metadata: Metadata = {
@@ -105,10 +107,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="scroll-smooth">
-            <body
-                className={`${OutfitFont.className} ${OvoFont.className} dark:bg-darkTheme overflow-x-hidden leading-8 antialiased dark:text-white`}
-            >
+        <html
+            lang="en"
+            className={`dark ${sora.variable} ${inter.variable} ${jetbrains.variable}`}
+            suppressHydrationWarning
+        >
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
+            <body className="overflow-x-hidden font-sans leading-8 antialiased">
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -142,7 +149,7 @@ export default function RootLayout({
                         },
                     }}
                 />
-                {children}
+                <SmoothScroll>{children}</SmoothScroll>
                 <Analytics />
                 <SpeedInsights />
             </body>

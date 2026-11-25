@@ -1,29 +1,52 @@
 @import "tailwindcss";
 
-* {
-  font-family: Outfit;
-}
-
 @theme {
-  --color-lightHover: #ffeafe;
-  --color-darkHover: #2a004a;
-  --color-darkTheme: #11001f;
-  --font-Outfit: 'Outfit', sans-serif;
-  --font-ovo: 'Ovo', serif;
+  --color-bg: #f7f7fb;
+  --color-panel: #ffffff;
+  --color-fg: #0a0a0f;
+  --color-muted: #5b5d6b;
+  --color-line: rgb(10 10 15 / 0.1);
+  --color-accent: #7c3aed;
+  --color-glow: #0891b2;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-sora), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Legacy tokens still used by sections not yet redesigned. */
+  --color-lightHover: #ede9fe;
+  --color-darkHover: #1c1d27;
+  --color-darkTheme: #0a0a0f;
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
   --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
-
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+.dark {
+  --color-bg: #0a0a0f;
+  --color-panel: #12131a;
+  --color-fg: #f4f4f8;
+  --color-muted: #9a9cad;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-accent: #8b5cf6;
+  --color-glow: #22d3ee;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
 @layer utilities {
   .grid-cols-auto {
     grid-template-columns: var(--grid-cols-auto);
-  }
-
-  .font-Ovo {
-    font-family: var(--font-ovo) !important;
   }
 }

@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useTheme } from './lib/use-theme';
 import About from './components/About/About';
 import Tools from './components/Tools/Tools';
 import Contact from './components/Contact/Contact';
@@ -14,30 +15,7 @@ import Work from './components/Work/Work';
 import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Home() {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-
-    useEffect(() => {
-        const prefersDarkMode =
-            localStorage.getItem('theme') === 'dark' ||
-            (!('theme' in localStorage) &&
-                window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-        const animationFrame = requestAnimationFrame(() => {
-            setIsDarkMode(prefersDarkMode);
-        });
-
-        return () => cancelAnimationFrame(animationFrame);
-    }, []);
-
-    useEffect(() => {
-        if (isDarkMode) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.removeItem('theme');
-        }
-    }, [isDarkMode]);
+    const { isDarkMode } = useTheme();
 
     useEffect(() => {
         if (!window.location.hash) {
@@ -50,7 +28,7 @@ export default function Home() {
 
     return (
         <>
-            <Navbar isDarkMode={isDarkMode} setDarkMode={setIsDarkMode} />
+            <Navbar />
             <main>
                 <Header />
                 <About isDarkMode={isDarkMode} />
@@ -62,7 +40,7 @@ export default function Home() {
                 <Certificates />
                 <Contact />
             </main>
-            <Footer isDarkMode={isDarkMode} />
+            <Footer />
             <Chatbot isDarkMode={isDarkMode} />
         </>
     );

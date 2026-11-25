@@ -1,92 +1,43 @@
-import { assets } from '@/assets/assets';
-import Image from 'next/image';
-import React from 'react';
+import { socials } from '@/app/lib/content';
+import { siteConfig } from '@/app/lib/site-config';
 
-const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
+const Footer = () => {
     return (
-        <footer className="mt-20">
-            <div className="text-center">
-                <Image
-                    src={isDarkMode ? assets.logo_dark : assets.logo}
-                    alt="Abdulahad Hussain - Portfolio Home"
-                    className="mx-auto mb-2 w-36"
-                />
-                <a
-                    href="mailto:abdulahadhussain60@gmail.com"
-                    className="mx-auto flex w-max items-center gap-2 text-gray-700 dark:text-white/80"
-                >
-                    <Image
-                        src={
-                            isDarkMode
-                                ? assets.mail_icon_dark
-                                : assets.mail_icon
-                        }
-                        alt="Email Icon"
-                        className="w-6"
-                    />
-                    abdulahadhussain60@gmail.com
-                </a>
-            </div>
-            <div className="mx-[10%] mt-12 items-center justify-between border-t border-gray-400 py-6 text-center sm:flex">
-                <p>
-                    &copy; {new Date().getFullYear()} Abdulahad Hussain. All rights
-                    reserved.
-                </p>
-                <ul className="mt-4 flex items-center justify-center gap-10 sm:mt-0">
-                    <li>
-                        <a
-                            href="https://github.com/ABDULAHAD118"
-                            target="_blank"
-                            rel="me noreferrer"
-                            className="flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-purple-600"
-                        >
-                            <Image
-                                src={assets.github}
-                                alt="GitHub Profile"
-                                className={`w-5 ${isDarkMode ? 'invert' : ''}`}
-                            />
-                            GitHub
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.linkedin.com/in/abdulahad018/"
-                            target="_blank"
-                            rel="me noreferrer"
-                            className="flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-purple-600"
-                        >
-                            <Image
-                                src={
-                                    isDarkMode
-                                        ? assets.linkedin_icon_dark
-                                        : assets.linkedin_icon
-                                }
-                                alt="LinkedIn Profile"
-                                className="w-5"
-                            />
-                            LinkedIn
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.instagram.com/abdulahadhussain8/"
-                            target="_blank"
-                            rel="me noreferrer"
-                            className="flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-purple-600"
-                        >
-                            <Image
-                                src={
-                                    isDarkMode
-                                        ? assets.instagram_icon_dark
-                                        : assets.instagram_icon
-                                }
-                                alt="Instagram Profile"
-                                className="w-5"
-                            />
-                            Instagram
-                        </a>
-                    </li>
+        <footer className="border-line mt-24 border-t">
+            <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p className="text-accent font-mono text-xs">
+                        {'// got an idea?'}
+                    </p>
+                    <a
+                        href={siteConfig.emailUrl}
+                        className="font-heading hover:text-accent mt-3 block text-xl font-semibold break-all transition-colors sm:text-3xl"
+                    >
+                        {siteConfig.email}
+                    </a>
+                </div>
+                <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                    {socials.map((s) => (
+                        <li key={s.href}>
+                            <a
+                                href={s.href}
+                                target="_blank"
+                                rel="me noreferrer"
+                                className="text-muted hover:text-fg text-sm transition-colors"
+                            >
+                                {s.label} ↗
+                            </a>
+                        </li>
+                    ))}
                 </ul>
+            </div>
+            <div className="border-line text-muted mx-auto flex max-w-6xl items-center justify-between border-t px-6 py-6 font-mono text-xs">
+                <p>
+                    © {new Date().getFullYear()} {siteConfig.name}
+                </p>
+                <a href="#top" className="hover:text-fg transition-colors">
+                    back to top ↑
+                </a>
             </div>
         </footer>
     );
