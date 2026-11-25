@@ -6,7 +6,6 @@ import Tools from './components/Tools/Tools';
 import Contact from './components/Contact/Contact';
 import Certificates from './components/Certificates/Certificates';
 import Experience from './components/Experience/Experience';
-import Education from './components/Education/Education';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -33,9 +32,8 @@ export default function Home() {
                 <Header />
                 <About />
                 <Work />
-                <Tools />
-                <Education />
                 <Experience />
+                <Tools />
                 <Services />
                 <Certificates />
                 <Contact />
