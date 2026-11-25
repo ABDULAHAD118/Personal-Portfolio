@@ -16,10 +16,11 @@
   --font-heading: var(--font-grotesk), var(--font-inter), sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
-  --animate-marquee: marquee 70s linear infinite;
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
     }
   }
 
@@ -75,5 +76,11 @@ body {
       linear-gradient(var(--color-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
     background-size: 64px 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise {
+    animation: none;
   }
 }

@@ -1,15 +1,19 @@
 import * as si from 'simple-icons';
 import { assets } from '@/assets/assets';
-import { linkedinIcon, type TechIconSource } from '@/app/components/ui/TechIcon';
+import {
+    linkedinIcon,
+    type TechIconSource,
+} from '@/app/components/ui/TechIcon';
 
 // Section text and data for the redesigned portfolio. Grows as each section is rebuilt.
 
 export const navLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Work', href: '#work' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Services', href: '#services' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', href: '/about' },
+    { label: 'Work', href: '/work' },
+    { label: 'Experience', href: '/experience' },
+    { label: 'Services', href: '/services' },
+    { label: 'Certificates', href: '/certificates' },
+    { label: 'Contact', href: '/contact' },
 ];
 
 export const techStack: { name: string; icon: TechIconSource }[] = [
@@ -43,11 +47,57 @@ export const techStack: { name: string; icon: TechIconSource }[] = [
 
 // Shown as tags in the hero.
 export const heroStack = techStack.filter((t) =>
-    ['React', 'Next.js', 'Vue', 'Node.js', 'TypeScript'].includes(t.name),
+    ['React', 'Next.js', 'Vue', 'Node.js', 'TypeScript'].includes(t.name)
 );
 
 export const socials = [
-    { label: 'GitHub', href: 'https://github.com/ABDULAHAD118', icon: si.siGithub },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abdulahad018/', icon: linkedinIcon },
-    { label: 'Instagram', href: 'https://www.instagram.com/abdulahadhussain8/', icon: si.siInstagram },
+    {
+        label: 'GitHub',
+        href: 'https://github.com/ABDULAHAD118',
+        icon: si.siGithub,
+    },
+    {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/abdulahad018/',
+        icon: linkedinIcon,
+    },
+    {
+        label: 'Instagram',
+        href: 'https://www.instagram.com/abdulahadhussain8/',
+        icon: si.siInstagram,
+    },
+];
+
+// Icon lookup for the stack tags on detail pages; names without an icon render as plain text.
+export const stackIcons: Record<string, TechIconSource> = {
+    ...Object.fromEntries(techStack.map((t) => [t.name, t.icon])),
+    Express: si.siExpress,
+    'Tailwind CSS': si.siTailwindcss,
+    'React Native': si.siReact,
+    Expo: si.siExpo,
+    EJS: si.siEjs,
+    Axios: si.siAxios,
+    HTML: si.siHtml5,
+    CSS: si.siCss,
+    Bootstrap: si.siBootstrap,
+};
+
+// How a typical engagement runs; shown on the services pages.
+export const workProcess = [
+    {
+        step: 'discover',
+        text: 'A short call to understand the goal, users, constraints and timeline.',
+    },
+    {
+        step: 'plan',
+        text: 'A written scope with the data model, screens, milestones and estimate.',
+    },
+    {
+        step: 'build',
+        text: 'Weekly demos on a live preview so you see progress, not promises.',
+    },
+    {
+        step: 'ship',
+        text: 'Deployment, monitoring and handover, with support after launch.',
+    },
 ];

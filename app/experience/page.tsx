@@ -1,0 +1,92 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowUpRight, Briefcase, GraduationCap } from 'lucide-react';
+import { experienceData } from '@/assets/assets';
+import { siteConfig } from '../lib/site-config';
+import PageHeader from '../components/ui/PageHeader';
+import StackTags from '../components/ui/StackTags';
+
+export const metadata: Metadata = {
+    title: 'Experience',
+    description:
+        'Work experience and education of Abdulahad Hussain, full stack software engineer at BitLogicx.',
+    alternates: { canonical: '/experience' },
+};
+
+export default function ExperiencePage() {
+    return (
+        <main>
+            <PageHeader
+                path={[{ label: 'experience' }]}
+                title={
+                    <>
+                        Where I&apos;ve{' '}
+                        <span className="text-accent">worked</span> and studied.
+                    </>
+                }
+                intro="From a frontend internship to building enterprise frontend and backend systems full time."
+            />
+
+            <ol className="border-line border-t">
+                {experienceData.map((job, i) => (
+                    <li key={job.slug} className="border-line border-b">
+                        <Link
+                            href={`/experience/${job.slug}`}
+                            className="group hover:bg-panel grid gap-6 px-6 py-12 transition-colors sm:px-10 lg:grid-cols-[220px_1fr_auto] lg:gap-12 lg:px-16"
+                        >
+                            <div className="font-mono text-sm">
+                                <p className="text-accent">{job.period}</p>
+                                <p className="text-muted mt-2 flex items-center gap-2">
+                                    <Briefcase
+                                        className="size-3.5"
+                                        aria-hidden
+                                    />
+                                    {String(i + 1).padStart(2, '0')} · work
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+                                    {job.role}
+                                </h2>
+                                <p className="text-muted mt-1">
+                                    {job.company} · {job.location}
+                                </p>
+                                <p className="mt-5 max-w-2xl leading-relaxed">
+                                    {job.summary}
+                                </p>
+                                <StackTags stack={job.stack} className="mt-6" />
+                            </div>
+                            <span className="text-muted group-hover:text-accent flex items-center gap-2 self-start font-mono text-sm transition-colors">
+                                details
+                                <ArrowUpRight className="size-4" aria-hidden />
+                            </span>
+                        </Link>
+                    </li>
+                ))}
+                <li className="grid gap-6 px-6 py-12 sm:px-10 lg:grid-cols-[220px_1fr_auto] lg:gap-12 lg:px-16">
+                    <div className="font-mono text-sm">
+                        <p className="text-accent">Completed</p>
+                        <p className="text-muted mt-2 flex items-center gap-2">
+                            <GraduationCap className="size-3.5" aria-hidden />
+                            education
+                        </p>
+                    </div>
+                    <div>
+                        <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+                            B.Sc. Computer Science
+                        </h2>
+                        <p className="text-muted mt-1">
+                            {siteConfig.alumniOf.name}
+                        </p>
+                        <p className="mt-5 max-w-2xl leading-relaxed">
+                            Built a strong foundation in software engineering,
+                            algorithms, databases, web development and problem
+                            solving, supported by practical full-stack and
+                            AI-based projects.
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </main>
+    );
+}

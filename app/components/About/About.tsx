@@ -1,7 +1,8 @@
 'use client';
 import { motion } from 'motion/react';
 import { infoList } from '@/assets/assets';
-import { CodeXml, FolderGit2, GraduationCap } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight, CodeXml, FolderGit2, GraduationCap } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 
 const infoIcons = [CodeXml, GraduationCap, FolderGit2];
@@ -79,6 +80,13 @@ const About = () => {
                             );
                         })}
                     </dl>
+                    <Link
+                        href="/about"
+                        className="hover:text-accent mt-8 inline-flex items-center gap-2 font-mono text-sm transition-colors"
+                    >
+                        more about me
+                        <ArrowUpRight className="size-4" aria-hidden />
+                    </Link>
                 </div>
             </div>
         </section>

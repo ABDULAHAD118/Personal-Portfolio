@@ -2,12 +2,14 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { experienceData } from '@/assets/assets';
-import { Briefcase, GraduationCap } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight, Briefcase, GraduationCap } from 'lucide-react';
 import { siteConfig } from '@/app/lib/site-config';
 import SectionHeading from '../ui/SectionHeading';
 
 type Entry = {
     id?: string;
+    href?: string;
     kind: 'work' | 'education';
     period: string;
     title: string;
@@ -19,6 +21,7 @@ type Entry = {
 const entries: Entry[] = [
     ...experienceData.map((e) => ({
         kind: 'work' as const,
+        href: `/experience/${e.slug}`,
         period: e.period,
         title: e.role,
         org: `${e.company} · ${e.location}`,
@@ -58,7 +61,8 @@ const Experience = () => {
                         label="experience"
                         title={
                             <>
-                                Where I&apos;ve <span className="text-accent">worked</span>
+                                Where I&apos;ve{' '}
+                                <span className="text-accent">worked</span>
                                 <br />
                                 and studied.
                             </>
@@ -84,7 +88,10 @@ const Experience = () => {
                             initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-80px' }}
-                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{
+                                duration: 0.6,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
                             className="relative scroll-mt-28 pb-14 pl-10 last:pb-0"
                         >
                             <span
@@ -92,12 +99,20 @@ const Experience = () => {
                                 className="border-accent bg-bg absolute top-1.5 left-0 size-[11px] rounded-full border-2"
                             />
                             <p className="flex flex-wrap items-center gap-3 font-mono text-xs">
-                                <span className="text-accent">{entry.period}</span>
+                                <span className="text-accent">
+                                    {entry.period}
+                                </span>
                                 <span className="border-line text-muted flex items-center gap-1.5 rounded border px-1.5 py-0.5">
                                     {entry.kind === 'work' ? (
-                                        <Briefcase className="size-3" aria-hidden />
+                                        <Briefcase
+                                            className="size-3"
+                                            aria-hidden
+                                        />
                                     ) : (
-                                        <GraduationCap className="size-3" aria-hidden />
+                                        <GraduationCap
+                                            className="size-3"
+                                            aria-hidden
+                                        />
                                     )}
                                     {entry.kind}
                                 </span>
@@ -105,17 +120,35 @@ const Experience = () => {
                             <h3 className="font-heading mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
                                 {entry.title}
                             </h3>
-                            <p className="text-muted mt-1 text-sm">{entry.org}</p>
-                            <p className="mt-4 leading-relaxed">{entry.summary}</p>
+                            <p className="text-muted mt-1 text-sm">
+                                {entry.org}
+                            </p>
+                            <p className="mt-4 leading-relaxed">
+                                {entry.summary}
+                            </p>
                             {entry.highlights.length > 0 && (
                                 <ul className="text-muted mt-4 space-y-2 text-sm leading-relaxed">
                                     {entry.highlights.map((h) => (
                                         <li key={h} className="flex gap-3">
-                                            <span className="text-accent font-mono">→</span>
+                                            <span className="text-accent font-mono">
+                                                →
+                                            </span>
                                             <span>{h}</span>
                                         </li>
                                     ))}
                                 </ul>
+                            )}
+                            {entry.href && (
+                                <Link
+                                    href={entry.href}
+                                    className="hover:text-accent mt-5 inline-flex items-center gap-2 font-mono text-sm transition-colors"
+                                >
+                                    details
+                                    <ArrowUpRight
+                                        className="size-4"
+                                        aria-hidden
+                                    />
+                                </Link>
                             )}
                         </motion.li>
                     ))}

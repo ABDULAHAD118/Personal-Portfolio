@@ -1,6 +1,6 @@
 'use client';
 import { useRef } from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 import {
     motion,
     useReducedMotion,
@@ -8,13 +8,14 @@ import {
     useTransform,
     type MotionValue,
 } from 'motion/react';
-import { workData } from '@/assets/assets';
+import { workData, type Project } from '@/assets/assets';
 import { socials } from '@/app/lib/content';
 import { ArrowUpRight } from 'lucide-react';
 import TechIcon from '../ui/TechIcon';
 import SectionHeading from '../ui/SectionHeading';
+import ProjectCover from '../ui/ProjectCover';
 
-type Project = (typeof workData)[number];
+const featured = workData.filter((p) => p.featured);
 
 function ProjectCard({
     project,
@@ -32,7 +33,7 @@ function ProjectCard({
     const scale = useTransform(
         progress,
         [index / total, 1],
-        [1, 1 - (total - 1 - index) * 0.04],
+        [1, 1 - (total - 1 - index) * 0.04]
     );
     const number = String(index + 1).padStart(2, '0');
 
@@ -50,7 +51,7 @@ function ProjectCard({
                         <span className="text-accent">{number}</span> /{' '}
                         {String(total).padStart(2, '0')}
                     </span>
-                    <span>{project.description}</span>
+                    <span>{project.type.toLowerCase()}</span>
                 </div>
 
                 <div className="grid gap-6 p-5 sm:p-8 md:grid-cols-[1fr_1.4fr] md:items-center md:gap-10">
@@ -58,33 +59,28 @@ function ProjectCard({
                         <h3 className="font-heading text-3xl font-bold tracking-tight sm:text-5xl">
                             {project.title}
                         </h3>
-                        <a
-                            href={project.url}
-                            target="_blank"
-                            rel="noreferrer"
+                        <p className="text-muted mt-4 leading-relaxed">
+                            {project.summary}
+                        </p>
+                        <Link
+                            href={`/work/${project.slug}`}
                             className="hover:text-accent mt-6 inline-flex items-center gap-2 font-mono text-sm transition-colors"
                         >
-                            visit project
+                            read case study
                             <ArrowUpRight className="size-4" aria-hidden />
-                        </a>
+                        </Link>
                     </div>
 
-                    <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Open ${project.title}`}
+                    <Link
+                        href={`/work/${project.slug}`}
+                        aria-label={`${project.title} case study`}
                         className="border-line group block aspect-[16/10] overflow-hidden rounded-xl border"
                     >
-                        <Image
-                            src={project.bgImage}
-                            alt={`${project.title} screenshot`}
-                            width={1200}
-                            height={750}
+                        <ProjectCover
+                            project={project}
                             sizes="(min-width: 768px) 55vw, 90vw"
-                            className="size-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                         />
-                    </a>
+                    </Link>
                 </div>
             </motion.article>
         </div>
@@ -110,29 +106,38 @@ const Work = () => {
                     label="work"
                     title={
                         <>
-                            Things I&apos;ve <span className="text-accent">shipped</span>.
+                            Things I&apos;ve{' '}
+                            <span className="text-accent">shipped</span>.
                         </>
                     }
                 />
-                <a
-                    href={github.href}
-                    target="_blank"
-                    rel="me noreferrer"
-                    className="text-muted hover:text-fg flex items-center gap-2 font-mono text-sm transition-colors"
-                >
-                    <TechIcon icon={github.icon} className="size-4" />
-                    more on github
-                    <ArrowUpRight className="size-4" aria-hidden />
-                </a>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
+                    <Link
+                        href="/work"
+                        className="hover:text-accent flex items-center gap-2 transition-colors"
+                    >
+                        all {workData.length} projects
+                        <ArrowUpRight className="size-4" aria-hidden />
+                    </Link>
+                    <a
+                        href={github.href}
+                        target="_blank"
+                        rel="me noreferrer"
+                        className="text-muted hover:text-fg flex items-center gap-2 transition-colors"
+                    >
+                        <TechIcon icon={github.icon} className="size-4" />
+                        github
+                    </a>
+                </div>
             </div>
 
             <div ref={stackRef} className="mt-16">
-                {workData.map((project, i) => (
+                {featured.map((project, i) => (
                     <ProjectCard
                         key={project.title}
                         project={project}
                         index={i}
-                        total={workData.length}
+                        total={featured.length}
                         progress={scrollYProgress}
                     />
                 ))}

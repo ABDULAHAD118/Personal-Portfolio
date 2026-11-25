@@ -5,15 +5,11 @@ import Tools from './components/Tools/Tools';
 import Contact from './components/Contact/Contact';
 import Certificates from './components/Certificates/Certificates';
 import Experience from './components/Experience/Experience';
-import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
 import Services from './components/Services/Services';
 import Work from './components/Work/Work';
-import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Home() {
-
     useEffect(() => {
         if (!window.location.hash) {
             if ('scrollRestoration' in window.history) {
@@ -24,20 +20,15 @@ export default function Home() {
     }, []);
 
     return (
-        <>
-            <Navbar />
-            <main>
-                <Header />
-                <About />
-                <Work />
-                <Experience />
-                <Tools />
-                <Services />
-                <Certificates />
-                <Contact />
-            </main>
-            <Footer />
-            <Chatbot />
-        </>
+        <main>
+            <Header />
+            <About />
+            <Work />
+            <Experience />
+            <Tools />
+            <Services />
+            <Certificates />
+            <Contact />
+        </main>
     );
 }

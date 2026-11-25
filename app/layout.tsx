@@ -8,11 +8,17 @@ import { generateStructuredData } from './lib/schema';
 import './globals.css';
 
 import SmoothScroll from './components/providers/SmoothScroll';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import Chatbot from './components/Chatbot/Chatbot';
 
 // Runs before paint: dark by default, light only if the visitor chose it (read by app/lib/use-theme.ts).
 const themeScript = `try{document.documentElement.classList.toggle('dark',localStorage.getItem('theme')!=='light')}catch(e){}`;
 
-const grotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-grotesk' });
+const grotesk = Space_Grotesk({
+    subsets: ['latin'],
+    variable: '--font-grotesk',
+});
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrains = JetBrains_Mono({
     subsets: ['latin'],
@@ -87,7 +93,9 @@ export const metadata: Metadata = {
             { url: '/profile-img.png', sizes: '192x192', type: 'image/png' },
         ],
         shortcut: '/favicon.ico',
-        apple: [{ url: '/profile-img.png', sizes: '180x180', type: 'image/png' }],
+        apple: [
+            { url: '/profile-img.png', sizes: '180x180', type: 'image/png' },
+        ],
     },
     manifest: '/manifest.webmanifest',
     verification: process.env.GOOGLE_SITE_VERIFICATION
@@ -121,7 +129,7 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify(structuredData).replace(
                             /</g,
-                            '\\u003c',
+                            '\\u003c'
                         ),
                     }}
                 />
@@ -149,7 +157,13 @@ export default function RootLayout({
                         },
                     }}
                 />
-                <SmoothScroll>{children}</SmoothScroll>
+                <SmoothScroll>
+                    <div id="top" />
+                    <Navbar />
+                    {children}
+                    <Footer />
+                    <Chatbot />
+                </SmoothScroll>
                 <Analytics />
                 <SpeedInsights />
             </body>

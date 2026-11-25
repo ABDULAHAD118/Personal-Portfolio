@@ -14,13 +14,13 @@ export function generateStructuredData() {
 
     // Map projects (SoftwareApplication / WebApplication)
     const projectEntities = workData.map((project, index) => {
-        const slug = project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const slug = project.slug;
         return {
             '@type': 'WebApplication',
             '@id': `${siteConfig.url}/#project-${slug}`,
             name: project.title,
-            description: `${project.title} - ${project.description} developed by ${siteConfig.name}`,
-            url: project.url,
+            description: project.summary,
+            url: project.url ?? `${siteConfig.url}/work/${slug}`,
             applicationCategory: 'WebApplication',
             operatingSystem: 'All',
             browserRequirements: 'Requires JavaScript. Requires HTML5.',
@@ -30,7 +30,9 @@ export function generateStructuredData() {
             creator: {
                 '@id': personId,
             },
-            image: `${siteConfig.url}${project.bgImage}`,
+            ...(project.bgImage && {
+                image: `${siteConfig.url}${project.bgImage}`,
+            }),
             position: index + 1,
         };
     });

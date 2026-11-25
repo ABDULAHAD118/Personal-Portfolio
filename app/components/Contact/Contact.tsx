@@ -13,10 +13,12 @@ const field =
     'bg-panel border-line placeholder:text-muted/70 focus:border-accent w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors';
 const label = 'text-muted mb-2 block font-mono text-xs';
 
-const Contact = () => {
+const Contact = ({ page = false }: { page?: boolean }) => {
     const [isSending, setIsSending] = useState(false);
 
-    const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    const onSubmit = async (
+        event: FormEvent<HTMLFormElement>
+    ): Promise<void> => {
         event.preventDefault();
         setIsSending(true);
 
@@ -42,7 +44,9 @@ const Contact = () => {
             const data = await response.json();
 
             if (data.success) {
-                toast.success('Message sent successfully!', { id: loadingToast });
+                toast.success('Message sent successfully!', {
+                    id: loadingToast,
+                });
                 form.reset();
             } else {
                 toast.error(data.message || 'Something went wrong.', {
@@ -61,22 +65,30 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
+            className={`border-line scroll-mt-20 border-t px-6 sm:px-10 lg:px-16 ${page ? 'border-t-0 pb-20 sm:pb-24' : 'py-24 sm:py-32'}`}
         >
             <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
                 <div>
-                    <SectionHeading
-                        index="07"
-                        label="contact"
-                        title={
-                            <>
-                                Let&apos;s build
-                                <br />
-                                something <span className="text-accent">together</span>.
-                            </>
-                        }
-                    />
-                    <p className="text-muted mt-6 max-w-md leading-relaxed">
+                    {!page && (
+                        <SectionHeading
+                            index="07"
+                            label="contact"
+                            title={
+                                <>
+                                    Let&apos;s build
+                                    <br />
+                                    something{' '}
+                                    <span className="text-accent">
+                                        together
+                                    </span>
+                                    .
+                                </>
+                            }
+                        />
+                    )}
+                    <p
+                        className={`text-muted max-w-md leading-relaxed ${page ? 'text-lg' : 'mt-6'}`}
+                    >
                         Have a project, a role or just a question? Send a
                         message and I&apos;ll get back to you, usually within a
                         day.
@@ -88,12 +100,18 @@ const Contact = () => {
                                 href={siteConfig.emailUrl}
                                 className="hover:text-accent flex items-center gap-3 break-all transition-colors"
                             >
-                                <Mail className="text-accent size-4 shrink-0" aria-hidden />
+                                <Mail
+                                    className="text-accent size-4 shrink-0"
+                                    aria-hidden
+                                />
                                 {siteConfig.email}
                             </a>
                         </li>
                         <li className="border-line text-muted flex items-center gap-3 border-b py-4">
-                            <MapPin className="text-accent size-4 shrink-0" aria-hidden />
+                            <MapPin
+                                className="text-accent size-4 shrink-0"
+                                aria-hidden
+                            />
                             Lahore, Pakistan · remote friendly
                         </li>
                     </ul>
@@ -123,8 +141,8 @@ const Contact = () => {
                     className="bg-panel/50 border-line rounded-2xl border p-5 sm:p-8"
                 >
                     <p className="text-muted mb-6 font-mono text-xs">
-                        <span className="text-accent">$</span> send-message
-                        --to abdulahad
+                        <span className="text-accent">$</span> send-message --to
+                        abdulahad
                     </p>
 
                     <div className="grid gap-5 sm:grid-cols-2">

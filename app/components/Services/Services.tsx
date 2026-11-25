@@ -1,10 +1,10 @@
 'use client';
 import { motion } from 'motion/react';
 import { serviceData } from '@/assets/assets';
-import { Layers, Monitor, Server, Smartphone } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight, Layers } from 'lucide-react';
+import { serviceIcons } from '@/app/lib/service-icons';
 import SectionHeading from '../ui/SectionHeading';
-
-const serviceIcons = [Layers, Monitor, Server, Smartphone];
 
 const Services = () => {
     return (
@@ -42,7 +42,10 @@ const Services = () => {
                             transition={{ duration: 0.5, delay: i * 0.06 }}
                             className="group border-line hover:bg-panel border-b transition-colors"
                         >
-                            <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 px-2 py-7 sm:gap-x-10 md:grid-cols-[48px_1fr_1.2fr] md:items-center md:px-4">
+                            <Link
+                                href={`/services/${service.slug}`}
+                                className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 px-2 py-7 sm:gap-x-10 md:grid-cols-[48px_1fr_1.2fr_auto] md:items-center md:px-4"
+                            >
                                 <span className="text-accent font-mono text-sm">
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
@@ -58,7 +61,11 @@ const Services = () => {
                                 <p className="text-muted group-hover:text-fg col-start-2 text-sm leading-relaxed transition-colors duration-500 md:col-start-3">
                                     {service.description}
                                 </p>
-                            </div>
+                                <ArrowUpRight
+                                    className="text-muted group-hover:text-accent hidden size-5 transition-colors md:block"
+                                    aria-hidden
+                                />
+                            </Link>
                         </motion.li>
                     );
                 })}

@@ -101,7 +101,6 @@ function PortraitCard() {
 const Header = () => {
     return (
         <header
-            id="top"
             className="relative isolate flex min-h-svh items-center overflow-hidden px-6 pt-28 pb-24 sm:px-10 lg:px-16"
         >
             <div
