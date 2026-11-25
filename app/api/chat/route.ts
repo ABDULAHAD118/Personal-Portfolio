@@ -4,7 +4,7 @@ import { CHATBOT_SYSTEM_INSTRUCTION, QUICK_ANSWERS } from '@/app/lib/chatbot-kno
 import { QUICK_PROMPTS } from '@/app/lib/quick-prompts';
 
 // Groq is tried first because it starts answering in well under a second; Gemini is the backup.
-const GROQ_MODELS = ['llama-3.3-70b-versatile', 'llama-3.1-8b-instant'];
+const GROQ_MODELS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b', 'qwen/qwen3.8-27b'];
 const GEMINI_MODELS = [
     'gemini-3.6-flash',
     'gemini-3.8-flash',
@@ -58,8 +58,10 @@ async function* groqStream(apiKey: string, model: string, history: Turn[]) {
         body: JSON.stringify({
             model,
             stream: true,
-            temperature: 0.5,
+            temperature: 0.3,
             max_tokens: MAX_TOKENS,
+            // gpt-oss reasons before answering; keep that short so the first word comes quickly.
+            ...(model.startsWith('openai/gpt-oss') && { reasoning_effort: 'medium' }),
             messages: [
                 { role: 'system', content: CHATBOT_SYSTEM_INSTRUCTION },
                 ...history.map((m) => ({ role: m.role === 'model' ? 'assistant' : 'user', content: m.text })),
