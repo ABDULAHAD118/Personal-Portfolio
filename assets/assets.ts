@@ -348,7 +348,18 @@ export const workData: Project[] = [
             'Worked on the Flutter mobile app for doctors',
             'GitHub Actions CI/CD to DigitalOcean, plus APK release builds',
         ],
-        stack: ['AdonisJS', 'TypeScript', 'PostgreSQL', 'Redis', 'Vue', 'Tailwind CSS', 'Flutter', 'Firebase', 'GitHub Actions', 'DigitalOcean'],
+        stack: [
+            'AdonisJS',
+            'TypeScript',
+            'PostgreSQL',
+            'Redis',
+            'Vue',
+            'Tailwind CSS',
+            'Flutter',
+            'Firebase',
+            'GitHub Actions',
+            'DigitalOcean',
+        ],
         role: 'Full stack developer at BitLogicx',
     },
     {
@@ -424,6 +435,92 @@ export const experienceData = [
         stack: ['HTML', 'CSS', 'JavaScript', 'React', 'Bootstrap'],
     },
 ];
+
+export const educationData = {
+    degree: 'B.Sc. Computer Science',
+    school: 'University of Engineering and Technology (UET), Lahore',
+    period: 'Class of 2026',
+    location: 'Lahore, Pakistan',
+    summary:
+        'Built a strong foundation in software engineering, algorithms, databases, web development and problem solving, supported by practical full-stack and AI-based projects.',
+    focus: [
+        'Software Engineering',
+        'Data Structures & Algorithms',
+        'Databases',
+        'Web Development',
+        'Artificial Intelligence',
+    ],
+    project: {
+        title: 'Zabaan-e-Kissan',
+        label: 'Final year project',
+        summary:
+            'An AI-powered mobile assistant that lets farmers ask for agricultural help by voice, in Urdu or English.',
+        highlights: [
+            'Crop disease detection with AI treatment recommendations',
+            'Voice interaction in Urdu and English',
+            'Real-time market prices',
+            'Weather-based crop suitability analysis',
+        ],
+        overview: [
+            'Many farmers in Pakistan cannot easily read English apps or reach an agriculture expert in time. Zabaan-e-Kissan ("the farmer\'s language") puts that help on a phone: a farmer photographs a sick leaf, speaks a question in Urdu, or checks today\'s mandi rate, and gets an answer in their own language.',
+            'The system has three parts: a React Native mobile app for farmers, a FastAPI backend that runs the AI models and data services, and a Next.js website for the project and app downloads. I worked across all three, from training the disease model to deploying the API.',
+        ],
+        parts: [
+            {
+                name: 'Mobile app',
+                text: 'React Native with Expo Router. Tabs for scanning, AI chat, crop prices and settings, with offline history in SQLite, a map for field location, Urdu and English UI, and light and dark themes. Shipped as an Android APK through EAS builds.',
+                repo: 'https://github.com/ABDULAHAD118/Zabaan-E-Kissan-App',
+            },
+            {
+                name: 'Backend API',
+                text: 'FastAPI service that serves the disease model, the chatbot over WebSockets, speech-to-text and the crop price endpoints, backed by MongoDB. Deployed to a DigitalOcean droplet by a GitHub Actions workflow on every push.',
+                repo: 'https://github.com/ABDULAHAD118/Backend-Zabaan-E-Kissan',
+            },
+            {
+                name: 'Website',
+                text: 'Next.js site that introduces the project and lets farmers download the Android app from a QR code.',
+                repo: 'https://github.com/ABDULAHAD118/Zabaan-E-Kissan-UI',
+            },
+        ],
+        features: [
+            {
+                title: 'Crop disease detection',
+                text: 'A Keras image model trained on 17 disease and healthy-leaf classes. The farmer takes a photo, the API returns the disease, a confidence score and treatment advice.',
+            },
+            {
+                title: 'Urdu and English AI chat',
+                text: 'A farming assistant built with LangGraph and LangChain that streams answers in real time over a WebSocket and keeps the conversation context.',
+            },
+            {
+                title: 'Voice input',
+                text: "Speech is transcribed with OpenAI Whisper in Urdu, English or Punjabi, so farmers who don't type can just ask.",
+            },
+            {
+                title: 'Live crop prices',
+                text: 'A Selenium scraper collects daily market rates into MongoDB. The app filters by crop and city, compares cities side by side, and pages through results.',
+            },
+            {
+                title: 'Field analysis',
+                text: "From the field's GPS location (checked against Pakistan's boundary), remote sensing and weather data suggest which crops suit the land.",
+            },
+        ],
+        stack: [
+            'React Native',
+            'Expo',
+            'TypeScript',
+            'FastAPI',
+            'Python',
+            'TensorFlow',
+            'Keras',
+            'LangChain',
+            'MongoDB',
+            'Selenium',
+            'Next.js',
+            'GitHub Actions',
+            'DigitalOcean',
+        ],
+    },
+};
 
 export const professionalStats = [
     { value: '2+', label: 'Year Professional Experience' },

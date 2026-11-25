@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight, Briefcase, GraduationCap } from 'lucide-react';
+import { ArrowUpRight, Briefcase } from 'lucide-react';
 import { experienceData } from '@/assets/assets';
-import { siteConfig } from '../lib/site-config';
 import PageHeader from '../components/ui/PageHeader';
 import StackTags from '../components/ui/StackTags';
 
 export const metadata: Metadata = {
     title: 'Experience',
     description:
-        'Work experience and education of Abdulahad Hussain, full stack software engineer at BitLogicx.',
+        'Work experience of Abdulahad Hussain, full stack software engineer at BitLogicx.',
     alternates: { canonical: '/experience' },
 };
 
@@ -21,7 +20,7 @@ export default function ExperiencePage() {
                 title={
                     <>
                         Where I&apos;ve{' '}
-                        <span className="text-accent">worked</span> and studied.
+                        <span className="text-accent">worked</span>.
                     </>
                 }
                 intro="From a frontend internship to building enterprise frontend and backend systems full time."
@@ -63,29 +62,6 @@ export default function ExperiencePage() {
                         </Link>
                     </li>
                 ))}
-                <li className="grid gap-6 px-6 py-12 sm:px-10 lg:grid-cols-[220px_1fr_auto] lg:gap-12 lg:px-16">
-                    <div className="font-mono text-sm">
-                        <p className="text-accent">Completed</p>
-                        <p className="text-muted mt-2 flex items-center gap-2">
-                            <GraduationCap className="size-3.5" aria-hidden />
-                            education
-                        </p>
-                    </div>
-                    <div>
-                        <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-                            B.Sc. Computer Science
-                        </h2>
-                        <p className="text-muted mt-1">
-                            {siteConfig.alumniOf.name}
-                        </p>
-                        <p className="mt-5 max-w-2xl leading-relaxed">
-                            Built a strong foundation in software engineering,
-                            algorithms, databases, web development and problem
-                            solving, supported by practical full-stack and
-                            AI-based projects.
-                        </p>
-                    </div>
-                </li>
             </ol>
         </main>
     );

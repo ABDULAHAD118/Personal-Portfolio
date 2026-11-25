@@ -71,7 +71,7 @@ const Contact = ({ page = false }: { page?: boolean }) => {
                 <div>
                     {!page && (
                         <SectionHeading
-                            index="07"
+                            index="08"
                             label="contact"
                             title={
                                 <>

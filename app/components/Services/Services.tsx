@@ -14,7 +14,7 @@ const Services = () => {
         >
             <div className="flex flex-wrap items-end justify-between gap-6">
                 <SectionHeading
-                    index="05"
+                    index="06"
                     label="services"
                     title={
                         <>

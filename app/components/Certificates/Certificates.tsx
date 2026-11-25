@@ -11,7 +11,7 @@ const Certificates = () => {
         >
             <div className="flex flex-wrap items-end justify-between gap-6">
                 <SectionHeading
-                    index="06"
+                    index="07"
                     label="certificates"
                     title={
                         <>

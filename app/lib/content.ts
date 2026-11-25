@@ -11,6 +11,7 @@ export const navLinks = [
     { label: 'About', href: '/about' },
     { label: 'Work', href: '/work' },
     { label: 'Experience', href: '/experience' },
+    { label: 'Education', href: '/education' },
     { label: 'Services', href: '/services' },
     { label: 'Certificates', href: '/certificates' },
     { label: 'Contact', href: '/contact' },
@@ -88,6 +89,11 @@ export const stackIcons: Record<string, TechIconSource> = {
     'GitHub Actions': si.siGithubactions,
     DigitalOcean: si.siDigitalocean,
     Cloudflare: si.siCloudflare,
+    FastAPI: si.siFastapi,
+    TensorFlow: si.siTensorflow,
+    Keras: si.siKeras,
+    LangChain: si.siLangchain,
+    Selenium: si.siSelenium,
 };
 
 // How a typical engagement runs; shown on the services pages.

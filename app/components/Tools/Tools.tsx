@@ -12,7 +12,7 @@ const Tools = () => {
             <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
                 <div>
                     <SectionHeading
-                        index="04"
+                        index="05"
                         label="stack"
                         title={
                             <>

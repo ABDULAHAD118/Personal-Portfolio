@@ -3,42 +3,17 @@ import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { experienceData } from '@/assets/assets';
 import Link from 'next/link';
-import { ArrowUpRight, Briefcase, GraduationCap } from 'lucide-react';
-import { siteConfig } from '@/app/lib/site-config';
+import { ArrowUpRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 
-type Entry = {
-    id?: string;
-    href?: string;
-    kind: 'work' | 'education';
-    period: string;
-    title: string;
-    org: string;
-    summary: string;
-    highlights: string[];
-};
-
-const entries: Entry[] = [
-    ...experienceData.map((e) => ({
-        kind: 'work' as const,
-        href: `/experience/${e.slug}`,
-        period: e.period,
-        title: e.role,
-        org: `${e.company} · ${e.location}`,
-        summary: e.summary,
-        highlights: e.highlights,
-    })),
-    {
-        id: 'education',
-        kind: 'education',
-        period: 'Completed',
-        title: 'B.Sc. Computer Science',
-        org: siteConfig.alumniOf.name,
-        summary:
-            'Built a strong foundation in software engineering, algorithms, databases, web development and problem solving, supported by practical full-stack and AI-based projects.',
-        highlights: [],
-    },
-];
+const entries = experienceData.map((e) => ({
+    href: `/experience/${e.slug}`,
+    period: e.period,
+    title: e.role,
+    org: `${e.company} · ${e.location}`,
+    summary: e.summary,
+    highlights: e.highlights,
+}));
 
 const Experience = () => {
     const listRef = useRef<HTMLOListElement>(null);
@@ -62,9 +37,7 @@ const Experience = () => {
                         title={
                             <>
                                 Where I&apos;ve{' '}
-                                <span className="text-accent">worked</span>
-                                <br />
-                                and studied.
+                                <span className="text-accent">worked</span>.
                             </>
                         }
                     />
@@ -84,7 +57,6 @@ const Experience = () => {
                     {entries.map((entry) => (
                         <motion.li
                             key={entry.title}
-                            id={entry.id}
                             initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-80px' }}
@@ -101,20 +73,6 @@ const Experience = () => {
                             <p className="flex flex-wrap items-center gap-3 font-mono text-xs">
                                 <span className="text-accent">
                                     {entry.period}
-                                </span>
-                                <span className="border-line text-muted flex items-center gap-1.5 rounded border px-1.5 py-0.5">
-                                    {entry.kind === 'work' ? (
-                                        <Briefcase
-                                            className="size-3"
-                                            aria-hidden
-                                        />
-                                    ) : (
-                                        <GraduationCap
-                                            className="size-3"
-                                            aria-hidden
-                                        />
-                                    )}
-                                    {entry.kind}
                                 </span>
                             </p>
                             <h3 className="font-heading mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -138,18 +96,13 @@ const Experience = () => {
                                     ))}
                                 </ul>
                             )}
-                            {entry.href && (
-                                <Link
-                                    href={entry.href}
-                                    className="hover:text-accent mt-5 inline-flex items-center gap-2 font-mono text-sm transition-colors"
-                                >
-                                    details
-                                    <ArrowUpRight
-                                        className="size-4"
-                                        aria-hidden
-                                    />
-                                </Link>
-                            )}
+                            <Link
+                                href={entry.href}
+                                className="hover:text-accent mt-5 inline-flex items-center gap-2 font-mono text-sm transition-colors"
+                            >
+                                details
+                                <ArrowUpRight className="size-4" aria-hidden />
+                            </Link>
                         </motion.li>
                     ))}
                 </ol>
