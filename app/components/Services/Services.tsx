@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { serviceData } from '@/assets/assets';
 import Link from 'next/link';
 import { ArrowUpRight, Layers } from 'lucide-react';
@@ -7,6 +7,7 @@ import { serviceIcons } from '@/app/lib/service-icons';
 import SectionHeading from '../ui/SectionHeading';
 
 const Services = () => {
+    const reduceMotion = useReducedMotion();
     return (
         <section
             id="services"
@@ -30,16 +31,24 @@ const Services = () => {
                 </p>
             </div>
 
-            <ol className="border-line mt-16 border-t">
+            <ol className="border-line mt-16 overflow-x-clip border-t">
                 {serviceData.map((service, i) => {
                     const Icon = serviceIcons[i] ?? Layers;
                     return (
                         <motion.li
                             key={service.title}
-                            initial={{ opacity: 0, y: 16 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-60px' }}
-                            transition={{ duration: 0.5, delay: i * 0.06 }}
+                            // Rows slide in from alternate sides as they scroll into view.
+                            initial={
+                                reduceMotion
+                                    ? { opacity: 0 }
+                                    : { opacity: 0, x: i % 2 ? 120 : -120 }
+                            }
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: '-80px' }}
+                            transition={{
+                                duration: 0.7,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
                             className="group border-line hover:bg-panel border-b transition-colors"
                         >
                             <Link
