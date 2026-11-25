@@ -16,6 +16,13 @@
   --font-heading: var(--font-grotesk), var(--font-inter), sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
+  --animate-marquee: marquee 70s linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   --animate-blink: blink 1.1s steps(1) infinite;
   @keyframes blink {
     50% {

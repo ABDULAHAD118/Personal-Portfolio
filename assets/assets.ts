@@ -300,18 +300,3 @@ export const infoList = [
     },
 ];
 
-export const toolsData = [
-    assets.vscode,
-    assets.mongodb,
-    assets.figma,
-    assets.git,
-    assets.github,
-    assets.postman,
-    assets.npm,
-    assets.vercel,
-    assets.vite,
-    assets.webstorm,
-    assets.pycharm,
-    assets.apidog,
-    assets.docker,
-];
