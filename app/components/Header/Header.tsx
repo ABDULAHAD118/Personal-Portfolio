@@ -7,7 +7,7 @@ import {
     useSpring,
     useTransform,
 } from 'motion/react';
-import portrait from '@/assets/portrait.jpg';
+import portrait from '@/assets/portrait.png';
 import { professionalStats } from '@/assets/assets';
 import { siteConfig } from '@/app/lib/site-config';
 import { heroStack } from '@/app/lib/content';
@@ -77,7 +77,7 @@ function PortraitCard() {
                 style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
                 className="relative"
             >
-                <div className="border-line relative aspect-[4/5] overflow-hidden rounded-2xl border">
+                <div className="border-line bg-portrait relative aspect-[4/5] overflow-hidden rounded-2xl border">
                     <Image
                         src={portrait}
                         alt={`${siteConfig.name}, ${siteConfig.role}`}

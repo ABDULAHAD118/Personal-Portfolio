@@ -9,7 +9,7 @@ import {
     GraduationCap,
 } from 'lucide-react';
 import { infoList, professionalStats } from '@/assets/assets';
-import portrait from '@/assets/portrait.jpg';
+import portrait from '@/assets/portrait.png';
 import PageHeader from '../components/ui/PageHeader';
 import Tools from '../components/Tools/Tools';
 
@@ -43,7 +43,7 @@ export default function AboutPage() {
                         sizes="(min-width: 1024px) 400px, 90vw"
                         placeholder="blur"
                         quality={90}
-                        className="aspect-[4/5] w-full object-cover"
+                        className="bg-portrait aspect-[4/5] w-full object-cover"
                         priority
                     />
                     <p className="text-muted border-line border-t px-4 py-3 font-mono text-xs">
