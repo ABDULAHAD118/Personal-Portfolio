@@ -1,5 +1,7 @@
 import { socials } from '@/app/lib/content';
 import { siteConfig } from '@/app/lib/site-config';
+import { ArrowUp } from 'lucide-react';
+import TechIcon from '../ui/TechIcon';
 
 const Footer = () => {
     return (
@@ -23,9 +25,10 @@ const Footer = () => {
                                 href={s.href}
                                 target="_blank"
                                 rel="me noreferrer"
-                                className="text-muted hover:text-fg text-sm transition-colors"
+                                className="text-muted hover:text-fg flex items-center gap-2 text-sm transition-colors"
                             >
-                                {s.label} ↗
+                                <TechIcon icon={s.icon} className="size-4" />
+                                {s.label}
                             </a>
                         </li>
                     ))}
@@ -35,8 +38,9 @@ const Footer = () => {
                 <p>
                     © {new Date().getFullYear()} {siteConfig.name}
                 </p>
-                <a href="#top" className="hover:text-fg transition-colors">
-                    back to top ↑
+                <a href="#top" className="hover:text-fg flex items-center gap-1.5 transition-colors">
+                    back to top
+                    <ArrowUp className="size-3.5" aria-hidden />
                 </a>
             </div>
         </footer>

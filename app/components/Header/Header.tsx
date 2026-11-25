@@ -10,14 +10,15 @@ import {
 import portrait from '@/assets/portrait.jpg';
 import { professionalStats } from '@/assets/assets';
 import { siteConfig } from '@/app/lib/site-config';
+import { heroStack } from '@/app/lib/content';
+import { ArrowUpRight, Download } from 'lucide-react';
+import TechIcon from '../ui/TechIcon';
 
 const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
-
-const stack = ['React', 'Next.js', 'Vue', 'Node.js', 'TypeScript'];
 
 // Small editor-style card with the same facts the old tags showed.
 function CodeCard() {
@@ -147,12 +148,13 @@ const Header = () => {
                         {...fadeUp(0.35)}
                         className="mt-5 flex flex-wrap gap-2 font-mono text-xs"
                     >
-                        {stack.map((tech) => (
+                        {heroStack.map((tech) => (
                             <span
-                                key={tech}
-                                className="border-line text-muted rounded-md border px-2 py-1"
+                                key={tech.name}
+                                className="border-line text-muted flex items-center gap-1.5 rounded-md border px-2 py-1"
                             >
-                                {tech}
+                                <TechIcon icon={tech.icon} className="size-3.5" />
+                                {tech.name}
                             </span>
                         ))}
                     </motion.p>
@@ -163,16 +165,18 @@ const Header = () => {
                     >
                         <a
                             href="#contact"
-                            className="bg-accent text-on-accent rounded-md px-6 py-3 font-mono text-sm font-medium transition-opacity hover:opacity-85"
+                            className="bg-accent text-on-accent flex items-center gap-2 rounded-md px-6 py-3 font-mono text-sm font-medium transition-opacity hover:opacity-85"
                         >
                             ./contact-me
+                            <ArrowUpRight className="size-4" aria-hidden />
                         </a>
                         <a
                             href="/Abdulahad-Hussain-Resume.pdf"
                             download
-                            className="hover:text-accent font-mono text-sm transition-colors"
+                            className="hover:text-accent flex items-center gap-2 font-mono text-sm transition-colors"
                         >
-                            resume.pdf ↓
+                            <Download className="size-4" aria-hidden />
+                            resume.pdf
                         </a>
                     </motion.div>
 

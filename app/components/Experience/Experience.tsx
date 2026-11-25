@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { experienceData } from '@/assets/assets';
+import { Briefcase, GraduationCap } from 'lucide-react';
 import { siteConfig } from '@/app/lib/site-config';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -92,7 +93,12 @@ const Experience = () => {
                             />
                             <p className="flex flex-wrap items-center gap-3 font-mono text-xs">
                                 <span className="text-accent">{entry.period}</span>
-                                <span className="border-line text-muted rounded border px-1.5 py-0.5">
+                                <span className="border-line text-muted flex items-center gap-1.5 rounded border px-1.5 py-0.5">
+                                    {entry.kind === 'work' ? (
+                                        <Briefcase className="size-3" aria-hidden />
+                                    ) : (
+                                        <GraduationCap className="size-3" aria-hidden />
+                                    )}
                                     {entry.kind}
                                 </span>
                             </p>

@@ -1,7 +1,10 @@
 'use client';
 import { motion } from 'motion/react';
 import { infoList } from '@/assets/assets';
+import { CodeXml, FolderGit2, GraduationCap } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
+
+const infoIcons = [CodeXml, GraduationCap, FolderGit2];
 
 const reveal = (delay: number) => ({
     initial: { opacity: 0, y: 16 },
@@ -24,7 +27,8 @@ const About = () => {
                         <>
                             I like owning
                             <br />
-                            the <span className="text-accent">whole stack</span>.
+                            the <span className="text-accent">whole stack</span>
+                            .
                         </>
                     }
                 />
@@ -35,8 +39,8 @@ const About = () => {
                         className="text-lg leading-relaxed sm:text-xl"
                     >
                         I&apos;m a full stack software engineer based in Lahore,
-                        Pakistan, working across frontend, backend, databases and
-                        deployment.
+                        Pakistan, working across frontend, backend, databases
+                        and deployment.
                     </motion.p>
                     <motion.p
                         {...reveal(0.2)}
@@ -51,18 +55,29 @@ const About = () => {
                     </motion.p>
 
                     <dl className="border-line mt-12 border-t font-mono text-sm">
-                        {infoList.map((item, i) => (
-                            <motion.div
-                                key={item.title}
-                                {...reveal(0.25 + i * 0.08)}
-                                className="border-line grid gap-1 border-b py-4 sm:grid-cols-[140px_1fr] sm:gap-6"
-                            >
-                                <dt className="text-accent">
-                                    {item.title.toLowerCase()}
-                                </dt>
-                                <dd className="text-muted">{item.description}</dd>
-                            </motion.div>
-                        ))}
+                        {infoList.map((item, i) => {
+                            const Icon = infoIcons[i];
+                            return (
+                                <motion.div
+                                    key={item.title}
+                                    {...reveal(0.25 + i * 0.08)}
+                                    className="border-line grid gap-1 border-b py-4 sm:grid-cols-[140px_1fr] sm:gap-6"
+                                >
+                                    <dt className="text-accent flex items-center gap-2">
+                                        {Icon && (
+                                            <Icon
+                                                className="size-4"
+                                                aria-hidden
+                                            />
+                                        )}
+                                        {item.title.toLowerCase()}
+                                    </dt>
+                                    <dd className="text-muted">
+                                        {item.description}
+                                    </dd>
+                                </motion.div>
+                            );
+                        })}
                     </dl>
                 </div>
             </div>

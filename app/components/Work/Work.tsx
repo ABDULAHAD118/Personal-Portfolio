@@ -10,6 +10,8 @@ import {
 } from 'motion/react';
 import { workData } from '@/assets/assets';
 import { socials } from '@/app/lib/content';
+import { ArrowUpRight } from 'lucide-react';
+import TechIcon from '../ui/TechIcon';
 import SectionHeading from '../ui/SectionHeading';
 
 type Project = (typeof workData)[number];
@@ -62,7 +64,8 @@ function ProjectCard({
                             rel="noreferrer"
                             className="hover:text-accent mt-6 inline-flex items-center gap-2 font-mono text-sm transition-colors"
                         >
-                            visit project ↗
+                            visit project
+                            <ArrowUpRight className="size-4" aria-hidden />
                         </a>
                     </div>
 
@@ -115,9 +118,11 @@ const Work = () => {
                     href={github.href}
                     target="_blank"
                     rel="me noreferrer"
-                    className="text-muted hover:text-fg font-mono text-sm transition-colors"
+                    className="text-muted hover:text-fg flex items-center gap-2 font-mono text-sm transition-colors"
                 >
-                    more on github ↗
+                    <TechIcon icon={github.icon} className="size-4" />
+                    more on github
+                    <ArrowUpRight className="size-4" aria-hidden />
                 </a>
             </div>
 

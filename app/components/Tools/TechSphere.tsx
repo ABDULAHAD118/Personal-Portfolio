@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { useInView, useReducedMotion } from 'motion/react';
+import TechIcon, { type TechIconSource } from '../ui/TechIcon';
 
 const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
 const AUTO_SPIN = 0.003;
@@ -15,7 +16,11 @@ function spherePoints(n: number) {
     });
 }
 
-export default function TechSphere({ items }: { items: string[] }) {
+export default function TechSphere({
+    items,
+}: {
+    items: { name: string; icon: TechIconSource }[];
+}) {
     const reduceMotion = useReducedMotion();
     const boxRef = useRef<HTMLDivElement>(null);
     const tagRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -92,14 +97,16 @@ export default function TechSphere({ items }: { items: string[] }) {
             <div className="border-line absolute inset-[12%] rounded-full border border-dashed" />
             {items.map((item, i) => (
                 <span
-                    key={item}
+                    key={item.name}
                     ref={(el) => {
                         tagRefs.current[i] = el;
                     }}
-                    className="absolute top-1/2 left-1/2 font-mono text-sm whitespace-nowrap will-change-transform sm:text-base"
+                    className="bg-panel/80 border-line absolute top-1/2 left-1/2 flex items-center gap-2 rounded-full border py-1 pr-3 pl-1.5 font-mono text-xs whitespace-nowrap backdrop-blur-sm will-change-transform sm:text-sm"
                 >
-                    <span className="text-accent">#</span>
-                    {item}
+                    <span className="bg-bg grid size-6 place-items-center rounded-full sm:size-7">
+                        <TechIcon icon={item.icon} className="size-3.5 sm:size-4" />
+                    </span>
+                    {item.name}
                 </span>
             ))}
         </div>

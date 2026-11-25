@@ -29,7 +29,7 @@ const Tools = () => {
                     </p>
                     <ul className="sr-only">
                         {techStack.map((t) => (
-                            <li key={t}>{t}</li>
+                            <li key={t.name}>{t.name}</li>
                         ))}
                     </ul>
                 </div>
