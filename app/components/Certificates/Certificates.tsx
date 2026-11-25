@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
-import CertificateLog from './CertificateLog';
+import CertificateBook from './CertificateBook';
 
 const Certificates = () => {
     return (
@@ -29,7 +29,7 @@ const Certificates = () => {
                 </Link>
             </div>
             <div className="mt-16">
-                <CertificateLog />
+                <CertificateBook />
             </div>
         </section>
     );

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { certificateData } from '@/assets/assets';
 import PageHeader from '../components/ui/PageHeader';
-import CertificateLog from '../components/Certificates/CertificateLog';
+import CertificateBook from '../components/Certificates/CertificateBook';
 
 export const metadata: Metadata = {
     title: 'Certificates',
@@ -29,7 +29,7 @@ export default function CertificatesPage() {
                         Always <span className="text-accent">learning</span>.
                     </>
                 }
-                intro={`${certificateData.length} certificates and internships. Hover or tap an entry to preview it, click the preview to open the original.`}
+                intro={`${certificateData.length} certificates and internships. Flip through the book, or jump to any entry from the contents page.`}
             >
                 <ul className="flex flex-wrap gap-2 font-mono text-xs">
                     {issuers.map(([name, count]) => (
@@ -43,7 +43,7 @@ export default function CertificatesPage() {
                 </ul>
             </PageHeader>
             <section className="border-line border-t px-6 py-16 sm:px-10 sm:py-20 lg:px-16">
-                <CertificateLog />
+                <CertificateBook />
             </section>
         </main>
     );
