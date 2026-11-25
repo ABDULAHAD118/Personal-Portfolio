@@ -79,7 +79,7 @@ function ServiceRow({
         >
             <Link
                 href={`/services/${service.slug}`}
-                className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 px-2 py-7 sm:gap-x-10 md:grid-cols-[48px_1fr_1.2fr_auto] md:items-center md:px-4"
+                className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 px-2 py-7 sm:gap-x-10 md:grid-cols-[3rem_1fr_1.2fr_auto] md:items-center md:px-4"
             >
                 <span className="text-accent font-mono text-sm">
                     {String(index + 1).padStart(2, '0')}

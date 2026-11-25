@@ -31,7 +31,7 @@ export default function ExperiencePage() {
                     <li key={job.slug} className="border-line border-b">
                         <Link
                             href={`/experience/${job.slug}`}
-                            className="group hover:bg-panel grid gap-6 px-6 py-12 transition-colors sm:px-10 lg:grid-cols-[220px_1fr_auto] lg:gap-12 lg:px-16"
+                            className="group hover:bg-panel grid gap-6 px-6 py-12 transition-colors sm:px-10 lg:grid-cols-[13.75rem_1fr_auto] lg:gap-12 lg:px-16"
                         >
                             <div className="font-mono text-sm">
                                 <p className="text-accent">{job.period}</p>

@@ -35,8 +35,8 @@ export default function AboutPage() {
                 }
             />
 
-            <section className="border-line grid gap-14 border-t px-6 py-20 sm:px-10 sm:py-24 lg:grid-cols-[minmax(280px,400px)_1fr] lg:gap-20 lg:px-16">
-                <div className="border-line bg-panel mx-auto w-full max-w-[400px] overflow-hidden rounded-2xl border lg:sticky lg:top-28 lg:self-start">
+            <section className="border-line grid gap-14 border-t px-6 py-20 sm:px-10 sm:py-24 lg:grid-cols-[minmax(17.5rem,25rem)_1fr] lg:gap-20 lg:px-16">
+                <div className="border-line bg-panel mx-auto w-full max-w-[25rem] overflow-hidden rounded-2xl border lg:sticky lg:top-28 lg:self-start">
                     <Image
                         src={portrait}
                         alt="Portrait of Abdulahad Hussain"
@@ -98,7 +98,7 @@ export default function AboutPage() {
                             return (
                                 <div
                                     key={item.title}
-                                    className="border-line grid gap-1 border-b py-4 sm:grid-cols-[140px_1fr] sm:gap-6"
+                                    className="border-line grid gap-1 border-b py-4 sm:grid-cols-[8.75rem_1fr] sm:gap-6"
                                 >
                                     <dt className="text-accent flex items-center gap-2">
                                         {Icon && (

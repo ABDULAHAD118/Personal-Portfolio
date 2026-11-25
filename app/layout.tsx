@@ -160,11 +160,8 @@ export default function RootLayout({
                 <SmoothScroll>
                     <div id="top" />
                     <Navbar />
-                    {/* Cap the page width so it stays readable on very wide screens or when zoomed out. */}
-                    <div className="mx-auto max-w-[1600px]">
-                        {children}
-                        <Footer />
-                    </div>
+                    {children}
+                    <Footer />
                     <Chatbot />
                 </SmoothScroll>
                 <Analytics />

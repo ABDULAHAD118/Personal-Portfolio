@@ -55,6 +55,14 @@
   color-scheme: dark;
 }
 
+/* Past 1600px wide (big monitors, or zoomed out) grow every rem-based size with the screen,
+   so the page keeps the same proportions instead of spreading content to the edges. */
+@media (min-width: 1600px) {
+  html {
+    font-size: 1vw;
+  }
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-fg);

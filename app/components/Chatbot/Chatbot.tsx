@@ -321,13 +321,13 @@ export default function Chatbot() {
             {isOpen && (
                 <section
                     aria-label="Jinny Portfolio AI Chatbot"
-                    className="bg-panel border-line mb-3 flex h-[min(540px,calc(100dvh-6.5rem))] w-[calc(100vw-2rem)] max-w-[400px] flex-col overflow-hidden rounded-2xl border shadow-[0_24px_60px_-20px_rgb(0_0_0/0.45)]"
+                    className="bg-panel border-line mb-3 flex h-[min(33.75rem,calc(100dvh-6.5rem))] w-[calc(100vw-2rem)] max-w-[25rem] flex-col overflow-hidden rounded-2xl border shadow-[0_24px_60px_-20px_rgb(0_0_0/0.45)]"
                 >
                     {/* Header */}
                     <div className="border-line flex items-center justify-between border-b px-4 py-3">
                         <div className="flex items-center gap-3">
                             <div className="border-line text-accent relative grid size-9 place-items-center rounded-lg border">
-                                <JinnyIcon className="size-[18px]" />
+                                <JinnyIcon className="size-[1.125rem]" />
                                 <span className="border-panel absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border-2 bg-emerald-500" />
                             </div>
                             <div className="leading-tight">

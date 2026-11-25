@@ -38,7 +38,7 @@ const Tools = () => {
                 </div>
                 <motion.div
                     {...slideIn('right')}
-                    className="mx-auto w-full max-w-[560px]"
+                    className="mx-auto w-full max-w-[35rem]"
                 >
                     <TechSphere items={techStack} />
                 </motion.div>

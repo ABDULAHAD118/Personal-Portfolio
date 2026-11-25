@@ -58,7 +58,7 @@ const About = () => {
                                 <motion.div
                                     key={item.title}
                                     {...reveal(0.25 + i * 0.08)}
-                                    className="border-line grid gap-1 border-b py-4 sm:grid-cols-[140px_1fr] sm:gap-6"
+                                    className="border-line grid gap-1 border-b py-4 sm:grid-cols-[8.75rem_1fr] sm:gap-6"
                                 >
                                     <dt className="text-accent flex items-center gap-2">
                                         {Icon && (

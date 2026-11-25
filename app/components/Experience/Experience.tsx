@@ -63,7 +63,7 @@ const Experience = () => {
                         >
                             <span
                                 aria-hidden
-                                className="border-accent bg-bg absolute top-1.5 left-0 size-[11px] rounded-full border-2"
+                                className="border-accent bg-bg absolute top-1.5 left-0 size-[0.6875rem] rounded-full border-2"
                             />
                             <p className="flex flex-wrap items-center gap-3 font-mono text-xs">
                                 <span className="text-accent">

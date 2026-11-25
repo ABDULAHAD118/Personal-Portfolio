@@ -25,7 +25,7 @@ function CodeCard() {
     const k = 'text-code-key';
     const str = 'text-code-string';
     return (
-        <div className="bg-panel/95 border-line w-[250px] overflow-hidden rounded-xl border font-mono text-[11px] leading-5 shadow-2xl backdrop-blur sm:w-[280px] sm:text-xs">
+        <div className="bg-panel/95 border-line w-[15.625rem] overflow-hidden rounded-xl border font-mono text-[11px] leading-5 shadow-2xl backdrop-blur sm:w-[17.5rem] sm:text-xs">
             <div className="border-line text-muted flex items-center justify-between border-b px-3 py-1.5">
                 <span>about.ts</span>
                 <span className="text-accent">●</span>
@@ -109,7 +109,7 @@ const Header = () => {
                 className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_75%)]"
             />
 
-            <div className="grid w-full items-center gap-28 sm:gap-20 lg:grid-cols-[1fr_minmax(340px,440px)] lg:gap-16">
+            <div className="grid w-full items-center gap-28 sm:gap-20 lg:grid-cols-[1fr_minmax(21.25rem,27.5rem)] lg:gap-16">
                 <div>
                     <motion.p
                         {...fadeUp(0.1)}
@@ -201,7 +201,7 @@ const Header = () => {
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="mx-auto w-full max-w-[300px] sm:max-w-[360px] max-lg:order-first lg:max-w-none"
+                    className="mx-auto w-full max-w-[18.75rem] sm:max-w-[22.5rem] max-lg:order-first lg:max-w-none"
                 >
                     <PortraitCard />
                 </motion.div>

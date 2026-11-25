@@ -36,7 +36,7 @@ const Navbar = () => {
             >
                 <nav
                     aria-label="Primary navigation"
-                    className={`mx-auto flex max-w-[calc(1600px-6rem)] items-center justify-between rounded-xl border px-3 py-2.5 transition-colors duration-300 sm:px-4 ${
+                    className={`flex items-center justify-between rounded-xl border px-3 py-2.5 transition-colors duration-300 sm:px-4 ${
                         scrolled
                             ? 'border-line bg-panel/70 backdrop-blur-xl'
                             : 'border-transparent'
