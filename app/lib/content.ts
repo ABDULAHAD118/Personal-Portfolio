@@ -100,6 +100,7 @@ export const stackIcons: Record<string, TechIconSource> = {
     'Chart.js': si.siChartdotjs,
     Lighthouse: si.siLighthouse,
     Sentry: si.siSentry,
+    Stripe: si.siStripe,
 };
 
 // How a typical engagement runs; shown on the services pages.

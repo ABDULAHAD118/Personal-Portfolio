@@ -1,4 +1,8 @@
 import {
+    Cloud,
+    FileText,
+    Plug,
+    ShoppingCart,
     Bot,
     Gauge,
     LayoutDashboard,
@@ -19,4 +23,8 @@ export const serviceIcons = [
     Bot,
     LayoutDashboard,
     Gauge,
+    Cloud,
+    FileText,
+    ShoppingCart,
+    Plug,
 ];

@@ -823,6 +823,97 @@ export const serviceData = [
             'bitlogicx-website',
         ],
     },
+    {
+        icon: assets.web_icon,
+        slug: 'saas',
+        title: 'SaaS Development',
+        description:
+            'Multi-tenant SaaS platforms with user roles, subscriptions, dashboards and APIs, built to grow with your customers.',
+        intro: 'I build software-as-a-service products where many organisations share one platform, each with its own users, data and settings.',
+        deliverables: [
+            'Multi-tenant architecture with data separation',
+            'Sign-up, onboarding and role-based access',
+            'Subscription plans and billing',
+            'Customer and admin dashboards',
+            'Scalable APIs, CI/CD and cloud hosting',
+        ],
+        stack: [
+            'Next.js',
+            'Vue',
+            'Nuxt',
+            'Node.js',
+            'AdonisJS',
+            'MySQL',
+            'Redis',
+            'Stripe',
+        ],
+        projects: ['opal-sip', 'cliqbot', 'wealthsync'],
+    },
+    {
+        icon: assets.web_icon,
+        slug: 'cms',
+        title: 'CMS Development',
+        description:
+            'Custom content management systems so your team can publish pages, news, documents and media without a developer.',
+        intro: 'A content system shaped around your organisation, so editors can update the site themselves while it stays fast and search-friendly.',
+        deliverables: [
+            'Custom admin panel for pages, news and media',
+            'Document libraries with search and filters',
+            'Roles and approval for editors',
+            'Multi-language content',
+            'SEO fields, sitemaps and fast page loads',
+        ],
+        stack: [
+            'Next.js',
+            'Nuxt',
+            'Node.js',
+            'MySQL',
+            'MongoDB',
+            'Tailwind CSS',
+        ],
+        projects: ['information-commission-gambia', 'bitlogicx-website'],
+    },
+    {
+        icon: assets.web_icon,
+        slug: 'ecommerce',
+        title: 'E-commerce & Ordering',
+        description:
+            'Online stores and ordering systems with catalogues, carts, checkout, order tracking and an admin panel.',
+        intro: 'Shops and ordering apps that make it easy to browse, buy and track an order, with the back office to run it.',
+        deliverables: [
+            'Product or menu catalogue with search',
+            'Cart, checkout and online payments',
+            'Order tracking for customers',
+            'Admin panel for products, orders and stock',
+            'Email notifications and receipts',
+        ],
+        stack: ['React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
+        projects: ['bite-savor'],
+    },
+    {
+        icon: assets.ui_icon,
+        slug: 'api-integrations',
+        title: 'API & Third-party Integrations',
+        description:
+            'Connect your product to payment gateways, chat platforms, maps, email, SMS and AI services.',
+        intro: 'I connect your app to the services it depends on, with secure authentication, webhooks and error handling that copes when the other side fails.',
+        deliverables: [
+            'Payment gateway integration',
+            'Chat platforms and bots such as Zoho Cliq',
+            'OAuth and single sign-on',
+            'Webhooks and background jobs',
+            'Email, SMS and push notifications',
+        ],
+        stack: [
+            'Node.js',
+            'AdonisJS',
+            'Redis',
+            'Firebase',
+            'Postman',
+            'Stripe',
+        ],
+        projects: ['cliqbot', 'opal-sip', 'weather-app'],
+    },
 ];
 
 export const infoList = [
