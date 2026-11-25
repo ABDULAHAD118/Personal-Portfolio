@@ -485,23 +485,43 @@ export const educationData = {
         features: [
             {
                 title: 'Crop disease detection',
-                text: 'A Keras image model trained on 17 disease and healthy-leaf classes. The farmer takes a photo, the API returns the disease, a confidence score and treatment advice.',
+                text: 'A Keras image model trained on 17 disease and healthy-leaf classes across wheat, rice, corn, potato and sugarcane. The farmer takes a photo or picks one from the gallery and gets the result in seconds.',
+            },
+            {
+                title: 'Diagnosis report',
+                text: 'Each scan shows the disease, a confidence score, how severe it is, recommended treatment and prevention tips, with a button to ask the chatbot follow-up questions about that scan.',
+            },
+            {
+                title: 'Scan history',
+                text: 'Recent scans are saved on the phone with SQLite, so a farmer can look back at earlier results without internet. They can be cleared from settings.',
             },
             {
                 title: 'Urdu and English AI chat',
                 text: 'A farming assistant built with LangGraph and LangChain that streams answers in real time over a WebSocket and keeps the conversation context.',
             },
             {
-                title: 'Voice input',
+                title: 'Voice questions',
                 text: "Speech is transcribed with OpenAI Whisper in Urdu, English or Punjabi, so farmers who don't type can just ask.",
             },
             {
+                title: 'Answers read aloud',
+                text: 'Chat replies can be played back with text-to-speech in the selected language, for farmers who find reading hard.',
+            },
+            {
                 title: 'Live crop prices',
-                text: 'A Selenium scraper collects daily market rates into MongoDB. The app filters by crop and city, compares cities side by side, and pages through results.',
+                text: 'A Selenium scraper collects daily market rates into MongoDB. The app searches by crop or city, filters by city, compares cities side by side and refreshes with a pull.',
+            },
+            {
+                title: 'Price trends',
+                text: 'A detail screen for each crop shows minimum and maximum price, price history and the trend, and the price can be shared with others.',
             },
             {
                 title: 'Field analysis',
                 text: "From the field's GPS location (checked against Pakistan's boundary), remote sensing and weather data suggest which crops suit the land.",
+            },
+            {
+                title: 'Bilingual, themed app',
+                text: 'The whole interface switches between Urdu and English with i18next, and has light and dark themes.',
             },
         ],
         stack: [

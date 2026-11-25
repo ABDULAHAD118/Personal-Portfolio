@@ -1,5 +1,19 @@
 import Link from 'next/link';
-import { ArrowUpRight, GraduationCap, MapPin, Sprout } from 'lucide-react';
+import {
+    ArrowUpRight,
+    ChartLine,
+    ClipboardList,
+    GraduationCap,
+    History,
+    Languages,
+    MapPin,
+    MessagesSquare,
+    Mic,
+    ScanLine,
+    Sprout,
+    Store,
+    Volume2,
+} from 'lucide-react';
 import { siGithub } from 'simple-icons';
 import TechIcon from '../ui/TechIcon';
 import StackTags from '../ui/StackTags';
@@ -107,6 +121,20 @@ export default function Education({ page = false }: { page?: boolean }) {
     );
 }
 
+// Same order as educationData.project.features.
+const featureIcons = [
+    ScanLine,
+    ClipboardList,
+    History,
+    MessagesSquare,
+    Mic,
+    Volume2,
+    Store,
+    ChartLine,
+    MapPin,
+    Languages,
+];
+
 // Full write-up of the final year project, only on /education.
 function ProjectDetails() {
     const p = edu.project;
@@ -168,21 +196,29 @@ function ProjectDetails() {
                 <h2 className="text-muted font-mono text-sm">
                     <span className="text-accent">03</span> / features
                 </h2>
-                <dl className="border-line mt-6 border-t">
-                    {p.features.map((f) => (
-                        <div
-                            key={f.title}
-                            className="border-line grid gap-2 border-b py-5 sm:grid-cols-[220px_1fr] sm:gap-8"
-                        >
-                            <dt className="font-heading font-semibold">
-                                {f.title}
-                            </dt>
-                            <dd className="text-muted leading-relaxed">
-                                {f.text}
-                            </dd>
-                        </div>
-                    ))}
-                </dl>
+                <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                    {p.features.map((f, i) => {
+                        const Icon = featureIcons[i] ?? Sprout;
+                        return (
+                            <li
+                                key={f.title}
+                                className="border-line hover:border-accent flex gap-4 rounded-2xl border p-5 transition-colors"
+                            >
+                                <span className="border-line text-accent grid size-10 shrink-0 place-items-center rounded-lg border">
+                                    <Icon className="size-5" aria-hidden />
+                                </span>
+                                <div>
+                                    <h3 className="font-heading font-semibold">
+                                        {f.title}
+                                    </h3>
+                                    <p className="text-muted mt-1.5 text-sm leading-relaxed">
+                                        {f.text}
+                                    </p>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
             </section>
 
             <section>
