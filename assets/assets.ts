@@ -230,6 +230,7 @@ export const workData: Project[] = [
     // Client work, built and run at BitLogicx.
     {
         slug: 'ola-lssu',
+        featured: true,
         title: 'OLA LSSU',
         type: 'Training & Certification Platform',
         kind: 'client',
@@ -323,7 +324,6 @@ export const workData: Project[] = [
     },
     {
         slug: 'cliqbot',
-        featured: true,
         title: 'CliqBot',
         type: 'AI Assistant · Dashboard · Mobile App',
         kind: 'client',
