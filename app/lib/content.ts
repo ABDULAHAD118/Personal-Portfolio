@@ -8,6 +8,8 @@ export const navLinks = [
     { label: 'Contact', href: '#contact' },
 ];
 
+export const heroStack = ['React', 'Next.js', 'Vue', 'Node.js', 'TypeScript'];
+
 export const socials = [
     { label: 'GitHub', href: 'https://github.com/ABDULAHAD118' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abdulahad018/' },
