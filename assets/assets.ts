@@ -111,6 +111,7 @@ export type Project = {
     features: string[];
     stack: string[];
     role: string;
+    responsibilities?: string[];
     url?: string;
     repo?: string;
     bgImage?: string;
@@ -123,7 +124,6 @@ export const workData: Project[] = [
         title: 'Bite Savor',
         type: 'Full Stack Project',
         kind: 'personal',
-        featured: true,
         summary:
             'A food delivery web app where users browse restaurants, place orders and track deliveries.',
         overview: [
@@ -145,10 +145,10 @@ export const workData: Project[] = [
     },
     {
         slug: 'wealthsync',
+        featured: true,
         title: 'WealthSync',
         type: 'Full Stack Project',
         kind: 'personal',
-        featured: true,
         summary:
             'An expense tracker with budgets, charts and Excel and PDF exports.',
         overview: [
@@ -183,7 +183,6 @@ export const workData: Project[] = [
         title: 'Url Shortener',
         type: 'Backend Project',
         kind: 'personal',
-        featured: true,
         summary:
             'A Node.js service that turns long links into short ones and counts every visit.',
         overview: [
@@ -208,7 +207,6 @@ export const workData: Project[] = [
         title: 'Weather App',
         type: 'Mobile App',
         kind: 'personal',
-        featured: true,
         summary:
             'A React Native app with live weather and a multi-day forecast for any location.',
         overview: [
@@ -229,106 +227,157 @@ export const workData: Project[] = [
         url: 'https://mega.nz/file/myJQgJ5B#iYi9wFctf4cXXrLMD2BLm4fwgEVdLmmxFlfgHQsp2P8',
         repo: 'https://github.com/ABDULAHAD118/Weather-App-Using-React-Native',
     },
-    // Client work below uses placeholder text: replace with real details.
+    // Client work, built and run at BitLogicx.
     {
-        slug: 'ola-sip',
-        title: 'OLA SIP',
-        type: 'Client Project',
+        slug: 'ola-lssu',
+        title: 'OLA LSSU',
+        type: 'Training & Certification Platform',
         kind: 'client',
         summary:
-            'A client web platform built at BitLogicx, from data model to dashboard.',
+            'The training and certification portal for the Logistics Sector Skills Unit of the Oman Logistics Association.',
         overview: [
-            'OLA SIP is a client platform delivered with the BitLogicx team. I worked across the frontend and the API, building screens, endpoints and integrations.',
-            'The focus was a fast, reliable dashboard with secure, role-based access to data.',
+            'LSSU (Logistics Sector Skills Unit) is the skills body of the Oman Logistics Association. Its platform is where candidates and organisations across Oman’s logistics sector find trainings and assessments, enrol, get certified and prove it.',
+            'Employers and the public can verify a learner or a certificate online, and training providers can apply to become partners. The site runs in English and Arabic.',
         ],
         features: [
-            'Role-based dashboard for staff and admins',
-            'REST API with JWT authentication',
-            'Search, filters and pagination over large lists',
-            'Containerised deployment with Docker',
+            'Training and assessment catalogue with search and categories',
+            'Sign up as a candidate or as an organisation',
+            'Certificate and learner verification portals',
+            'Training partner onboarding',
+            'Governance, media, services and occupational standards pages',
+            'English and Arabic (RTL) support',
         ],
-        stack: ['Vue', 'Nuxt', 'AdonisJS', 'MySQL', 'Docker'],
+        responsibilities: [
+            'Built frontend screens and the APIs behind them',
+            'Set up CI/CD pipelines for automated deployments',
+            'Configured the Ubuntu and Nginx production servers',
+            'Performance optimisation and ongoing maintenance',
+        ],
+        stack: ['Nuxt', 'Vue', 'Node.js', 'Nginx', 'Ubuntu'],
         role: 'Full stack developer at BitLogicx',
+        url: 'https://lssu.ola.om/',
+        bgImage: '/work/ola-lssu.jpg',
     },
     {
-        slug: 'stms',
-        title: 'STMS',
-        type: 'Client Project',
+        slug: 'opal-sip',
+        featured: true,
+        title: 'OPAL SIP',
+        type: 'Multi-tenant Platform',
         kind: 'client',
         summary:
-            'A management system for day-to-day operations, built for a BitLogicx client.',
+            'A Smart Integrated Platform that brings training, inspection, vehicle monitoring and journey management for Oman’s energy sector into one system.',
         overview: [
-            'STMS is an operations management system delivered at BitLogicx. It replaces spreadsheets with one place to create, assign and track records.',
-            'I built API endpoints, database queries and frontend screens, with attention to performance on large data sets.',
+            'SIP (Smart Integrated Platform) is a multi-tenant system for OPAL, the Oman Energy Association. It replaces separate tools with one portal for organisations, drivers, training providers, IVMS vendors and administrators.',
+            'Each role gets its own workspace: providers run training and certification, inspectors record technical inspections, and operators plan safe journeys and monitor in-vehicle systems, with a public portal to verify records.',
         ],
         features: [
-            'Create, assign and track records',
-            'Role-based permissions',
-            'Reports and summaries',
-            'Optimised queries with Redis caching',
+            'Training enrolment, assessment and certificate issuing',
+            'Technical inspection scheduling and compliance records',
+            'IVMS vendor onboarding and monitoring',
+            'Safe journey management: routes, risk assessment and approvals',
+            'Traffic insight and incident data',
+            'Role-based portals and a public verification portal',
+            'English and Arabic support',
         ],
-        stack: ['React', 'Node.js', 'MySQL', 'Redis'],
+        responsibilities: [
+            'Built multi-tenant frontend modules and REST APIs',
+            'Implemented role-based access for each user type',
+            'Set up CI/CD and the Ubuntu and Nginx deployment servers',
+            'Optimisation, monitoring and maintenance in production',
+        ],
+        stack: ['Nuxt', 'Vue', 'Node.js', 'Nginx', 'Ubuntu'],
         role: 'Full stack developer at BitLogicx',
+        url: 'https://sip.opaloman.om/',
+        bgImage: '/work/opal-sip.jpg',
     },
     {
         slug: 'information-commission-gambia',
+        featured: true,
         title: 'Information Commission Gambia',
-        type: 'Client Project',
+        type: 'Government Platform',
         kind: 'client',
         summary:
-            'A public website for the Information Commission of The Gambia.',
+            'The official platform of The Gambia’s Information Commission, where citizens request public information and file complaints.',
         overview: [
-            'A public-facing website for the Information Commission of The Gambia, giving citizens access to news, publications and information about their right to information.',
-            'Built with a content-managed backend so the commission’s staff can publish updates without a developer.',
+            'The Information Commission is the independent statutory body set up under The Gambia’s Access to Information Act, 2021. Its platform lets citizens request information from public institutions, file complaints when access is denied, and follow the commission’s decisions.',
+            'It also publishes a searchable document repository, case decisions, news and the commissioners’ profiles, in English, French and Arabic.',
         ],
         features: [
-            'News and publications',
-            'Information request guidance',
-            'Admin area for publishing content',
-            'Responsive, accessible pages',
+            'Online information request and complaint forms',
+            'Institutional compliance tracking',
+            'Searchable public document repository',
+            'Case decisions, news and resources',
+            'Commissioners and officers directory',
+            'English, French and Arabic',
         ],
-        stack: ['Next.js', 'Node.js', 'MongoDB'],
+        responsibilities: [
+            'Built the Next.js frontend and the backend APIs',
+            'Set up CI/CD pipelines and the production server',
+            'Configured Nginx on Ubuntu for deployment',
+            'Performance tuning and ongoing maintenance',
+        ],
+        stack: ['Next.js', 'React', 'Node.js', 'Nginx', 'Ubuntu'],
         role: 'Full stack developer at BitLogicx',
+        url: 'https://informationcommission.gm/',
+        bgImage: '/work/information-commission-gambia.jpg',
     },
     {
         slug: 'cliqbot',
+        featured: true,
         title: 'CliqBot',
-        type: 'Client Project',
+        type: 'AI Assistant · Dashboard · Mobile App',
         kind: 'client',
         summary:
-            'A chatbot product that answers customer questions from a business’s own content.',
+            'An AI assistant inside Zoho Cliq for Home Doctor USA, with an admin dashboard and a mobile app for doctors.',
         overview: [
-            'CliqBot is a chatbot product built at BitLogicx. Businesses add their content and get an assistant that answers customer questions on their site.',
-            'I worked on the chat interface, the admin dashboard and the APIs that connect them.',
+            'CliqBot is an AI assistant that lives in Home Doctor USA’s Zoho Cliq workspace. It reads incoming messages and uploaded files, including scanned documents through OCR, and answers using retrieval-augmented generation over a memory of approved doctor responses.',
+            'Doctors review and approve answers from a Flutter mobile app with push notifications, and administrators manage everything from a web dashboard: usage and queue health, conversations, approvals, the embedding pipeline and AI provider settings.',
         ],
         features: [
-            'Embeddable chat widget',
-            'Admin dashboard to manage bots and content',
-            'Conversation history',
-            'Secure API with JWT authentication',
+            'Zoho Cliq bot with webhooks, channels and file handling',
+            'Multiple AI providers: OpenAI, Anthropic, Gemini and local Ollama models',
+            'RAG memory with pgvector embeddings of approved doctor answers',
+            'OCR for images and PDFs with Tesseract, Google Vision or AWS Textract',
+            'Doctor approval flow in a Flutter app with Firebase push notifications',
+            'Admin dashboard with token usage, queue health and review queues',
+            'Background jobs and retries with BullMQ and Redis',
         ],
-        stack: ['Next.js', 'Node.js', 'MongoDB', 'Redis'],
+        responsibilities: [
+            'Built backend APIs and queue workers in AdonisJS',
+            'Built admin dashboard features in Vue',
+            'Worked on the Flutter mobile app for doctors',
+            'GitHub Actions CI/CD to DigitalOcean, plus APK release builds',
+        ],
+        stack: ['AdonisJS', 'TypeScript', 'PostgreSQL', 'Redis', 'Vue', 'Tailwind CSS', 'Flutter', 'Firebase', 'GitHub Actions', 'DigitalOcean'],
         role: 'Full stack developer at BitLogicx',
     },
     {
         slug: 'bitlogicx-website',
         title: 'BitLogicx Website',
-        type: 'Client Project',
+        type: 'Company Website',
         kind: 'client',
         summary:
-            'The company website for BitLogicx, a software development studio.',
+            'The website of BitLogicx, a software company in Lahore serving clients in Europe, the Middle East and the USA.',
         overview: [
-            'The public website for BitLogicx, showing the studio’s services, work and team, and turning visitors into enquiries.',
-            'Built for speed and search visibility, with server-rendered pages and a simple contact flow.',
+            'The public website for BitLogicx Development. It presents the company’s services, its own products such as Dot HRM, BitERP and Restaurant POS, the industries it serves and its case studies.',
+            'It is built to turn visitors into leads, with free consultation, demo request and hiring flows, plus careers and a blog.',
         ],
         features: [
-            'Services and portfolio pages',
-            'Contact and enquiry form',
-            'SEO-friendly server-rendered pages',
-            'Responsive layout for every device',
+            'Services, products and industries mega menus',
+            'Case studies, careers and blog',
+            'Consultation, demo request and hire flows',
+            'Server-rendered, SEO-friendly pages behind Cloudflare',
+            'Animated hero slider and responsive layout',
         ],
-        stack: ['Nuxt', 'Vue', 'Tailwind CSS'],
-        role: 'Frontend developer at BitLogicx',
+        responsibilities: [
+            'Built and maintained pages and components in Nuxt',
+            'Set up the CI/CD pipeline and deployment',
+            'Performance and SEO optimisation',
+        ],
+        stack: ['Nuxt', 'Vue', 'Node.js', 'Cloudflare'],
+        role: 'Full stack developer at BitLogicx',
+        url: 'https://bitlogicx.com/',
+        bgImage: '/work/bitlogicx-website.jpg',
     },
 ];
 
@@ -495,7 +544,7 @@ export const serviceData = [
             'MySQL',
             'Docker',
         ],
-        projects: ['bite-savor', 'wealthsync', 'ola-sip'],
+        projects: ['opal-sip', 'ola-lssu', 'cliqbot', 'wealthsync'],
     },
     {
         icon: assets.web_icon,
@@ -550,7 +599,7 @@ export const serviceData = [
             'Docker',
             'Postman',
         ],
-        projects: ['url-shortener', 'stms', 'cliqbot'],
+        projects: ['cliqbot', 'opal-sip', 'url-shortener'],
     },
     {
         icon: assets.mobile_icon,
@@ -560,14 +609,14 @@ export const serviceData = [
             'Cross-platform mobile experiences using React Native, API integrations, and user-focused interaction design.',
         intro: 'Cross-platform mobile apps from one codebase, connected to your API and designed around how people use their phones.',
         deliverables: [
-            'React Native apps for iOS and Android',
+            'React Native and Flutter apps for iOS and Android',
             'API integration',
             'Device features such as location',
             'Navigation and app structure',
             'Store-ready builds with Expo',
         ],
-        stack: ['React Native', 'Expo', 'TypeScript', 'NativeWind'],
-        projects: ['weather-app'],
+        stack: ['React Native', 'Expo', 'Flutter', 'Firebase', 'TypeScript'],
+        projects: ['cliqbot', 'weather-app'],
     },
 ];
 

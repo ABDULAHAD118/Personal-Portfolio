@@ -80,6 +80,14 @@ export const stackIcons: Record<string, TechIconSource> = {
     HTML: si.siHtml5,
     CSS: si.siCss,
     Bootstrap: si.siBootstrap,
+    Nginx: si.siNginx,
+    Ubuntu: si.siUbuntu,
+    PostgreSQL: si.siPostgresql,
+    Flutter: si.siFlutter,
+    Firebase: si.siFirebase,
+    'GitHub Actions': si.siGithubactions,
+    DigitalOcean: si.siDigitalocean,
+    Cloudflare: si.siCloudflare,
 };
 
 // How a typical engagement runs; shown on the services pages.

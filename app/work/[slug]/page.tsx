@@ -131,6 +131,25 @@ export default async function ProjectPage({ params }: Props) {
                             </li>
                         ))}
                     </ul>
+
+                    {project.responsibilities && (
+                        <>
+                            <h2 className="text-muted mt-16 font-mono text-sm">
+                                <span className="text-accent">03</span> / my role
+                            </h2>
+                            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                                {project.responsibilities.map((r) => (
+                                    <li
+                                        key={r}
+                                        className="bg-panel border-line flex gap-3 rounded-xl border p-4 text-sm leading-relaxed"
+                                    >
+                                        <span className="text-accent font-mono">→</span>
+                                        {r}
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    )}
                 </div>
 
                 <aside className="lg:sticky lg:top-28 lg:self-start">

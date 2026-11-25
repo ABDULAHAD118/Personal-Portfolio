@@ -15,7 +15,10 @@ import TechIcon from '../ui/TechIcon';
 import SectionHeading from '../ui/SectionHeading';
 import ProjectCover from '../ui/ProjectCover';
 
-const featured = workData.filter((p) => p.featured);
+// Client work leads on the home page.
+const featured = workData
+    .filter((p) => p.featured)
+    .sort((a, b) => Number(a.kind !== 'client') - Number(b.kind !== 'client'));
 
 function ProjectCard({
     project,
