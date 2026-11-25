@@ -5,6 +5,7 @@ import { experienceData } from '@/assets/assets';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
+import { slideIn } from '@/app/lib/motion';
 
 const entries = experienceData.map((e) => ({
     href: `/experience/${e.slug}`,
@@ -27,7 +28,7 @@ const Experience = () => {
     return (
         <section
             id="experience"
-            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
+            className="border-line scroll-mt-20 overflow-x-clip border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
         >
             <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
                 <div className="lg:sticky lg:top-32 lg:self-start">
@@ -57,13 +58,7 @@ const Experience = () => {
                     {entries.map((entry) => (
                         <motion.li
                             key={entry.title}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-80px' }}
-                            transition={{
-                                duration: 0.6,
-                                ease: [0.22, 1, 0.36, 1],
-                            }}
+                            {...slideIn('right')}
                             className="relative scroll-mt-28 pb-14 pl-10 last:pb-0"
                         >
                             <span

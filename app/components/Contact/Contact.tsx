@@ -8,6 +8,7 @@ import { siteConfig } from '@/app/lib/site-config';
 import { socials } from '@/app/lib/content';
 import TechIcon from '../ui/TechIcon';
 import SectionHeading from '../ui/SectionHeading';
+import { slideIn } from '@/app/lib/motion';
 
 const field =
     'bg-panel border-line placeholder:text-muted/70 focus:border-accent w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors';
@@ -65,7 +66,7 @@ const Contact = ({ page = false }: { page?: boolean }) => {
     return (
         <section
             id="contact"
-            className={`border-line scroll-mt-20 border-t px-6 sm:px-10 lg:px-16 ${page ? 'border-t-0 pb-20 sm:pb-24' : 'py-24 sm:py-32'}`}
+            className={`border-line scroll-mt-20 overflow-x-clip border-t px-6 sm:px-10 lg:px-16 ${page ? 'border-t-0 pb-20 sm:pb-24' : 'py-24 sm:py-32'}`}
         >
             <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
                 <div>
@@ -133,10 +134,7 @@ const Contact = ({ page = false }: { page?: boolean }) => {
                 </div>
 
                 <motion.form
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    {...slideIn('right')}
                     onSubmit={onSubmit}
                     className="bg-panel/50 border-line rounded-2xl border p-5 sm:p-8"
                 >

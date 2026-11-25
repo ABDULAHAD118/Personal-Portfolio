@@ -1,6 +1,8 @@
 'use client';
 import { techStack } from '@/app/lib/content';
+import { motion } from 'motion/react';
 import SectionHeading from '../ui/SectionHeading';
+import { slideIn } from '@/app/lib/motion';
 import TechSphere from './TechSphere';
 
 const Tools = () => {
@@ -16,7 +18,8 @@ const Tools = () => {
                         label="stack"
                         title={
                             <>
-                                Tools I <span className="text-accent">reach for</span>.
+                                Tools I{' '}
+                                <span className="text-accent">reach for</span>.
                             </>
                         }
                     />
@@ -33,9 +36,12 @@ const Tools = () => {
                         ))}
                     </ul>
                 </div>
-                <div className="mx-auto w-full max-w-[560px]">
+                <motion.div
+                    {...slideIn('right')}
+                    className="mx-auto w-full max-w-[560px]"
+                >
                     <TechSphere items={techStack} />
-                </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -1,4 +1,7 @@
+'use client';
 import Link from 'next/link';
+import { motion } from 'motion/react';
+import { slideIn } from '@/app/lib/motion';
 import {
     ArrowUpRight,
     ChartLine,
@@ -25,7 +28,7 @@ export default function Education({ page = false }: { page?: boolean }) {
     return (
         <section
             id="education"
-            className={`border-line scroll-mt-20 px-6 sm:px-10 lg:px-16 ${
+            className={`border-line scroll-mt-20 overflow-x-clip px-6 sm:px-10 lg:px-16 ${
                 page ? 'pb-20 sm:pb-28' : 'border-t py-24 sm:py-32'
             }`}
         >
@@ -56,7 +59,10 @@ export default function Education({ page = false }: { page?: boolean }) {
                 )}
 
                 <div className="grid gap-6">
-                    <article className="bg-panel border-line rounded-2xl border p-6 sm:p-8">
+                    <motion.article
+                        {...slideIn('right')}
+                        className="bg-panel border-line rounded-2xl border p-6 sm:p-8"
+                    >
                         <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
                             <span className="text-accent">{edu.period}</span>
                             <span className="text-muted flex items-center gap-1.5">
@@ -86,9 +92,12 @@ export default function Education({ page = false }: { page?: boolean }) {
                                 </li>
                             ))}
                         </ul>
-                    </article>
+                    </motion.article>
 
-                    <article className="border-line rounded-2xl border border-dashed p-6 sm:p-8">
+                    <motion.article
+                        {...slideIn('left')}
+                        className="border-line rounded-2xl border border-dashed p-6 sm:p-8"
+                    >
                         <p className="text-muted flex items-center gap-2 font-mono text-xs">
                             <Sprout
                                 className="text-accent size-4"
@@ -112,7 +121,7 @@ export default function Education({ page = false }: { page?: boolean }) {
                                 </li>
                             ))}
                         </ul>
-                    </article>
+                    </motion.article>
 
                     {page && <ProjectDetails />}
                 </div>

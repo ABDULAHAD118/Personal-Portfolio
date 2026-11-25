@@ -7,7 +7,7 @@ const Certificates = () => {
     return (
         <section
             id="certificates"
-            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
+            className="border-line scroll-mt-20 overflow-x-clip border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
         >
             <div className="flex flex-wrap items-end justify-between gap-6">
                 <SectionHeading

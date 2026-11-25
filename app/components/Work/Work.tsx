@@ -13,6 +13,7 @@ import { socials } from '@/app/lib/content';
 import { ArrowUpRight } from 'lucide-react';
 import TechIcon from '../ui/TechIcon';
 import SectionHeading from '../ui/SectionHeading';
+import { slideIn } from '@/app/lib/motion';
 import ProjectCover from '../ui/ProjectCover';
 
 // Client work leads on the home page.
@@ -46,6 +47,7 @@ function ProjectCard({
             style={{ top: `calc(6rem + ${index * 1.5}rem)` }}
         >
             <motion.article
+                {...slideIn(index % 2 ? 'right' : 'left')}
                 style={{ scale: reduceMotion ? 1 : scale }}
                 className="bg-panel border-line origin-top overflow-hidden rounded-2xl border shadow-[0_-20px_60px_-30px_rgb(0_0_0/0.5)]"
             >
@@ -101,7 +103,7 @@ const Work = () => {
     return (
         <section
             id="work"
-            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
+            className="border-line scroll-mt-20 overflow-x-clip border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
         >
             <div className="flex flex-wrap items-end justify-between gap-6">
                 <SectionHeading

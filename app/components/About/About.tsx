@@ -4,21 +4,17 @@ import { infoList } from '@/assets/assets';
 import Link from 'next/link';
 import { ArrowUpRight, CodeXml, FolderGit2, GraduationCap } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
+import { slideIn } from '@/app/lib/motion';
 
 const infoIcons = [CodeXml, GraduationCap, FolderGit2];
 
-const reveal = (delay: number) => ({
-    initial: { opacity: 0, y: 16 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-60px' },
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
+const reveal = (delay: number) => slideIn('right', delay);
 
 const About = () => {
     return (
         <section
             id="about"
-            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
+            className="border-line scroll-mt-20 overflow-x-clip border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
         >
             <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
                 <SectionHeading
