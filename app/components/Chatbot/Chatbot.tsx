@@ -39,15 +39,17 @@ function renderInlineContent(text: string): React.ReactNode[] {
         // Links: [label](url)
         const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
         if (linkMatch) {
+            // Links to pages on this site open in place; external ones in a new tab.
+            const external = !linkMatch[2].startsWith('/');
             return (
                 <a
                     key={index}
                     href={linkMatch[2]}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
                     className="text-accent font-medium underline decoration-current/40 underline-offset-2 transition-opacity hover:opacity-80"
                 >
-                    {linkMatch[1]} ↗
+                    {linkMatch[1]}
+                    {external && ' ↗'}
                 </a>
             );
         }
@@ -226,16 +228,12 @@ export default function Chatbot() {
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
     useEffect(() => {
-        if (isOpen) {
-            scrollToBottom();
-            inputRef.current?.focus();
-        }
-    }, [isOpen, messages]);
+        if (!isOpen) return;
+        // Follow streamed text instantly; smooth scrolling on every chunk lags behind.
+        messagesEndRef.current?.scrollIntoView({ behavior: isLoading ? 'auto' : 'smooth', block: 'end' });
+        inputRef.current?.focus();
+    }, [isOpen, messages, isLoading]);
 
     const handleOpenChat = () => {
         setIsOpen(true);
@@ -268,33 +266,33 @@ export default function Chatbot() {
         setInputMessage('');
         setIsLoading(true);
 
+        const botId = generateId('bot');
         try {
-            const apiMessages = updatedHistory.map((m) => ({
-                role: m.role,
-                text: m.text,
-            }));
-
             const res = await fetch('/api/chat', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ messages: apiMessages }),
+                headers: { 'Content-Type': 'application/json' },
+                // Give up rather than spin forever if the model provider stalls.
+                signal: AbortSignal.timeout(90_000),
+                body: JSON.stringify({
+                    messages: updatedHistory.map((m) => ({ role: m.role, text: m.text })),
+                }),
             });
+            if (!res.ok || !res.body) throw new Error(`Chat request failed (${res.status})`);
 
-            const data = await res.json();
-
-            if (data.success && data.reply) {
-                const botMsg: Message = {
-                    id: generateId('bot'),
-                    role: 'model',
-                    text: data.reply,
-                    timestamp: 'Just now',
-                };
-                setMessages((prev) => [...prev, botMsg]);
-            } else {
-                throw new Error(data.message || 'Failed to receive response');
+            // Append each streamed chunk to the reply as it arrives.
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let text = '';
+            for (let r = await reader.read(); !r.done; r = await reader.read()) {
+                text += decoder.decode(r.value, { stream: true });
+                const current = text;
+                setMessages((prev) =>
+                    prev.some((m) => m.id === botId)
+                        ? prev.map((m) => (m.id === botId ? { ...m, text: current } : m))
+                        : [...prev, { id: botId, role: 'model', text: current, timestamp: 'Just now' }]
+                );
             }
+            if (!text.trim()) throw new Error('Empty reply');
         } catch (err) {
             console.error('Chat error:', err);
             const errorMsg: Message = {
@@ -303,7 +301,7 @@ export default function Chatbot() {
                 text: 'Sorry, I could not process your request right now. Feel free to email Abdulahad directly at [abdulahadhussain60@gmail.com](mailto:abdulahadhussain60@gmail.com).',
                 timestamp: 'Just now',
             };
-            setMessages((prev) => [...prev, errorMsg]);
+            setMessages((prev) => [...prev.filter((m) => m.id !== botId), errorMsg]);
         } finally {
             setIsLoading(false);
         }
@@ -410,7 +408,7 @@ export default function Chatbot() {
                             </div>
                         ))}
 
-                        {isLoading && (
+                        {isLoading && messages[messages.length - 1]?.role === 'user' && (
                             <div className="flex items-center gap-2.5" role="status">
                                 <div className="border-line text-accent grid size-7 shrink-0 place-items-center rounded-md border">
                                     <JinnyIcon className="size-3.5" />
