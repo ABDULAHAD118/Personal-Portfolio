@@ -1,7 +1,8 @@
 'use client';
 import { useRef, useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react';
+import { useLenis } from 'lenis/react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen } from 'lucide-react';
 import { certificateData } from '@/assets/assets';
 
@@ -35,16 +36,38 @@ export default function CertificateBook() {
     const [spread, setSpread] = useState(0);
     const [flip, setFlip] = useState<Flip | null>(null);
     const touchX = useRef<number | null>(null);
+    const lenis = useLenis();
 
-    const goTo = (to: number) => {
+    // The book sits in a tall track and stays pinned while you scroll through it;
+    // how far you are through the track decides which spread is open.
+    const track = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: track, offset: ['start start', 'end end'] });
+    const target = useRef(0);
+    const turn = (to: number) => {
         if (flip || to === spread || to < 0 || to > LAST) return;
         if (reduceMotion) setSpread(to);
         else setFlip({ to, dir: to > spread ? 1 : -1 });
     };
+    useMotionValueEvent(scrollYProgress, 'change', (p) => {
+        target.current = Math.round(p * LAST);
+        turn(target.current);
+    });
+
+    // Buttons, keys, swipes and the contents list scroll to that spread's spot in the track.
+    const goTo = (to: number) => {
+        const el = track.current;
+        if (!el || to < 0 || to > LAST) return;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        const y = top + (to / LAST) * (el.offsetHeight - window.innerHeight);
+        if (lenis) lenis.scrollTo(y);
+        else window.scrollTo({ top: y });
+    };
     const finish = () => {
         if (!flip) return;
         setSpread(flip.to);
-        setFlip(null);
+        // If you kept scrolling during the turn, carry on to where the scroll now points.
+        const t = target.current;
+        setFlip(t === flip.to ? null : { to: t, dir: t > flip.to ? 1 : -1 });
     };
 
     // What sits underneath the turning leaf.
@@ -57,7 +80,8 @@ export default function CertificateBook() {
     const single = (s: number) => (s === 0 ? <ContentsPage onOpen={goTo} withTitle /> : <SinglePage index={s - 1} />);
 
     return (
-        <div>
+        <div ref={track} style={{ height: `calc(100svh + ${LAST * 32}svh)` }}>
+            <div className="sticky top-16 flex h-[calc(100svh-4rem)] flex-col justify-center">
             <div
                 role="region"
                 aria-roledescription="book"
@@ -76,7 +100,7 @@ export default function CertificateBook() {
                     touchX.current = null;
                     if (Math.abs(dx) > 50) goTo(spread + (dx < 0 ? 1 : -1));
                 }}
-                className="focus-visible:outline-accent mx-auto max-w-5xl rounded-[20px] outline-offset-4 focus-visible:outline-2"
+                className="focus-visible:outline-accent mx-auto w-full max-w-[min(64rem,calc((100svh-12rem)*1.6))] rounded-[20px] outline-offset-4 focus-visible:outline-2 max-md:max-w-[min(100%,calc((100svh-11rem)/1.47))]"
             >
                 {/* Leather cover with stitching */}
                 <div className="rounded-[20px] bg-[#2b1d14] p-2.5 shadow-[0_40px_80px_-40px_rgb(0_0_0/0.7)] sm:p-3.5">
@@ -131,7 +155,7 @@ export default function CertificateBook() {
             </div>
 
             {/* Controls */}
-            <div className="mx-auto mt-8 flex max-w-5xl items-center justify-between gap-4 font-mono text-sm">
+            <div className="mx-auto mt-6 flex w-full max-w-5xl items-center justify-between gap-4 font-mono text-sm">
                 <button
                     type="button"
                     onClick={() => goTo(spread - 1)}
@@ -184,6 +208,7 @@ export default function CertificateBook() {
                     />
                 </div>
             )}
+            </div>
         </div>
     );
 }
