@@ -47,12 +47,12 @@ const Experience = () => {
                 <ol ref={listRef} className="relative">
                     <div
                         aria-hidden
-                        className="bg-line absolute top-2 bottom-2 left-[5px] w-px"
+                        className="bg-line absolute top-2 bottom-2 left-[0.3125rem] w-px"
                     />
                     <motion.div
                         aria-hidden
                         style={{ scaleY: fill }}
-                        className="bg-accent absolute top-2 bottom-2 left-[5px] w-px origin-top"
+                        className="bg-accent absolute top-2 bottom-2 left-[0.3125rem] w-px origin-top"
                     />
 
                     {entries.map((entry) => (

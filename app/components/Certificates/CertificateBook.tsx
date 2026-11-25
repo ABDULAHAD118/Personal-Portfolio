@@ -100,11 +100,11 @@ export default function CertificateBook() {
                     touchX.current = null;
                     if (Math.abs(dx) > 50) goTo(spread + (dx < 0 ? 1 : -1));
                 }}
-                className="focus-visible:outline-accent mx-auto w-full max-w-[min(64rem,calc((100svh-12rem)*1.6))] rounded-[20px] outline-offset-4 focus-visible:outline-2 max-md:max-w-[min(100%,calc((100svh-11rem)/1.47))]"
+                className="focus-visible:outline-accent mx-auto w-full max-w-[min(64rem,calc((100svh-12rem)*1.6))] rounded-[1.25rem] outline-offset-4 focus-visible:outline-2 max-md:max-w-[min(100%,calc((100svh-11rem)/1.47))]"
             >
                 {/* Leather cover with stitching */}
-                <div className="rounded-[20px] bg-[#2b1d14] p-2.5 shadow-[0_40px_80px_-40px_rgb(0_0_0/0.7)] sm:p-3.5">
-                    <div className="rounded-[14px] border border-dashed border-[#c98a5a]/40 p-1.5 sm:p-2">
+                <div className="rounded-[1.25rem] bg-[#2b1d14] p-2.5 shadow-[0_40px_80px_-40px_rgb(0_0_0/0.7)] sm:p-3.5">
+                    <div className="rounded-[0.875rem] border border-dashed border-[#c98a5a]/40 p-1.5 sm:p-2">
                         <div
                             className={`relative [perspective:2400px] ${
                                 twoPages ? 'grid aspect-[16/10] grid-cols-2' : 'aspect-[3/4.4]'
@@ -305,7 +305,7 @@ function Leaf({
 function PageNumber({ n, align }: { n: number; align: 'left' | 'right' }) {
     return (
         <span
-            className={`text-muted absolute bottom-4 font-mono text-[11px] sm:bottom-5 ${
+            className={`text-muted absolute bottom-4 font-mono text-[0.6875rem] sm:bottom-5 ${
                 align === 'left' ? 'left-5 sm:left-7' : 'right-9 sm:right-11'
             }`}
         >
@@ -351,7 +351,7 @@ function ContentsPage({ onOpen, withTitle }: { onOpen: (spread: number) => void;
                         <button
                             type="button"
                             onClick={() => onOpen(i + 1)}
-                            className="group/row hover:text-accent flex w-full cursor-pointer items-baseline gap-2 text-left text-[11px] leading-5 transition-colors lg:text-[13px] lg:leading-6"
+                            className="group/row hover:text-accent flex w-full cursor-pointer items-baseline gap-2 text-left text-[0.6875rem] leading-5 transition-colors lg:text-[0.8125rem] lg:leading-6"
                         >
                             <span className="text-accent font-mono">{pad(i + 1)}</span>
                             <span className="truncate">{c.title}</span>
@@ -394,7 +394,7 @@ function DetailsPage({ index }: { index: number }) {
             {/* rubber stamp */}
             <div
                 aria-hidden
-                className="border-accent/60 text-accent/70 absolute right-8 bottom-12 grid size-20 rotate-[-14deg] place-items-center rounded-full border-2 border-double font-mono text-[10px] leading-tight tracking-widest uppercase lg:size-24"
+                className="border-accent/60 text-accent/70 absolute right-8 bottom-12 grid size-20 rotate-[-14deg] place-items-center rounded-full border-2 border-double font-mono text-[0.625rem] leading-tight tracking-widest uppercase lg:size-24"
             >
                 <span className="text-center">
                     verified

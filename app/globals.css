@@ -83,7 +83,7 @@ body {
     background-image:
       linear-gradient(var(--color-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-    background-size: 64px 64px;
+    background-size: 4rem 4rem;
   }
 
   /* Backdrop for the cut-out portrait: follows the theme, with a soft accent glow behind the head. */
@@ -93,7 +93,7 @@ body {
       radial-gradient(ellipse 70% 55% at 50% 32%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
       linear-gradient(var(--color-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-    background-size: auto, 32px 32px, 32px 32px;
+    background-size: auto, 2rem 2rem, 2rem 2rem;
   }
 }
 

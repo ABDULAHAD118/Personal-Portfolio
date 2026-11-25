@@ -36,13 +36,13 @@ export default function ProjectCover({
             aria-hidden
         >
             <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
-            <p className="text-muted absolute top-4 left-4 font-mono text-[11px]">
+            <p className="text-muted absolute top-4 left-4 font-mono text-[0.6875rem]">
                 <span className="text-accent">●</span> {project.slug}.app
             </p>
             <span className="font-heading text-accent relative text-[clamp(3rem,10vw,7rem)] font-bold tracking-tighter transition-transform duration-700 group-hover:scale-105">
                 {initials}
             </span>
-            <p className="text-muted absolute right-4 bottom-4 font-mono text-[11px]">
+            <p className="text-muted absolute right-4 bottom-4 font-mono text-[0.6875rem]">
                 client work · BitLogicx
             </p>
         </div>

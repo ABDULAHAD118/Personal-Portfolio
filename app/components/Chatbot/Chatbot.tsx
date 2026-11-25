@@ -62,7 +62,7 @@ function renderInlineContent(text: string): React.ReactNode[] {
             return (
                 <code
                     key={index}
-                    className="bg-panel border-line text-accent rounded border px-1.5 py-0.5 font-mono text-[11px]"
+                    className="bg-panel border-line text-accent rounded border px-1.5 py-0.5 font-mono text-[0.6875rem]"
                 >
                     {part.slice(1, -1)}
                 </code>
@@ -99,7 +99,7 @@ function FormattedMarkdown({ content }: { content: string }) {
                 renderedNodes.push(
                     <ul key={`list-${renderedNodes.length}`} className="my-1.5 space-y-1 pl-1">
                         {currentList.items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[13px] leading-relaxed">
+                            <li key={i} className="flex items-start gap-2 text-[0.8125rem] leading-relaxed">
                                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                                 <div className="flex-1">{item}</div>
                             </li>
@@ -110,8 +110,8 @@ function FormattedMarkdown({ content }: { content: string }) {
                 renderedNodes.push(
                     <ol key={`list-${renderedNodes.length}`} className="my-1.5 space-y-1 pl-1">
                         {currentList.items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[13px] leading-relaxed">
-                                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded text-accent font-mono text-[11px]">
+                            <li key={i} className="flex items-start gap-2 text-[0.8125rem] leading-relaxed">
+                                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded text-accent font-mono text-[0.6875rem]">
                                     {i + 1}
                                 </span>
                                 <div className="flex-1">{item}</div>
@@ -160,7 +160,7 @@ function FormattedMarkdown({ content }: { content: string }) {
                             ? 'mt-3 mb-1 text-base font-bold'
                             : level === 2
                               ? 'mt-2.5 mb-1 text-sm font-bold'
-                              : 'mt-2 mb-0.5 text-accent text-[13px] font-semibold'
+                              : 'mt-2 mb-0.5 text-accent text-[0.8125rem] font-semibold'
                     }`}
                 >
                     {renderInlineContent(headingText)}
@@ -194,7 +194,7 @@ function FormattedMarkdown({ content }: { content: string }) {
         // Regular paragraph line
         flushList();
         renderedNodes.push(
-            <p key={`p-${lineIdx}`} className="text-[13px] leading-relaxed">
+            <p key={`p-${lineIdx}`} className="text-[0.8125rem] leading-relaxed">
                 {renderInlineContent(trimmed)}
             </p>
         );
@@ -334,7 +334,7 @@ export default function Chatbot() {
                                 <h3 className="font-heading text-sm font-semibold">
                                     Jinny
                                 </h3>
-                                <p className="text-muted font-mono text-[11px]">
+                                <p className="text-muted font-mono text-[0.6875rem]">
                                     portfolio assistant · ai
                                 </p>
                             </div>
@@ -388,14 +388,14 @@ export default function Chatbot() {
                                         }`}
                                     >
                                         {msg.role === 'user' ? (
-                                            <p className="text-[13px] leading-relaxed font-medium break-words">
+                                            <p className="text-[0.8125rem] leading-relaxed font-medium break-words">
                                                 {msg.text}
                                             </p>
                                         ) : (
                                             <FormattedMarkdown content={msg.text} />
                                         )}
                                     </div>
-                                    <span className="text-muted mt-1 px-1 font-mono text-[10px]">
+                                    <span className="text-muted mt-1 px-1 font-mono text-[0.625rem]">
                                         {msg.timestamp}
                                     </span>
                                 </div>
@@ -423,7 +423,7 @@ export default function Chatbot() {
 
                     {/* Quick Suggestions */}
                     <div className="border-line border-t px-3 py-2">
-                        <div className="scrollbar-none flex gap-1.5 overflow-x-auto pb-0.5 font-mono text-[11px]">
+                        <div className="scrollbar-none flex gap-1.5 overflow-x-auto pb-0.5 font-mono text-[0.6875rem]">
                             {QUICK_PROMPTS.map((qp) => (
                                 <button
                                     key={qp.label}

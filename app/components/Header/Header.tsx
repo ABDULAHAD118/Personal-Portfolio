@@ -25,7 +25,7 @@ function CodeCard() {
     const k = 'text-code-key';
     const str = 'text-code-string';
     return (
-        <div className="bg-panel/95 border-line w-[15.625rem] overflow-hidden rounded-xl border font-mono text-[11px] leading-5 shadow-2xl backdrop-blur sm:w-[17.5rem] sm:text-xs">
+        <div className="bg-panel/95 border-line w-[15.625rem] overflow-hidden rounded-xl border font-mono text-[0.6875rem] leading-5 shadow-2xl backdrop-blur sm:w-[17.5rem] sm:text-xs">
             <div className="border-line text-muted flex items-center justify-between border-b px-3 py-1.5">
                 <span>about.ts</span>
                 <span className="text-accent">●</span>
@@ -186,7 +186,7 @@ const Header = () => {
                     >
                         {professionalStats.map((stat) => (
                             <div key={stat.label} className="flex flex-col-reverse justify-end">
-                                <dt className="text-muted font-mono text-[11px] leading-4">
+                                <dt className="text-muted font-mono text-[0.6875rem] leading-4">
                                     {stat.label}
                                 </dt>
                                 <dd className="font-heading text-3xl font-semibold">
