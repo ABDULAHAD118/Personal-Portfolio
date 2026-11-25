@@ -17,7 +17,36 @@ const fadeUp = (delay: number) => ({
     transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-// Photo card that tilts toward the cursor; the badge sits on a higher 3D layer so it moves with depth.
+const stack = ['React', 'Next.js', 'Vue', 'Node.js', 'TypeScript'];
+
+// Small editor-style card with the same facts the old tags showed.
+function CodeCard() {
+    const k = 'text-code-key';
+    const str = 'text-code-string';
+    return (
+        <div className="bg-panel/95 border-line w-[250px] overflow-hidden rounded-xl border font-mono text-[11px] leading-5 shadow-2xl backdrop-blur sm:w-[280px] sm:text-xs">
+            <div className="border-line text-muted flex items-center justify-between border-b px-3 py-1.5">
+                <span>about.ts</span>
+                <span className="text-accent">●</span>
+            </div>
+            <pre className="px-3 py-2.5">
+                <span className="text-muted">const</span> me = {'{'}
+                {'\n  '}
+                <span className={k}>role</span>: <span className={str}>&quot;Full Stack&quot;</span>,
+                {'\n  '}
+                <span className={k}>company</span>: <span className={str}>&quot;{siteConfig.company.name}&quot;</span>,
+                {'\n  '}
+                <span className={k}>based</span>: <span className={str}>&quot;{siteConfig.location.locality}, PK&quot;</span>,
+                {'\n  '}
+                <span className={k}>openToWork</span>: <span className="text-accent">true</span>,
+                {'\n'}
+                {'};'}
+            </pre>
+        </div>
+    );
+}
+
+// Photo card that tilts toward the cursor; the code card sits on a higher 3D layer so it moves with depth.
 function PortraitCard() {
     const reduceMotion = useReducedMotion();
     const x = useMotionValue(0);
@@ -47,32 +76,21 @@ function PortraitCard() {
                 style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
                 className="relative"
             >
-                <div className="border-line relative aspect-[4/5] overflow-hidden rounded-[28px] border">
+                <div className="border-line relative aspect-[4/5] overflow-hidden rounded-2xl border">
                     <Image
                         src={portrait}
                         alt={`${siteConfig.name}, ${siteConfig.role}`}
                         placeholder="blur"
                         priority
-                        sizes="(min-width: 1024px) 420px, 90vw"
+                        sizes="(min-width: 1024px) 440px, 80vw"
                         className="size-full object-cover"
                     />
                 </div>
                 <div
-                    style={{ transform: 'translateZ(60px)' }}
-                    className="bg-panel/90 border-line absolute -bottom-5 -left-4 rounded-2xl border px-4 py-3 shadow-xl backdrop-blur"
+                    style={{ transform: 'translateZ(70px)' }}
+                    className="absolute -bottom-20 -left-4 sm:-bottom-10 sm:-left-16"
                 >
-                    <p className="text-muted font-mono text-[11px] leading-4">
-                        currently at
-                    </p>
-                    <p className="text-sm leading-5 font-medium">
-                        {siteConfig.company.name}
-                    </p>
-                </div>
-                <div
-                    style={{ transform: 'translateZ(40px)' }}
-                    className="bg-fg text-bg absolute top-4 right-4 rounded-full px-3 py-1.5 font-mono text-[11px]"
-                >
-                    {siteConfig.location.locality}, PK
+                    <CodeCard />
                 </div>
             </motion.div>
         </div>
@@ -83,64 +101,91 @@ const Header = () => {
     return (
         <header
             id="top"
-            className="flex min-h-svh items-center pt-28 pb-20"
+            className="relative isolate flex min-h-svh items-center overflow-hidden px-6 pt-28 pb-24 sm:px-10 lg:px-16"
         >
-            <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1fr_400px] lg:gap-20">
+            <div
+                aria-hidden
+                className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_75%)]"
+            />
+
+            <div className="grid w-full items-center gap-28 sm:gap-20 lg:grid-cols-[1fr_minmax(340px,440px)] lg:gap-16">
                 <div>
                     <motion.p
                         {...fadeUp(0.1)}
-                        className="text-muted font-mono text-xs sm:text-sm"
+                        className="text-muted flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm"
                     >
-                        {siteConfig.role}
+                        <span>{'// full stack software engineer'}</span>
+                        <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                            <span className="size-1.5 rounded-full bg-current" />
+                            open to work
+                        </span>
                     </motion.p>
 
                     <motion.h1
                         {...fadeUp(0.2)}
-                        className="font-heading mt-4 text-5xl leading-[1.02] font-semibold tracking-tight sm:text-7xl"
+                        className="font-heading mt-5 text-[clamp(3rem,9vw,8.5rem)] leading-[0.95] font-bold tracking-tight"
                     >
                         Abdulahad
                         <br />
-                        Hussain<span className="text-accent">.</span>
+                        Hussain
+                        <span
+                            aria-hidden
+                            className="bg-accent ml-2 inline-block h-[0.75em] w-[0.38em] align-baseline motion-safe:animate-blink"
+                        />
                     </motion.h1>
 
                     <motion.p
                         {...fadeUp(0.3)}
-                        className="text-muted mt-6 max-w-lg text-lg leading-relaxed"
+                        className="text-muted mt-7 max-w-xl text-lg leading-relaxed"
                     >
-                        I build web apps end to end, from the interface people
-                        click on to the APIs and databases behind it. Mostly
-                        React, Next.js, Vue and Node.js.
+                        I design and build web apps end to end: the interface
+                        people use, the APIs behind it, and the infrastructure
+                        that keeps it fast.
+                    </motion.p>
+
+                    <motion.p
+                        {...fadeUp(0.35)}
+                        className="mt-5 flex flex-wrap gap-2 font-mono text-xs"
+                    >
+                        {stack.map((tech) => (
+                            <span
+                                key={tech}
+                                className="border-line text-muted rounded-md border px-2 py-1"
+                            >
+                                {tech}
+                            </span>
+                        ))}
                     </motion.p>
 
                     <motion.div
-                        {...fadeUp(0.4)}
+                        {...fadeUp(0.45)}
                         className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4"
                     >
                         <a
                             href="#contact"
-                            className="bg-fg text-bg rounded-full px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85"
+                            className="bg-accent text-on-accent rounded-md px-6 py-3 font-mono text-sm font-medium transition-opacity hover:opacity-85"
                         >
-                            Get in touch
+                            ./contact-me
                         </a>
                         <a
                             href="/Abdulahad-Hussain-Resume.pdf"
                             download
-                            className="decoration-line hover:decoration-fg text-sm font-medium underline underline-offset-4 transition-colors"
+                            className="hover:text-accent font-mono text-sm transition-colors"
                         >
-                            Download resume
+                            resume.pdf ↓
                         </a>
                     </motion.div>
 
                     <motion.dl
-                        {...fadeUp(0.5)}
-                        className="border-line mt-14 grid max-w-xl grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4"
+                        {...fadeUp(0.55)}
+                        className="border-line mt-14 grid max-w-2xl grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4"
                     >
                         {professionalStats.map((stat) => (
-                            <div key={stat.label} className="flex flex-col-reverse">
-                                <dt className="text-muted text-xs leading-5">
+                            <div key={stat.label} className="flex flex-col-reverse justify-end">
+                                <dt className="text-muted font-mono text-[11px] leading-4">
                                     {stat.label}
                                 </dt>
-                                <dd className="font-heading text-2xl font-semibold">
+                                <dd className="font-heading text-3xl font-semibold">
                                     {stat.value}
                                 </dd>
                             </div>
@@ -152,7 +197,7 @@ const Header = () => {
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="mx-auto w-full max-w-[280px] sm:max-w-[340px] max-lg:order-first lg:max-w-none"
+                    className="mx-auto w-full max-w-[300px] sm:max-w-[360px] max-lg:order-first lg:max-w-none"
                 >
                     <PortraitCard />
                 </motion.div>

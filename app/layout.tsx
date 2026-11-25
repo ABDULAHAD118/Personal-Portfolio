@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono, Sora } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'react-hot-toast';
@@ -12,7 +12,7 @@ import SmoothScroll from './components/providers/SmoothScroll';
 // Runs before paint: dark by default, light only if the visitor chose it (read by app/lib/use-theme.ts).
 const themeScript = `try{document.documentElement.classList.toggle('dark',localStorage.getItem('theme')!=='light')}catch(e){}`;
 
-const sora = Sora({ subsets: ['latin'], variable: '--font-sora' });
+const grotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-grotesk' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrains = JetBrains_Mono({
     subsets: ['latin'],
@@ -109,7 +109,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`dark ${sora.variable} ${inter.variable} ${jetbrains.variable}`}
+            className={`dark ${grotesk.variable} ${inter.variable} ${jetbrains.variable}`}
             suppressHydrationWarning
         >
             <head>
@@ -137,7 +137,7 @@ export default function RootLayout({
                         },
                         success: {
                             iconTheme: {
-                                primary: '#7c3aed',
+                                primary: '#ff8a3d',
                                 secondary: '#fff',
                             },
                         },

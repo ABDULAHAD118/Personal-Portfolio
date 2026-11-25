@@ -4,7 +4,7 @@ import { siteConfig } from '@/app/lib/site-config';
 const Footer = () => {
     return (
         <footer className="border-line mt-24 border-t">
-            <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-col gap-10 px-6 py-14 sm:px-10 lg:px-16 md:flex-row md:items-end md:justify-between">
                 <div>
                     <p className="text-accent font-mono text-xs">
                         {'// got an idea?'}
@@ -31,7 +31,7 @@ const Footer = () => {
                     ))}
                 </ul>
             </div>
-            <div className="border-line text-muted mx-auto flex max-w-6xl items-center justify-between border-t px-6 py-6 font-mono text-xs">
+            <div className="border-line text-muted flex items-center justify-between border-t px-6 py-6 sm:px-10 lg:px-16 font-mono text-xs">
                 <p>
                     © {new Date().getFullYear()} {siteConfig.name}
                 </p>

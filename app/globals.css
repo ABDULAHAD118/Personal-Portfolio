@@ -1,22 +1,32 @@
 @import "tailwindcss";
 
+/* Light: warm paper + ink. Dark (default): warm terminal black + amber. */
 @theme {
-  --color-bg: #f7f7fb;
-  --color-panel: #ffffff;
-  --color-fg: #0a0a0f;
-  --color-muted: #5b5d6b;
-  --color-line: rgb(10 10 15 / 0.1);
-  --color-accent: #7c3aed;
-  --color-glow: #0891b2;
+  --color-bg: #f3efe7;
+  --color-panel: #fbf9f4;
+  --color-fg: #1b1915;
+  --color-muted: #6b655b;
+  --color-line: rgb(27 25 21 / 0.1);
+  --color-accent: #c2410c;
+  --color-on-accent: #ffffff;
+  --color-code-key: #1d4ed8;
+  --color-code-string: #15803d;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-heading: var(--font-sora), var(--font-inter), sans-serif;
+  --font-heading: var(--font-grotesk), var(--font-inter), sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 
+  --animate-blink: blink 1.1s steps(1) infinite;
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
   /* Legacy tokens still used by sections not yet redesigned. */
-  --color-lightHover: #ede9fe;
-  --color-darkHover: #1c1d27;
-  --color-darkTheme: #0a0a0f;
+  --color-lightHover: #ede6da;
+  --color-darkHover: #1f1c18;
+  --color-darkTheme: #0e0d0b;
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
   --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
@@ -25,13 +35,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
-  --color-bg: #0a0a0f;
-  --color-panel: #12131a;
-  --color-fg: #f4f4f8;
-  --color-muted: #9a9cad;
-  --color-line: rgb(255 255 255 / 0.08);
-  --color-accent: #8b5cf6;
-  --color-glow: #22d3ee;
+  --color-bg: #0e0d0b;
+  --color-panel: #171512;
+  --color-fg: #ede8de;
+  --color-muted: #9c958a;
+  --color-line: rgb(237 232 222 / 0.09);
+  --color-accent: #ff8a3d;
+  --color-on-accent: #1a0f05;
+  --color-code-key: #8ab4f8;
+  --color-code-string: #a5d6a7;
   color-scheme: dark;
 }
 
@@ -42,11 +54,19 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 @layer utilities {
   .grid-cols-auto {
     grid-template-columns: var(--grid-cols-auto);
+  }
+
+  /* Blueprint-style grid used behind sections. */
+  .bg-grid {
+    background-image:
+      linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 }

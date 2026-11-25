@@ -27,11 +27,11 @@ const Navbar = () => {
             <motion.header
                 animate={{ y: hidden ? '-110%' : '0%' }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="fixed inset-x-0 top-0 z-50 px-4 pt-4"
+                className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-12"
             >
                 <nav
                     aria-label="Primary navigation"
-                    className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-4 py-2.5 transition-colors duration-300 sm:px-6 ${
+                    className={`flex items-center justify-between rounded-xl border px-3 py-2.5 transition-colors duration-300 sm:px-4 ${
                         scrolled
                             ? 'border-line bg-panel/70 backdrop-blur-xl'
                             : 'border-transparent'
@@ -75,9 +75,9 @@ const Navbar = () => {
                         </button>
                         <a
                             href="#contact"
-                            className="bg-fg text-bg hidden rounded-full px-4 py-1.5 text-sm font-medium transition-opacity hover:opacity-85 sm:block"
+                            className="bg-accent text-on-accent hidden rounded-md px-4 py-1.5 font-mono text-xs font-medium transition-opacity hover:opacity-85 sm:block"
                         >
-                            Hire me
+                            hire-me
                         </a>
                         <button
                             type="button"
