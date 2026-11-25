@@ -75,7 +75,7 @@ const Navbar = () => {
                         </button>
                         <a
                             href="#contact"
-                            className="bg-accent hidden rounded-full px-4 py-1.5 text-sm font-medium text-white shadow-[0_0_24px_-6px_var(--color-accent)] transition-transform hover:-translate-y-0.5 sm:block"
+                            className="bg-fg text-bg hidden rounded-full px-4 py-1.5 text-sm font-medium transition-opacity hover:opacity-85 sm:block"
                         >
                             Hire me
                         </a>

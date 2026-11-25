@@ -1,150 +1,161 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { motion, useInView, useReducedMotion } from 'motion/react';
+import Image from 'next/image';
+import {
+    motion,
+    useMotionValue,
+    useReducedMotion,
+    useSpring,
+    useTransform,
+} from 'motion/react';
+import portrait from '@/assets/portrait.jpg';
 import { professionalStats } from '@/assets/assets';
-import { heroStack } from '@/app/lib/content';
-
-// three.js is heavy and browser-only: load it after the page, never on the server.
-const HeroScene = dynamic(() => import('../three/HeroScene'), { ssr: false });
+import { siteConfig } from '@/app/lib/site-config';
 
 const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 24 },
+    initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-function TypedWord({ words }: { words: string[] }) {
+// Photo card that tilts toward the cursor; the badge sits on a higher 3D layer so it moves with depth.
+function PortraitCard() {
     const reduceMotion = useReducedMotion();
-    const [index, setIndex] = useState(0);
-    const [length, setLength] = useState(0);
-    const [deleting, setDeleting] = useState(false);
-    const word = words[index];
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const spring = { stiffness: 150, damping: 18 };
+    const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), spring);
+    const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), spring);
 
-    useEffect(() => {
-        if (reduceMotion) return;
-        const done = !deleting && length === word.length;
-        const empty = deleting && length === 0;
-        const timer = setTimeout(
-            () => {
-                if (done) setDeleting(true);
-                else if (empty) {
-                    setDeleting(false);
-                    setIndex((i) => (i + 1) % words.length);
-                } else setLength((l) => l + (deleting ? -1 : 1));
-            },
-            done ? 1600 : deleting ? 40 : 90,
-        );
-        return () => clearTimeout(timer);
-    }, [length, deleting, word, words.length, reduceMotion]);
+    const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
+        if (reduceMotion || e.pointerType !== 'mouse') return;
+        const r = e.currentTarget.getBoundingClientRect();
+        x.set((e.clientX - r.left) / r.width - 0.5);
+        y.set((e.clientY - r.top) / r.height - 0.5);
+    };
+    const reset = () => {
+        x.set(0);
+        y.set(0);
+    };
 
     return (
-        <span className="text-glow">
-            {reduceMotion ? words[0] : word.slice(0, length)}
-            <span className="bg-accent ml-0.5 inline-block h-[1.1em] w-[2px] animate-pulse align-middle" />
-        </span>
+        <div
+            onPointerMove={onMove}
+            onPointerLeave={reset}
+            className="[perspective:1200px]"
+        >
+            <motion.div
+                style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+                className="relative"
+            >
+                <div className="border-line relative aspect-[4/5] overflow-hidden rounded-[28px] border">
+                    <Image
+                        src={portrait}
+                        alt={`${siteConfig.name}, ${siteConfig.role}`}
+                        placeholder="blur"
+                        priority
+                        sizes="(min-width: 1024px) 420px, 90vw"
+                        className="size-full object-cover"
+                    />
+                </div>
+                <div
+                    style={{ transform: 'translateZ(60px)' }}
+                    className="bg-panel/90 border-line absolute -bottom-5 -left-4 rounded-2xl border px-4 py-3 shadow-xl backdrop-blur"
+                >
+                    <p className="text-muted font-mono text-[11px] leading-4">
+                        currently at
+                    </p>
+                    <p className="text-sm leading-5 font-medium">
+                        {siteConfig.company.name}
+                    </p>
+                </div>
+                <div
+                    style={{ transform: 'translateZ(40px)' }}
+                    className="bg-fg text-bg absolute top-4 right-4 rounded-full px-3 py-1.5 font-mono text-[11px]"
+                >
+                    {siteConfig.location.locality}, PK
+                </div>
+            </motion.div>
+        </div>
     );
 }
 
 const Header = () => {
-    const reduceMotion = useReducedMotion();
-    const sceneRef = useRef<HTMLDivElement>(null);
-    const sceneVisible = useInView(sceneRef);
-
     return (
         <header
             id="top"
-            className="relative isolate flex min-h-svh items-center overflow-hidden pt-28 pb-16"
+            className="flex min-h-svh items-center pt-28 pb-20"
         >
-            {/* Glow behind the scene: also the fallback when 3D is off or still loading. */}
-            <div
-                aria-hidden
-                className="from-accent/40 via-glow/10 absolute top-1/2 right-[-10%] -z-10 size-[min(90vw,720px)] -translate-y-1/2 rounded-full bg-radial to-transparent to-70% blur-2xl"
-            />
-            <div
-                ref={sceneRef}
-                aria-hidden
-                className="absolute inset-0 -z-10 opacity-40 md:left-[45%] md:opacity-100"
-            >
-                {!reduceMotion && <HeroScene active={sceneVisible} />}
-            </div>
-
-            <div className="mx-auto w-full max-w-6xl px-6">
-                <div className="max-w-2xl">
+            <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1fr_400px] lg:gap-20">
+                <div>
                     <motion.p
                         {...fadeUp(0.1)}
-                        className="text-muted flex items-center gap-2 font-mono text-xs sm:text-sm"
+                        className="text-muted font-mono text-xs sm:text-sm"
                     >
-                        <span className="relative flex size-2">
-                            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
-                        </span>
-                        Available for work · Lahore, PK
+                        {siteConfig.role}
                     </motion.p>
 
                     <motion.h1
                         {...fadeUp(0.2)}
-                        className="font-heading mt-6 text-5xl leading-[1.05] font-semibold tracking-tight sm:text-7xl lg:text-8xl"
+                        className="font-heading mt-4 text-5xl leading-[1.02] font-semibold tracking-tight sm:text-7xl"
                     >
                         Abdulahad
                         <br />
-                        <span className="from-accent to-glow bg-gradient-to-r bg-clip-text text-transparent">
-                            Hussain.
-                        </span>
+                        Hussain<span className="text-accent">.</span>
                     </motion.h1>
 
                     <motion.p
-                        {...fadeUp(0.35)}
-                        className="mt-6 font-mono text-sm sm:text-lg"
+                        {...fadeUp(0.3)}
+                        className="text-muted mt-6 max-w-lg text-lg leading-relaxed"
                     >
-                        <span className="text-accent">{'>'}</span> Full Stack
-                        Engineer building with <TypedWord words={heroStack} />
-                    </motion.p>
-
-                    <motion.p
-                        {...fadeUp(0.45)}
-                        className="text-muted mt-5 max-w-xl text-base sm:text-lg"
-                    >
-                        I build scalable, high-performance web applications, from
-                        clean interfaces to the APIs and cloud backends behind
-                        them.
+                        I build web apps end to end, from the interface people
+                        click on to the APIs and databases behind it. Mostly
+                        React, Next.js, Vue and Node.js.
                     </motion.p>
 
                     <motion.div
-                        {...fadeUp(0.55)}
-                        className="mt-9 flex flex-wrap gap-3"
+                        {...fadeUp(0.4)}
+                        className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4"
                     >
                         <a
                             href="#contact"
-                            className="bg-accent rounded-full px-7 py-3 text-sm font-medium text-white shadow-[0_0_32px_-6px_var(--color-accent)] transition-transform hover:-translate-y-0.5"
+                            className="bg-fg text-bg rounded-full px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85"
                         >
-                            Let&apos;s work together →
+                            Get in touch
                         </a>
                         <a
                             href="/Abdulahad-Hussain-Resume.pdf"
                             download
-                            className="border-line hover:border-accent bg-panel/40 rounded-full border px-7 py-3 text-sm font-medium backdrop-blur transition-colors"
+                            className="decoration-line hover:decoration-fg text-sm font-medium underline underline-offset-4 transition-colors"
                         >
-                            Download resume ↓
+                            Download resume
                         </a>
                     </motion.div>
+
+                    <motion.dl
+                        {...fadeUp(0.5)}
+                        className="border-line mt-14 grid max-w-xl grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4"
+                    >
+                        {professionalStats.map((stat) => (
+                            <div key={stat.label} className="flex flex-col-reverse">
+                                <dt className="text-muted text-xs leading-5">
+                                    {stat.label}
+                                </dt>
+                                <dd className="font-heading text-2xl font-semibold">
+                                    {stat.value}
+                                </dd>
+                            </div>
+                        ))}
+                    </motion.dl>
                 </div>
 
-                <motion.dl
-                    {...fadeUp(0.7)}
-                    className="border-line mt-16 grid max-w-3xl grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4"
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="mx-auto w-full max-w-[280px] sm:max-w-[340px] max-lg:order-first lg:max-w-none"
                 >
-                    {professionalStats.map((stat) => (
-                        <div key={stat.label} className="flex flex-col-reverse">
-                            <dt className="text-muted text-xs leading-5">
-                                {stat.label}
-                            </dt>
-                            <dd className="font-heading text-3xl font-semibold">
-                                {stat.value}
-                            </dd>
-                        </div>
-                    ))}
-                </motion.dl>
+                    <PortraitCard />
+                </motion.div>
             </div>
         </header>
     );
