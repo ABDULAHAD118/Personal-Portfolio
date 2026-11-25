@@ -31,12 +31,12 @@ export default function Home() {
             <Navbar />
             <main>
                 <Header />
-                <About isDarkMode={isDarkMode} />
+                <About />
+                <Work />
                 <Tools />
                 <Education />
                 <Experience />
                 <Services />
-                <Work isDarkMode={isDarkMode} />
                 <Certificates />
                 <Contact />
             </main>

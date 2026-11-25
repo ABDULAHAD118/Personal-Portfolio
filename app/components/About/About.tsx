@@ -1,120 +1,72 @@
-import {
-    assets,
-    infoList,
-} from '@/assets/assets';
-import Image from 'next/image';
-import React from 'react';
+'use client';
 import { motion } from 'motion/react';
+import { infoList } from '@/assets/assets';
+import SectionHeading from '../ui/SectionHeading';
 
-const About = ({ isDarkMode }: { isDarkMode: boolean }) => {
+const reveal = (delay: number) => ({
+    initial: { opacity: 0, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-60px' },
+    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
+
+const About = () => {
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{
-                duration: 1,
-            }}
-            className="w-full scroll-mt-20 px-[12%] py-10"
+        <section
             id="about"
+            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
         >
-            <motion.p
-                initial={{ y: -20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.3,
-                }}
-                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
-            >
-                Introduction
-            </motion.p>
-            <motion.h2
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.5,
-                }}
-                className="font-Ovo text-center text-5xl font-bold"
-            >
-                About me
-            </motion.h2>
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                    duration: 0.8,
-                }}
-                className="my-14 flex w-full flex-col items-center gap-16 lg:flex-row"
-            >
-                <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{
-                        duration: 0.6,
-                    }}
-                    className="w-64 max-w-none rounded-3xl sm:w-80"
-                >
-                    <Image
-                        src={assets.user_image}
-                        alt="Abdulahad Hussain - Full Stack Software Engineer"
-                        className="w-full rounded-3xl"
-                    />
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{
-                        duration: 0.6,
-                        delay: 0.8,
-                    }}
-                    className="flex-1"
-                >
-                    <p className="font-Ovo mb-10 max-w-2xl text-gray-700 dark:text-white/80">
-                        I am a full-stack software engineer based in Lahore,
-                        Pakistan, with hands-on experience across frontend,
-                        backend, databases, and deployment workflows. I build
-                        responsive interfaces, RESTful APIs, authentication
-                        systems, and production-ready applications with a focus
-                        on performance and scalability. My professional work
-                        includes 15+ REST APIs, a 30% improvement in API
-                        performance, and deployment workflows that reduced
-                        delivery time by 40%.
-                    </p>
-                    <motion.ul
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{
-                            duration: 0.8,
-                            delay: 1,
-                        }}
-                        className="grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-3"
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+                <SectionHeading
+                    index="01"
+                    label="about"
+                    title={
+                        <>
+                            I like owning
+                            <br />
+                            the <span className="text-accent">whole stack</span>.
+                        </>
+                    }
+                />
+
+                <div>
+                    <motion.p
+                        {...reveal(0.1)}
+                        className="text-lg leading-relaxed sm:text-xl"
                     >
-                        {infoList.map(
-                            ({ icon, iconDark, title, description }, index) => (
-                                <motion.li
-                                    whileHover={{ scale: 1.05 }}
-                                    key={index}
-                                    className="hover:bg-lightHover dark:hover:bg-darkHover/50 cursor-pointer rounded-xl border-[0.5px] border-gray-400 p-6 duration-500 hover:-translate-y-1 hover:shadow-black dark:border-white dark:hover:shadow-white"
-                                >
-                                    <Image
-                                        src={isDarkMode ? iconDark : icon}
-                                        alt={`${title} icon`}
-                                        className="mt-3 w-7"
-                                    />
-                                    <h3 className="my-4 font-semibold text-gray-700 dark:text-white">
-                                        {title}
-                                    </h3>
-                                    <p className="text-sm text-gray-600 dark:text-white/80">
-                                        {description}
-                                    </p>
-                                </motion.li>
-                            )
-                        )}
-                    </motion.ul>
-                </motion.div>
-            </motion.div>
-        </motion.div>
+                        I&apos;m a full stack software engineer based in Lahore,
+                        Pakistan, working across frontend, backend, databases and
+                        deployment.
+                    </motion.p>
+                    <motion.p
+                        {...reveal(0.2)}
+                        className="text-muted mt-5 leading-relaxed"
+                    >
+                        I build responsive interfaces, RESTful APIs,
+                        authentication systems and production-ready applications
+                        with a focus on performance and scalability. At work
+                        that has meant 15+ REST APIs, a 30% improvement in API
+                        performance, and deployment workflows that cut delivery
+                        time by 40%.
+                    </motion.p>
+
+                    <dl className="border-line mt-12 border-t font-mono text-sm">
+                        {infoList.map((item, i) => (
+                            <motion.div
+                                key={item.title}
+                                {...reveal(0.25 + i * 0.08)}
+                                className="border-line grid gap-1 border-b py-4 sm:grid-cols-[140px_1fr] sm:gap-6"
+                            >
+                                <dt className="text-accent">
+                                    {item.title.toLowerCase()}
+                                </dt>
+                                <dd className="text-muted">{item.description}</dd>
+                            </motion.div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+        </section>
     );
 };
 

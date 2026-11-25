@@ -1,119 +1,138 @@
-import { assets, workData } from '@/assets/assets';
+'use client';
+import { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'motion/react';
+import {
+    motion,
+    useReducedMotion,
+    useScroll,
+    useTransform,
+    type MotionValue,
+} from 'motion/react';
+import { workData } from '@/assets/assets';
+import { socials } from '@/app/lib/content';
+import SectionHeading from '../ui/SectionHeading';
 
-const Work = ({ isDarkMode }: { isDarkMode: boolean }) => {
+type Project = (typeof workData)[number];
+
+function ProjectCard({
+    project,
+    index,
+    total,
+    progress,
+}: {
+    project: Project;
+    index: number;
+    total: number;
+    progress: MotionValue<number>;
+}) {
+    const reduceMotion = useReducedMotion();
+    // Cards further back in the stack shrink a little as the next ones slide over them.
+    const scale = useTransform(
+        progress,
+        [index / total, 1],
+        [1, 1 - (total - 1 - index) * 0.04],
+    );
+    const number = String(index + 1).padStart(2, '0');
+
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{
-                duration: 1,
-            }}
-            className="w-full scroll-mt-20 px-[12%] py-10"
-            id="work"
+        <div
+            className="sticky pb-10"
+            style={{ top: `calc(6rem + ${index * 1.5}rem)` }}
         >
-            <motion.p
-                initial={{ y: -20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.3,
-                }}
-                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
+            <motion.article
+                style={{ scale: reduceMotion ? 1 : scale }}
+                className="bg-panel border-line origin-top overflow-hidden rounded-2xl border shadow-[0_-20px_60px_-30px_rgb(0_0_0/0.5)]"
             >
-                My Portfolio
-            </motion.p>
-            <motion.h2
-                initial={{ y: -20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.5,
-                }}
-                className="font-Ovo text-center text-5xl font-bold"
-            >
-                My Latest Work
-            </motion.h2>
-            <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.7,
-                }}
-                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center text-gray-700 dark:text-white/80"
-            >
-                Welcome to my web development portfolio! Explore a collection of
-                projects showcasing my expertise in full stack development.
-            </motion.p>
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                    duration: 0.6,
-                    delay: 0.9,
-                }}
-                className="grid-cols-auto my-10 grid gap-5 dark:text-black"
-            >
-                {workData.map((project, index) => (
-                    <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        className="group relative aspect-square cursor-pointer rounded-lg bg-cover bg-center bg-no-repeat"
-                        key={index}
-                        style={{ backgroundImage: `url(${project.bgImage})` }}
+                <div className="border-line text-muted flex items-center justify-between border-b px-5 py-3 font-mono text-xs">
+                    <span>
+                        <span className="text-accent">{number}</span> /{' '}
+                        {String(total).padStart(2, '0')}
+                    </span>
+                    <span>{project.description}</span>
+                </div>
+
+                <div className="grid gap-6 p-5 sm:p-8 md:grid-cols-[1fr_1.4fr] md:items-center md:gap-10">
+                    <div>
+                        <h3 className="font-heading text-3xl font-bold tracking-tight sm:text-5xl">
+                            {project.title}
+                        </h3>
+                        <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="hover:text-accent mt-6 inline-flex items-center gap-2 font-mono text-sm transition-colors"
+                        >
+                            visit project ↗
+                        </a>
+                    </div>
+
+                    <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Open ${project.title}`}
+                        className="border-line group block aspect-[16/10] overflow-hidden rounded-xl border"
                     >
-                        <div className="absolute bottom-5 left-1/2 flex w-10/12 -translate-x-1/2 items-center justify-between rounded-md bg-white px-5 py-3 duration-500 group-hover:bottom-7">
-                            <div>
-                                <h3 className="font-semibold text-lg text-gray-900">
-                                    {project.title}
-                                </h3>
-                                <p className="text-sm text-gray-700">
-                                    {project.description}
-                                </p>
-                            </div>
-                            <a
-                                href={project.url}
-                                target="_blank"
-                                rel="noreferrer"
-                                aria-label={`View ${project.title} project`}
-                                className="flex aspect-square w-9 items-center justify-center rounded-full border border-black shadow-[2px_2px_0_#000] transition group-hover:bg-lime-300"
-                            >
-                                <Image
-                                    src={assets.send_icon}
-                                    alt={`View ${project.title}`}
-                                    className="w-5"
-                                />
-                            </a>
-                        </div>
-                    </motion.div>
-                ))}
-            </motion.div>
-            <motion.a
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 1.1,
-                }}
-                href="https://github.com/ABDULAHAD118"
-                target="_blank"
-                rel="me noreferrer"
-                className="hover:bg-lightHover dark:hover:bg-darkHover mx-auto my-20 flex w-max items-center justify-center gap-2 rounded-full border-[0.5px] border-gray-700 px-10 py-3 text-gray-700 duration-500 dark:border-white dark:text-white"
-            >
-                Visit Other Projects{' '}
-                <Image
-                    src={
-                        isDarkMode
-                            ? assets.right_arrow_bold_dark
-                            : assets.right_arrow_bold
+                        <Image
+                            src={project.bgImage}
+                            alt={`${project.title} screenshot`}
+                            width={1200}
+                            height={750}
+                            sizes="(min-width: 768px) 55vw, 90vw"
+                            className="size-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                        />
+                    </a>
+                </div>
+            </motion.article>
+        </div>
+    );
+}
+
+const Work = () => {
+    const stackRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: stackRef,
+        offset: ['start start', 'end end'],
+    });
+    const github = socials.find((s) => s.label === 'GitHub')!;
+
+    return (
+        <section
+            id="work"
+            className="border-line scroll-mt-20 border-t px-6 py-24 sm:px-10 sm:py-32 lg:px-16"
+        >
+            <div className="flex flex-wrap items-end justify-between gap-6">
+                <SectionHeading
+                    index="02"
+                    label="work"
+                    title={
+                        <>
+                            Things I&apos;ve <span className="text-accent">shipped</span>.
+                        </>
                     }
-                    alt="Arrow right icon"
-                    className="w-4"
                 />
-            </motion.a>
-        </motion.div>
+                <a
+                    href={github.href}
+                    target="_blank"
+                    rel="me noreferrer"
+                    className="text-muted hover:text-fg font-mono text-sm transition-colors"
+                >
+                    more on github ↗
+                </a>
+            </div>
+
+            <div ref={stackRef} className="mt-16">
+                {workData.map((project, i) => (
+                    <ProjectCard
+                        key={project.title}
+                        project={project}
+                        index={i}
+                        total={workData.length}
+                        progress={scrollYProgress}
+                    />
+                ))}
+            </div>
+        </section>
     );
 };
 
