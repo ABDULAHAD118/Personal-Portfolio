@@ -34,7 +34,7 @@ const Footer = () => {
                     ))}
                 </ul>
             </div>
-            <div className="border-line text-muted flex items-center justify-between border-t px-6 py-6 sm:px-10 lg:px-16 font-mono text-xs">
+            <div className="border-line text-muted flex items-center justify-between border-t px-6 pt-6 pb-20 font-mono text-xs sm:pr-28 sm:pb-6 sm:pl-10 lg:pl-16">
                 <p>
                     © {new Date().getFullYear()} {siteConfig.name}
                 </p>

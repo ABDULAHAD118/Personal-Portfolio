@@ -1,6 +1,5 @@
 'use client';
 import { useEffect } from 'react';
-import { useTheme } from './lib/use-theme';
 import About from './components/About/About';
 import Tools from './components/Tools/Tools';
 import Contact from './components/Contact/Contact';
@@ -14,7 +13,6 @@ import Work from './components/Work/Work';
 import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Home() {
-    const { isDarkMode } = useTheme();
 
     useEffect(() => {
         if (!window.location.hash) {
@@ -39,7 +37,7 @@ export default function Home() {
                 <Contact />
             </main>
             <Footer />
-            <Chatbot isDarkMode={isDarkMode} />
+            <Chatbot />
         </>
     );
 }
