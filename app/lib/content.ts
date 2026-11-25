@@ -94,6 +94,12 @@ export const stackIcons: Record<string, TechIconSource> = {
     Keras: si.siKeras,
     LangChain: si.siLangchain,
     Selenium: si.siSelenium,
+    PM2: si.siPm2,
+    "Let's Encrypt": si.siLetsencrypt,
+    'Google Gemini': si.siGooglegemini,
+    'Chart.js': si.siChartdotjs,
+    Lighthouse: si.siLighthouse,
+    Sentry: si.siSentry,
 };
 
 // How a typical engagement runs; shown on the services pages.

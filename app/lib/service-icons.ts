@@ -1,4 +1,22 @@
-import { Layers, Monitor, Server, Smartphone } from 'lucide-react';
+import {
+    Bot,
+    Gauge,
+    LayoutDashboard,
+    Layers,
+    Monitor,
+    Server,
+    Smartphone,
+    Workflow,
+} from 'lucide-react';
 
 // Same order as serviceData.
-export const serviceIcons = [Layers, Monitor, Server, Smartphone];
+export const serviceIcons = [
+    Layers,
+    Monitor,
+    Server,
+    Smartphone,
+    Workflow,
+    Bot,
+    LayoutDashboard,
+    Gauge,
+];

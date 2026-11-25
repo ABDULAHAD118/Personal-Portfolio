@@ -735,6 +735,94 @@ export const serviceData = [
         stack: ['React Native', 'Expo', 'Flutter', 'Firebase', 'TypeScript'],
         projects: ['cliqbot', 'weather-app'],
     },
+    {
+        icon: assets.ui_icon,
+        slug: 'devops',
+        title: 'DevOps & Deployment',
+        description:
+            'CI/CD pipelines, Linux servers, Docker, Nginx and SSL, so every push reaches production safely.',
+        intro: 'I set up the servers and pipelines that take code from a git push to a live, secure site, and keep it running.',
+        deliverables: [
+            'CI/CD pipelines with GitHub Actions',
+            'Ubuntu server setup on DigitalOcean or a VPS',
+            'Nginx reverse proxy, domains and SSL',
+            'Docker and PM2 process management',
+            'Zero-downtime deploys and rollbacks',
+        ],
+        stack: [
+            'GitHub Actions',
+            'Docker',
+            'Nginx',
+            'Ubuntu',
+            'DigitalOcean',
+            'PM2',
+            "Let's Encrypt",
+            'Cloudflare',
+        ],
+        projects: ['ola-lssu', 'opal-sip', 'cliqbot', 'bitlogicx-website'],
+    },
+    {
+        icon: assets.ui_icon,
+        slug: 'ai-integration',
+        title: 'AI Integration',
+        description:
+            'Chatbots, image models and speech-to-text added to your product with LLM APIs and LangChain.',
+        intro: 'I add AI features that solve a real problem in your product, from a chatbot that knows your content to image and voice models.',
+        deliverables: [
+            'LLM chatbots trained on your own content',
+            'LangChain and LangGraph agent workflows',
+            'Image classification models with TensorFlow',
+            'Speech-to-text and text-to-speech',
+            'Streaming responses over WebSockets',
+        ],
+        stack: [
+            'Google Gemini',
+            'LangChain',
+            'TensorFlow',
+            'Keras',
+            'FastAPI',
+            'Python',
+        ],
+        projects: [],
+    },
+    {
+        icon: assets.web_icon,
+        slug: 'dashboards',
+        title: 'Dashboards & Admin Panels',
+        description:
+            'Admin panels and dashboards with roles, charts, tables and reports to run the business behind an app.',
+        intro: 'The internal tools that run your product: managing users and content, tracking numbers and handling day-to-day operations.',
+        deliverables: [
+            'Role-based admin panels',
+            'Charts, KPIs and reports',
+            'Data tables with search, filters and export',
+            'Content and user management',
+            'Notifications and activity logs',
+        ],
+        stack: ['Vue', 'Nuxt', 'React', 'Chart.js', 'Tailwind CSS', 'AdonisJS'],
+        projects: ['cliqbot', 'opal-sip', 'wealthsync'],
+    },
+    {
+        icon: assets.web_icon,
+        slug: 'maintenance',
+        title: 'Performance & Maintenance',
+        description:
+            'Speed audits, Core Web Vitals, bug fixes, upgrades and ongoing support for live apps.',
+        intro: 'I keep existing apps fast, secure and up to date, so the product keeps working after launch.',
+        deliverables: [
+            'Performance audits and Core Web Vitals fixes',
+            'API and database query optimisation',
+            'Bug fixing and dependency upgrades',
+            'Error monitoring and uptime checks',
+            'Monthly support and small features',
+        ],
+        stack: ['Lighthouse', 'Sentry', 'Redis', 'Cloudflare', 'Node.js'],
+        projects: [
+            'ola-lssu',
+            'information-commission-gambia',
+            'bitlogicx-website',
+        ],
+    },
 ];
 
 export const infoList = [
