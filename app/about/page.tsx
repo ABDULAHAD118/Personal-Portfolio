@@ -42,6 +42,7 @@ export default function AboutPage() {
                         alt="Portrait of Abdulahad Hussain"
                         sizes="(min-width: 1024px) 400px, 90vw"
                         placeholder="blur"
+                        quality={90}
                         className="aspect-[4/5] w-full object-cover"
                         priority
                     />

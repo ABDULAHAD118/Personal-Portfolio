@@ -1,5 +1,10 @@
 import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+    images: {
+        // 90 is used for the portrait, where compression softness shows on faces.
+        qualities: [75, 90],
+    },
+};
 
 export default nextConfig;

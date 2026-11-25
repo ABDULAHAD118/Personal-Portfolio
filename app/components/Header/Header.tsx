@@ -82,6 +82,7 @@ function PortraitCard() {
                         src={portrait}
                         alt={`${siteConfig.name}, ${siteConfig.role}`}
                         placeholder="blur"
+                        quality={90}
                         priority
                         sizes="(min-width: 1024px) 440px, 80vw"
                         className="size-full object-cover"
