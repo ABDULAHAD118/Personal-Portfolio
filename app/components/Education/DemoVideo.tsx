@@ -89,9 +89,9 @@ export default function DemoVideo({
                 </button>
             )}
 
-            {/* Control bar: stays visible while paused, fades in on hover or focus while playing */}
+            {/* Control bar: seek bar on its own row, buttons below. Stays visible while paused, fades in on hover or focus while playing */}
             <div
-                className={`absolute inset-x-4 bottom-4 flex items-center gap-2 rounded-xl bg-black/70 px-2.5 py-2 text-white backdrop-blur-md transition-opacity duration-300 ${
+                className={`absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-x-1 gap-y-1.5 rounded-xl bg-black/70 px-2 pt-3 pb-1.5 text-white backdrop-blur-md transition-opacity duration-300 ${
                     playing
                         ? 'opacity-0 group-hover:opacity-100 focus-within:opacity-100'
                         : 'opacity-100'
@@ -126,9 +126,9 @@ export default function DemoVideo({
                             '--fill': `${duration ? (time / duration) * 100 : 0}%`,
                         } as React.CSSProperties
                     }
-                    className="h-1 min-w-0 flex-1 cursor-pointer appearance-none rounded-full bg-[linear-gradient(to_right,var(--color-accent)_var(--fill),rgb(255_255_255/0.25)_var(--fill))] [&::-moz-range-thumb]:size-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:size-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
+                    className="order-first mx-1 h-1 basis-full cursor-pointer appearance-none rounded-full bg-[linear-gradient(to_right,var(--color-accent)_var(--fill),rgb(255_255_255/0.25)_var(--fill))] [&::-moz-range-thumb]:size-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:size-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
                 />
-                <span className="shrink-0 font-mono text-[0.6875rem] tabular-nums">
+                <span className="mr-auto shrink-0 pl-1 font-mono text-[0.6875rem] tabular-nums">
                     {clock(time)}
                     {duration > 0 && ` / ${clock(duration)}`}
                 </span>
