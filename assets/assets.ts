@@ -461,6 +461,10 @@ export const educationData = {
             'Real-time market prices',
             'Weather-based crop suitability analysis',
         ],
+        demo: {
+            video: '/education/zabaan-e-kissan-demo.mp4',
+            poster: '/education/zabaan-e-kissan-demo.jpg',
+        },
         overview: [
             'Many farmers in Pakistan cannot easily read English apps or reach an agriculture expert in time. Zabaan-e-Kissan ("the farmer\'s language") puts that help on a phone: a farmer photographs a sick leaf, speaks a question in Urdu, or checks today\'s mandi rate, and gets an answer in their own language.',
             'The system has three parts: a React Native mobile app for farmers, a FastAPI backend that runs the AI models and data services, and a Next.js website for the project and app downloads. I worked across all three, from training the disease model to deploying the API.',

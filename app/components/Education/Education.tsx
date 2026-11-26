@@ -13,6 +13,7 @@ import {
     MapPin,
     MessagesSquare,
     Mic,
+    Play,
     ScanLine,
     Sprout,
     Store,
@@ -112,6 +113,18 @@ export default function Education({ page = false }: { page?: boolean }) {
                         <p className="text-muted mt-2 leading-relaxed">
                             {edu.project.summary}
                         </p>
+                        {!page && (
+                            <Link
+                                href="/education#demo"
+                                className="hover:text-accent mt-4 inline-flex items-center gap-2 font-mono text-xs transition-colors"
+                            >
+                                <Play
+                                    className="text-accent size-3.5"
+                                    aria-hidden
+                                />
+                                watch the app demo
+                            </Link>
+                        )}
                         <ul className="mt-5 grid gap-2 text-sm sm:grid-cols-2">
                             {edu.project.highlights.map((h) => (
                                 <li key={h} className="flex gap-3">
@@ -151,15 +164,39 @@ function ProjectDetails() {
     const p = edu.project;
     return (
         <div className="mt-10 grid gap-16">
-            <section>
-                <h2 className="text-muted font-mono text-sm">
-                    <span className="text-accent">01</span> / overview
-                </h2>
-                <div className="mt-6 max-w-3xl space-y-5 text-lg leading-relaxed">
-                    {p.overview.map((t) => (
-                        <p key={t}>{t}</p>
-                    ))}
+            <section className="grid items-start gap-10 md:grid-cols-[1fr_auto] lg:gap-16">
+                <div>
+                    <h2 className="text-muted font-mono text-sm">
+                        <span className="text-accent">01</span> / overview
+                    </h2>
+                    <div className="mt-6 max-w-3xl space-y-5 text-lg leading-relaxed">
+                        {p.overview.map((t) => (
+                            <p key={t}>{t}</p>
+                        ))}
+                    </div>
                 </div>
+                <figure
+                    id="demo"
+                    className="mx-auto w-full max-w-[17rem] scroll-mt-28"
+                >
+                    {/* Phone-shaped frame around the portrait screen recording */}
+                    <div className="border-line bg-panel rounded-[2.25rem] border p-2 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.6)]">
+                        <video
+                            src={p.demo.video}
+                            poster={p.demo.poster}
+                            controls
+                            playsInline
+                            preload="none"
+                            className="aspect-[9/16] w-full rounded-[1.75rem] bg-black object-cover"
+                        >
+                            Your browser can&apos;t play this video.
+                        </video>
+                    </div>
+                    <figcaption className="text-muted mt-3 flex items-center justify-center gap-2 font-mono text-xs">
+                        <Play className="text-accent size-3.5" aria-hidden />
+                        app demo · 4:29
+                    </figcaption>
+                </figure>
             </section>
 
             <section>
