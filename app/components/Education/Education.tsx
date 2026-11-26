@@ -23,6 +23,7 @@ import { siGithub } from 'simple-icons';
 import TechIcon from '../ui/TechIcon';
 import StackTags from '../ui/StackTags';
 import DemoVideo from './DemoVideo';
+import AppScreens from './AppScreens';
 import { educationData as edu } from '@/assets/assets';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -61,7 +62,7 @@ export default function Education({ page = false }: { page?: boolean }) {
                     </div>
                 )}
 
-                <div className="grid gap-6">
+                <div className="grid min-w-0 gap-6">
                     <motion.article
                         {...slideIn('right')}
                         className="bg-panel border-line rounded-2xl border p-6 sm:p-8"
@@ -164,7 +165,7 @@ const featureIcons = [
 function ProjectDetails() {
     const p = edu.project;
     return (
-        <div className="mt-10 grid gap-16">
+        <div className="mt-10 grid min-w-0 gap-16">
             <section className="grid items-start gap-10 md:grid-cols-[1fr_auto] lg:gap-16">
                 <div>
                     <h2 className="text-muted font-mono text-sm">
@@ -188,9 +189,22 @@ function ProjectDetails() {
                 </figure>
             </section>
 
+            <section className="min-w-0">
+                <h2 className="text-muted font-mono text-sm">
+                    <span className="text-accent">02</span> / screens
+                </h2>
+                <p className="text-muted mt-3 max-w-2xl">
+                    The same app in English and Urdu. Switch the language to
+                    compare.
+                </p>
+                <div className="mt-6">
+                    <AppScreens />
+                </div>
+            </section>
+
             <section>
                 <h2 className="text-muted font-mono text-sm">
-                    <span className="text-accent">02</span> / how it fits
+                    <span className="text-accent">03</span> / how it fits
                     together
                 </h2>
                 <ol className="mt-6 grid gap-4 md:grid-cols-3">
@@ -231,7 +245,7 @@ function ProjectDetails() {
 
             <section>
                 <h2 className="text-muted font-mono text-sm">
-                    <span className="text-accent">03</span> / features
+                    <span className="text-accent">04</span> / features
                 </h2>
                 <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                     {p.features.map((f, i) => {
@@ -260,7 +274,7 @@ function ProjectDetails() {
 
             <section>
                 <h2 className="text-muted font-mono text-sm">
-                    <span className="text-accent">04</span> / stack
+                    <span className="text-accent">05</span> / stack
                 </h2>
                 <StackTags stack={p.stack} className="mt-6" />
             </section>
