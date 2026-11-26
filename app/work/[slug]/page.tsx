@@ -8,6 +8,8 @@ import PageHeader from '../../components/ui/PageHeader';
 import ProjectCover from '../../components/ui/ProjectCover';
 import StackTags from '../../components/ui/StackTags';
 import TechIcon from '../../components/ui/TechIcon';
+import DemoVideo from '../../components/Education/DemoVideo';
+import AppScreens from '../../components/Education/AppScreens';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -175,6 +177,43 @@ export default async function ProjectPage({ params }: Props) {
                     </dl>
                 </aside>
             </div>
+
+            {project.demo && (
+                <section className="grid gap-14 px-6 pb-20 sm:px-10 sm:pb-28 lg:px-16">
+                    <div className="grid items-center gap-10 md:grid-cols-[17rem_1fr] lg:gap-16">
+                        <figure className="mx-auto w-full max-w-[17rem]">
+                            <DemoVideo
+                                src={project.demo.video}
+                                poster={project.demo.poster}
+                            />
+                        </figure>
+                        <div>
+                            <h2 className="text-muted font-mono text-sm">
+                                <span className="text-accent">
+                                    {project.responsibilities ? '04' : '03'}
+                                </span>{' '}
+                                / app demo
+                            </h2>
+                            <p className="mt-6 max-w-xl text-lg leading-relaxed sm:text-xl">
+                                A walkthrough of the app on a real phone:
+                                scanning a leaf, reading the diagnosis, asking
+                                the chatbot and checking market prices.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="min-w-0">
+                        <h2 className="text-muted font-mono text-sm">
+                            <span className="text-accent">
+                                {project.responsibilities ? '05' : '04'}
+                            </span>{' '}
+                            / screens
+                        </h2>
+                        <div className="mt-6">
+                            <AppScreens />
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <nav
                 aria-label="More projects"
