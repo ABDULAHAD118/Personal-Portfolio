@@ -51,7 +51,7 @@ export default function DemoVideo({
                 onEnded={() => setPlaying(false)}
                 onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
                 onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
-                className="aspect-[9/16] w-full cursor-pointer rounded-[1.75rem] bg-black object-cover group-[:fullscreen]:h-full group-[:fullscreen]:rounded-none group-[:fullscreen]:object-contain"
+                className="aspect-[9/20] w-full cursor-pointer rounded-[1.75rem] bg-black object-cover group-[:fullscreen]:h-full group-[:fullscreen]:rounded-none group-[:fullscreen]:object-contain"
             >
                 Your browser can&apos;t play this video.
             </video>
