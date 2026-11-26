@@ -120,6 +120,52 @@ export type Project = {
 
 export const workData: Project[] = [
     {
+        slug: 'zabaan-e-kissan',
+        featured: true,
+        title: 'Zabaan-e-Kissan',
+        type: 'AI Mobile App',
+        kind: 'personal',
+        summary:
+            'A bilingual Urdu and English farming app that detects crop diseases from a photo, answers questions by voice and shows live market prices.',
+        overview: [
+            'Zabaan-e-Kissan ("the farmer\'s language") is my final year project. Many farmers in Pakistan cannot easily read English apps or reach an agriculture expert in time, so the app puts that help on their phone in their own language.',
+            'It has three parts: a React Native app for farmers, a FastAPI backend that runs the AI models, chatbot, speech-to-text and price data, and a Next.js website where farmers download the Android app. The backend deploys to DigitalOcean through GitHub Actions.',
+        ],
+        features: [
+            'Crop disease detection from a leaf photo, using a Keras model trained on 17 classes across wheat, rice, corn, potato and sugarcane',
+            'Diagnosis report with confidence, severity, treatment and prevention tips',
+            'Urdu and English AI chat built with LangGraph and LangChain, streamed over WebSockets',
+            'Voice questions transcribed with Whisper, and answers read aloud',
+            'Live crop prices scraped daily with Selenium, with city filters, comparison and price trends',
+            'Field analysis from GPS location and weather data to suggest suitable crops',
+            'Offline scan history in SQLite, full Urdu and English UI, light and dark themes',
+        ],
+        stack: [
+            'React Native',
+            'Expo',
+            'TypeScript',
+            'FastAPI',
+            'Python',
+            'TensorFlow',
+            'Keras',
+            'LangChain',
+            'MongoDB',
+            'Selenium',
+            'Next.js',
+            'GitHub Actions',
+            'DigitalOcean',
+        ],
+        role: 'Final year project: mobile app, AI models, backend API and deployment',
+        responsibilities: [
+            'Trained the crop disease image model and served it from the FastAPI backend',
+            'Built the React Native app with Expo Router, i18next translations and SQLite history',
+            'Built the streaming chatbot, Whisper speech-to-text and the Selenium price scraper',
+            'Set up CI/CD with GitHub Actions to a DigitalOcean droplet',
+        ],
+        bgImage: '/work-zabaan-e-kissan.jpg',
+        repo: 'https://github.com/ABDULAHAD118/Zabaan-E-Kissan-App',
+    },
+    {
         slug: 'bite-savor',
         title: 'Bite Savor',
         type: 'Full Stack Project',
@@ -737,7 +783,7 @@ export const serviceData = [
             'Store-ready builds with Expo',
         ],
         stack: ['React Native', 'Expo', 'Flutter', 'Firebase', 'TypeScript'],
-        projects: ['cliqbot', 'weather-app'],
+        projects: ['zabaan-e-kissan', 'cliqbot', 'weather-app'],
     },
     {
         icon: assets.ui_icon,
@@ -787,7 +833,7 @@ export const serviceData = [
             'FastAPI',
             'Python',
         ],
-        projects: [],
+        projects: ['zabaan-e-kissan'],
     },
     {
         icon: assets.web_icon,
