@@ -22,6 +22,7 @@ import {
 import { siGithub } from 'simple-icons';
 import TechIcon from '../ui/TechIcon';
 import StackTags from '../ui/StackTags';
+import DemoVideo from './DemoVideo';
 import { educationData as edu } from '@/assets/assets';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -179,22 +180,10 @@ function ProjectDetails() {
                     id="demo"
                     className="mx-auto w-full max-w-[17rem] scroll-mt-28"
                 >
-                    {/* Phone-shaped frame around the portrait screen recording */}
-                    <div className="border-line bg-panel rounded-[2.25rem] border p-2 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.6)]">
-                        <video
-                            src={p.demo.video}
-                            poster={p.demo.poster}
-                            controls
-                            playsInline
-                            preload="none"
-                            className="aspect-[9/16] w-full rounded-[1.75rem] bg-black object-cover"
-                        >
-                            Your browser can&apos;t play this video.
-                        </video>
-                    </div>
+                    <DemoVideo src={p.demo.video} poster={p.demo.poster} />
                     <figcaption className="text-muted mt-3 flex items-center justify-center gap-2 font-mono text-xs">
                         <Play className="text-accent size-3.5" aria-hidden />
-                        app demo · 4:29
+                        app demo · 4:28
                     </figcaption>
                 </figure>
             </section>
