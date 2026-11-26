@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { slideIn } from '@/app/lib/motion';
 import {
+    ArrowRight,
     ArrowUpRight,
     ChartLine,
     ClipboardList,
@@ -114,9 +115,10 @@ export default function Education({ page = false }: { page?: boolean }) {
                         <ul className="mt-5 grid gap-2 text-sm sm:grid-cols-2">
                             {edu.project.highlights.map((h) => (
                                 <li key={h} className="flex gap-3">
-                                    <span className="text-accent font-mono">
-                                        →
-                                    </span>
+                                    <ArrowRight
+                                        className="text-accent mt-[0.4em] size-4 shrink-0"
+                                        aria-hidden
+                                    />
                                     {h}
                                 </li>
                             ))}

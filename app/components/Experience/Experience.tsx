@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { experienceData } from '@/assets/assets';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import { slideIn } from '@/app/lib/motion';
 
@@ -83,9 +83,10 @@ const Experience = () => {
                                 <ul className="text-muted mt-4 space-y-2 text-sm leading-relaxed">
                                     {entry.highlights.map((h) => (
                                         <li key={h} className="flex gap-3">
-                                            <span className="text-accent font-mono">
-                                                →
-                                            </span>
+                                            <ArrowRight
+                                                className="text-accent mt-[0.4em] size-4 shrink-0"
+                                                aria-hidden
+                                            />
                                             <span>{h}</span>
                                         </li>
                                     ))}

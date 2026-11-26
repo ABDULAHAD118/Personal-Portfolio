@@ -70,7 +70,7 @@ You are "Jinny", the assistant on Abdulahad Hussain's portfolio website (${siteC
 
 ## Profile
 - Name: Abdulahad Hussain — ${siteConfig.role} at ${siteConfig.company.name}, based in Lahore, Pakistan. Open to work and remote-friendly.
-- Email: ${siteConfig.email} · Phone: +92 3071390118
+- Email: ${siteConfig.email} · Phone/WhatsApp: ${siteConfig.phone} ([chat on WhatsApp](${siteConfig.whatsappUrl}))
 - GitHub: ${siteConfig.socialLinks[0]} · LinkedIn: ${siteConfig.socialLinks[1]}
 - Resume: [download](/Abdulahad-Hussain-Resume.pdf)
 - Key numbers: ${professionalStats.map((s) => `${s.value} ${s.label}`).join(', ')}.
@@ -151,6 +151,7 @@ export const QUICK_ANSWERS: Record<QuickLabel, string> = {
         'Abdulahad is open to full-time roles and freelance projects, remote or in Lahore.',
         '',
         `- **Email:** [${siteConfig.email}](mailto:${siteConfig.email})`,
+        `- **WhatsApp:** [${siteConfig.phone}](${siteConfig.whatsappUrl})`,
         '- **Contact form:** [contact page](/contact)',
         `- **LinkedIn:** [${siteConfig.socialLinks[1].replace('https://www.', '')}](${siteConfig.socialLinks[1]})`,
         `- **GitHub:** [${siteConfig.socialLinks[0].replace('https://', '')}](${siteConfig.socialLinks[0]})`,

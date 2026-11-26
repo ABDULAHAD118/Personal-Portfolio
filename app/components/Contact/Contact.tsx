@@ -1,4 +1,5 @@
 'use client';
+import { siWhatsapp } from 'simple-icons';
 import { FormEvent, useState } from 'react';
 import { motion } from 'motion/react';
 import toast from 'react-hot-toast';
@@ -106,6 +107,20 @@ const Contact = ({ page = false }: { page?: boolean }) => {
                                     aria-hidden
                                 />
                                 {siteConfig.email}
+                            </a>
+                        </li>
+                        <li className="border-line border-b py-4">
+                            <a
+                                href={siteConfig.whatsappUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hover:text-accent flex items-center gap-3 transition-colors"
+                            >
+                                <TechIcon
+                                    icon={siWhatsapp}
+                                    className="text-accent size-4 shrink-0"
+                                />
+                                {siteConfig.phone} · whatsapp
                             </a>
                         </li>
                         <li className="border-line text-muted flex items-center gap-3 border-b py-4">

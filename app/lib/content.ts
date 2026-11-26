@@ -67,6 +67,11 @@ export const socials = [
         href: 'https://www.instagram.com/abdulahadhussain8/',
         icon: si.siInstagram,
     },
+    {
+        label: 'WhatsApp',
+        href: 'https://wa.me/923071390118',
+        icon: si.siWhatsapp,
+    },
 ];
 
 // Icon lookup for the stack tags on detail pages; names without an icon render as plain text.

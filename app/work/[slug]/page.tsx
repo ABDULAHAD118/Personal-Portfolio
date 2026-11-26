@@ -135,7 +135,8 @@ export default async function ProjectPage({ params }: Props) {
                     {project.responsibilities && (
                         <>
                             <h2 className="text-muted mt-16 font-mono text-sm">
-                                <span className="text-accent">03</span> / my role
+                                <span className="text-accent">03</span> / my
+                                role
                             </h2>
                             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                                 {project.responsibilities.map((r) => (
@@ -143,7 +144,10 @@ export default async function ProjectPage({ params }: Props) {
                                         key={r}
                                         className="bg-panel border-line flex gap-3 rounded-xl border p-4 text-sm leading-relaxed"
                                     >
-                                        <span className="text-accent font-mono">→</span>
+                                        <ArrowRight
+                                            className="text-accent mt-[0.4em] size-4 shrink-0"
+                                            aria-hidden
+                                        />
                                         {r}
                                     </li>
                                 ))}

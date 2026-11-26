@@ -329,7 +329,9 @@ function TitlePage() {
                 <span>
                     {certs.length} entries · {Math.min(...years)} to {Math.max(...years)}
                 </span>
-                <span className="text-accent">turn the page →</span>
+                <span className="text-accent flex items-center gap-1.5">
+                    turn the page <ArrowRight className="size-3.5" aria-hidden />
+                </span>
             </div>
         </div>
     );
