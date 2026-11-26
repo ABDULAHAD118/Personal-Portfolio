@@ -162,7 +162,7 @@ export const workData: Project[] = [
             'Built the streaming chatbot, Whisper speech-to-text and the Selenium price scraper',
             'Set up CI/CD with GitHub Actions to a DigitalOcean droplet',
         ],
-        bgImage: '/work-zabaan-e-kissan.jpg',
+        bgImage: '/work-zabaan-e-kissan-banner.jpg',
         repo: 'https://github.com/ABDULAHAD118/Zabaan-E-Kissan-App',
     },
     {
