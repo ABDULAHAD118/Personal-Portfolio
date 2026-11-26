@@ -1,6 +1,15 @@
 'use client';
-import { useRef, useState } from 'react';
-import { Maximize, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import {
+    Maximize,
+    Minimize,
+    Pause,
+    Play,
+    Volume2,
+    VolumeX,
+} from 'lucide-react';
+
+const SPEEDS = [1, 1.5, 2];
 
 const clock = (s: number) =>
     `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
@@ -19,6 +28,16 @@ export default function DemoVideo({
     const [muted, setMuted] = useState(false);
     const [time, setTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [full, setFull] = useState(false);
+    const [speed, setSpeed] = useState(1);
+
+    // Also catches Esc, so the icon stays in sync however full screen ends.
+    useEffect(() => {
+        const sync = () =>
+            setFull(document.fullscreenElement === frame.current);
+        document.addEventListener('fullscreenchange', sync);
+        return () => document.removeEventListener('fullscreenchange', sync);
+    }, []);
 
     const toggle = () => {
         const v = video.current;
@@ -29,8 +48,10 @@ export default function DemoVideo({
     const fullscreen = () => {
         const v = video.current as
             (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
+        if (document.fullscreenElement) document.exitFullscreen();
         // iOS Safari only allows fullscreen on the video element itself.
-        if (frame.current?.requestFullscreen) frame.current.requestFullscreen();
+        else if (frame.current?.requestFullscreen)
+            frame.current.requestFullscreen();
         else v?.webkitEnterFullscreen?.();
     };
 
@@ -114,6 +135,19 @@ export default function DemoVideo({
                 <button
                     type="button"
                     onClick={() => {
+                        const next =
+                            SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length];
+                        if (video.current) video.current.playbackRate = next;
+                        setSpeed(next);
+                    }}
+                    aria-label={`Playback speed ${speed}x`}
+                    className="h-7 shrink-0 cursor-pointer rounded-md px-1.5 font-mono text-[0.6875rem] tabular-nums hover:bg-white/15"
+                >
+                    {speed}x
+                </button>
+                <button
+                    type="button"
+                    onClick={() => {
                         if (!video.current) return;
                         video.current.muted = !muted;
                         setMuted(!muted);
@@ -130,10 +164,14 @@ export default function DemoVideo({
                 <button
                     type="button"
                     onClick={fullscreen}
-                    aria-label="Full screen"
+                    aria-label={full ? 'Exit full screen' : 'Full screen'}
                     className="grid size-7 shrink-0 cursor-pointer place-items-center rounded-md hover:bg-white/15"
                 >
-                    <Maximize className="size-4" aria-hidden />
+                    {full ? (
+                        <Minimize className="size-4" aria-hidden />
+                    ) : (
+                        <Maximize className="size-4" aria-hidden />
+                    )}
                 </button>
             </div>
         </div>
