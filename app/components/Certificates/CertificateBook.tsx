@@ -28,7 +28,12 @@ const subscribe = (cb: () => void) => {
 const useTwoPages = () =>
     useSyncExternalStore(subscribe, () => window.matchMedia(mdQuery).matches, () => true);
 
-type Flip = { to: number; dir: 1 | -1 };
+// One page per flip; `fast` when more turns are queued behind it, so a quick scroll catches up.
+type Flip = { to: number; dir: 1 | -1; fast: boolean };
+const stepTo = (from: number, target: number): Flip => {
+    const dir = target > from ? 1 : -1;
+    return { to: from + dir, dir, fast: Math.abs(target - from) > 1 };
+};
 
 export default function CertificateBook() {
     const twoPages = useTwoPages();
@@ -46,7 +51,7 @@ export default function CertificateBook() {
     const turn = (to: number) => {
         if (flip || to === spread || to < 0 || to > LAST) return;
         if (reduceMotion) setSpread(to);
-        else setFlip({ to, dir: to > spread ? 1 : -1 });
+        else setFlip(stepTo(spread, to));
     };
     useMotionValueEvent(scrollYProgress, 'change', (p) => {
         target.current = Math.round(p * LAST);
@@ -67,7 +72,7 @@ export default function CertificateBook() {
         setSpread(flip.to);
         // If you kept scrolling during the turn, carry on to where the scroll now points.
         const t = target.current;
-        setFlip(t === flip.to ? null : { to: t, dir: t > flip.to ? 1 : -1 });
+        setFlip(t === flip.to ? null : stepTo(flip.to, t));
     };
 
     // What sits underneath the turning leaf.
@@ -122,6 +127,7 @@ export default function CertificateBook() {
                                         <Leaf
                                             key={`${spread}-${flip.to}`}
                                             dir={flip.dir}
+                                            fast={flip.fast}
                                             half
                                             front={flip.dir === 1 ? right(spread) : left(spread)}
                                             back={flip.dir === 1 ? left(flip.to) : right(flip.to)}
@@ -143,6 +149,7 @@ export default function CertificateBook() {
                                         <Leaf
                                             key={`${spread}-${flip.to}`}
                                             dir={flip.dir}
+                                            fast={flip.fast}
                                             front={single(flip.dir === 1 ? spread : flip.to)}
                                             onDone={finish}
                                         />
@@ -260,12 +267,14 @@ function PaperShade({ side }: { side: 'left' | 'right' | 'single' }) {
 
 function Leaf({
     dir,
+    fast,
     half,
     front,
     back,
     onDone,
 }: {
     dir: 1 | -1;
+    fast: boolean;
     half?: boolean;
     front: React.ReactNode;
     back?: React.ReactNode;
@@ -285,7 +294,7 @@ function Leaf({
         <motion.div
             initial={{ rotateY: from }}
             animate={{ rotateY: to }}
-            transition={{ duration: 0.85, ease: [0.45, 0.05, 0.25, 1] }}
+            transition={{ duration: fast ? 0.35 : 0.85, ease: [0.45, 0.05, 0.25, 1] }}
             onAnimationComplete={onDone}
             style={{ transformOrigin: origin, transformStyle: 'preserve-3d' }}
             className={`absolute inset-y-0 z-10 ${position}`}
