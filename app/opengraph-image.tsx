@@ -8,11 +8,11 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 // Same palette as the site's dark theme.
-const bg = '#0e0d0b';
-const panel = '#171512';
-const fg = '#ede8de';
-const muted = '#9c958a';
-const accent = '#ff8a3d';
+const bg = '#0b1324';
+const panel = '#111b31';
+const fg = '#e6ebf5';
+const muted = '#8d9ab3';
+const accent = '#ff7a6b';
 const line = 'rgba(237, 232, 222, 0.09)';
 
 export default function OpenGraphImage() {

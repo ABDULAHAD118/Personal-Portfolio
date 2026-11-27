@@ -84,9 +84,8 @@ export default async function ProjectPage({ params }: Props) {
                                       description: project.summary,
                                       thumbnailUrl: `${siteConfig.url}${project.demo.poster}`,
                                       contentUrl: `${siteConfig.url}${project.demo.video}`,
-                                      embedUrl: url,
-                                      uploadDate: '2026-11-26',
-                                      duration: 'PT4M28S',
+                                      uploadDate: project.demo.uploadDate,
+                                      duration: `PT${project.demo.durationSec}S`,
                                       author: personRef,
                                   },
                               ]

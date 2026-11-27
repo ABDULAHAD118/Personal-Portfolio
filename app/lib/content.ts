@@ -1,5 +1,6 @@
 import * as si from 'simple-icons';
 import { assets } from '@/assets/assets';
+import { siteConfig } from '@/app/lib/site-config';
 import {
     linkedinIcon,
     type TechIconSource,
@@ -69,8 +70,18 @@ export const socials = [
     },
     {
         label: 'WhatsApp',
-        href: 'https://wa.me/923071390118',
+        href: siteConfig.whatsappUrl,
         icon: si.siWhatsapp,
+    },
+    {
+        label: 'Fiverr',
+        href: 'https://www.fiverr.com/users/abdulahad118/portfolio',
+        icon: si.siFiverr,
+    },
+    {
+        label: 'Upwork',
+        href: 'https://www.upwork.com/freelancers/~0130abc9fd05a32991',
+        icon: si.siUpwork,
     },
 ];
 

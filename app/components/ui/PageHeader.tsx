@@ -16,7 +16,7 @@ export default function PageHeader({
         <header className="relative isolate overflow-hidden px-6 pt-36 pb-16 sm:px-10 sm:pt-44 sm:pb-20 lg:px-16">
             <div
                 aria-hidden
-                className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_30%_0%,black,transparent_70%)]"
+                className="bg-hex absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_30%_0%,black,transparent_70%)]"
             />
             <nav
                 aria-label="Breadcrumb"

@@ -116,7 +116,12 @@ export type Project = {
     repo?: string;
     bgImage?: string;
     // App recording plus the English/Urdu screenshots, shown on the project page.
-    demo?: { video: string; poster: string };
+    demo?: {
+        video: string;
+        poster: string;
+        durationSec: number;
+        uploadDate: string;
+    };
     featured?: boolean;
 };
 
@@ -124,6 +129,8 @@ export type Project = {
 const fypDemo = {
     video: '/education/zabaan-e-kissan-demo.mp4',
     poster: '/education/zabaan-e-kissan-demo.jpg',
+    durationSec: 268,
+    uploadDate: '2026-11-26T10:45:00+05:00',
 };
 
 export const workData: Project[] = [
