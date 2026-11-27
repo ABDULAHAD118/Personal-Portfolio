@@ -16,7 +16,7 @@ const SOCIALS = {
 };
 
 const SITE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.abdulahadhussain.tech';
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://abdulahadhussain.tech';
 
 const BORDER = 'border-collapse:collapse;';
 const FONT = "font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;";

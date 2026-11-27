@@ -5,7 +5,7 @@ export const siteConfig = {
     alternateName: ['Abdul Ahad Hussain', 'Abdulahad'],
     title: 'Abdulahad Hussain | Full Stack Developer in Lahore, Pakistan',
     role: 'Full Stack Software Engineer',
-    url: 'https://www.abdulahadhussain.tech',
+    url: 'https://abdulahadhussain.tech',
     siteName: 'Abdulahad Hussain',
     description:
         'Abdulahad Hussain is a full stack developer in Lahore, Pakistan building web apps, SaaS platforms, mobile apps and AI features with Next.js, React, Node.js and TypeScript.',
@@ -15,8 +15,8 @@ export const siteConfig = {
     emailUrl: 'mailto:abdulahadhussain60@gmail.com',
     phone: '+92 307 1390118',
     whatsappUrl: 'https://wa.me/923071390118',
-    profileImage: 'https://www.abdulahadhussain.tech/abdulahad-hussain.png',
-    ogImage: 'https://www.abdulahadhussain.tech/opengraph-image',
+    profileImage: 'https://abdulahadhussain.tech/abdulahad-hussain.png',
+    ogImage: 'https://abdulahadhussain.tech/opengraph-image',
     location: {
         locality: 'Lahore',
         region: 'Punjab',
