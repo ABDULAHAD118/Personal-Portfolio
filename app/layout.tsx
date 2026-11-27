@@ -62,8 +62,8 @@ export const metadata: Metadata = {
             },
             {
                 url: '/abdulahad-hussain.png',
-                width: 800,
-                height: 800,
+                width: 675,
+                height: 900,
                 alt: `${siteConfig.name} Profile Photo`,
                 type: 'image/png',
             },
