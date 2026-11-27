@@ -59,7 +59,7 @@ export const socials = [
     },
     {
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/abdulahad018/',
+        href: 'https://www.linkedin.com/in/abdulahad118/',
         icon: linkedinIcon,
     },
     {

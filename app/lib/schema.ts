@@ -114,7 +114,7 @@ export function generateStructuredData() {
                 name: siteConfig.name,
                 alternateName: [
                     `${siteConfig.name} Portfolio`,
-                    'abdulahadhussain.tech',
+                    siteConfig.domain,
                 ],
                 description: siteConfig.description,
                 publisher: personRef,

@@ -40,6 +40,34 @@ export default async function ServiceDetailPage({ params }: Props) {
     const projects = workData.filter((p) => service.projects.includes(p.slug));
 
     const url = `${siteConfig.url}/services/${service.slug}`;
+    const name = service.title.toLowerCase();
+    // Built from the page's own data so answers never drift; also feeds AI search and FAQPage schema.
+    const faqs = [
+        {
+            q: `What does your ${name} service include?`,
+            a: `${service.description} You get: ${service.deliverables.join(', ').toLowerCase()}.`,
+        },
+        {
+            q: `Which technologies do you use for ${name}?`,
+            a: `I mainly work with ${service.stack.join(', ')}, picked to fit the project rather than by habit.`,
+        },
+        ...(projects.length
+            ? [
+                  {
+                      q: `Have you built ${name} projects before?`,
+                      a: `Yes. Related work includes ${projects.map((p) => `${p.title} (${p.type})`).join(', ')}.`,
+                  },
+              ]
+            : []),
+        {
+            q: 'Do you work with clients outside Pakistan?',
+            a: `Yes. I'm based in ${siteConfig.location.locality}, ${siteConfig.location.countryName} and work remotely with clients worldwide, with weekly demos on a live preview.`,
+        },
+        {
+            q: 'How do I start a project with you?',
+            a: `Send a short brief through the contact page, email ${siteConfig.email} or WhatsApp ${siteConfig.phone}. We start with a call, then a written scope and estimate.`,
+        },
+    ];
 
     return (
         <main>
@@ -74,6 +102,18 @@ export default async function ServiceDetailPage({ params }: Props) {
                                     })
                                 ),
                             },
+                        },
+                        {
+                            '@type': 'FAQPage',
+                            '@id': `${url}#faq`,
+                            mainEntity: faqs.map((f) => ({
+                                '@type': 'Question',
+                                name: f.q,
+                                acceptedAnswer: {
+                                    '@type': 'Answer',
+                                    text: f.a,
+                                },
+                            })),
                         },
                         breadcrumbs([
                             { name: 'Services', path: '/services' },
@@ -140,6 +180,27 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="border-line border-t">
                 <ProcessSection />
             </div>
+
+            <section className="border-line border-t px-6 py-20 sm:px-10 sm:py-24 lg:px-16">
+                <h2 className="text-muted font-mono text-sm">
+                    <span className="text-accent">?</span> / common questions
+                </h2>
+                <dl className="border-line mt-8 grid border-t md:grid-cols-2">
+                    {faqs.map((f) => (
+                        <div
+                            key={f.q}
+                            className="border-line border-b py-6 md:odd:border-r md:odd:pr-10 md:even:pl-10"
+                        >
+                            <dt className="font-heading text-xl font-semibold">
+                                {f.q}
+                            </dt>
+                            <dd className="text-muted mt-2 leading-relaxed">
+                                {f.a}
+                            </dd>
+                        </div>
+                    ))}
+                </dl>
+            </section>
         </main>
     );
 }

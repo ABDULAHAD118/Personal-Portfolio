@@ -113,7 +113,7 @@ export default function OpenGraphImage() {
                         marginTop: 40,
                     }}
                 >
-                    abdulahadhussain.tech · Lahore, Pakistan
+                    {siteConfig.domain} · Lahore, Pakistan
                 </div>
             </div>
 

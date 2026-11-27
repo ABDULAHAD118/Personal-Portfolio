@@ -1,3 +1,8 @@
+// Set NEXT_PUBLIC_SITE_URL in .env (and on Vercel) to change the domain everywhere.
+const url = (
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://abdulahadhussain.tech'
+).replace(/\/$/, '');
+
 export const siteConfig = {
     name: 'Abdulahad Hussain',
     givenName: 'Abdulahad',
@@ -5,7 +10,8 @@ export const siteConfig = {
     alternateName: ['Abdul Ahad Hussain', 'Abdulahad'],
     title: 'Abdulahad Hussain | Full Stack Developer in Lahore, Pakistan',
     role: 'Full Stack Software Engineer',
-    url: 'https://abdulahadhussain.tech',
+    url,
+    domain: new URL(url).host,
     siteName: 'Abdulahad Hussain',
     description:
         'Abdulahad Hussain is a full stack developer in Lahore, Pakistan building web apps, SaaS platforms, mobile apps and AI features with Next.js, React, Node.js and TypeScript.',
@@ -15,8 +21,8 @@ export const siteConfig = {
     emailUrl: 'mailto:abdulahadhussain60@gmail.com',
     phone: '+92 307 1390118',
     whatsappUrl: 'https://wa.me/923071390118',
-    profileImage: 'https://abdulahadhussain.tech/abdulahad-hussain.png',
-    ogImage: 'https://abdulahadhussain.tech/opengraph-image',
+    profileImage: `${url}/abdulahad-hussain.png`,
+    ogImage: `${url}/opengraph-image`,
     location: {
         locality: 'Lahore',
         region: 'Punjab',
@@ -33,7 +39,7 @@ export const siteConfig = {
     },
     socialLinks: [
         'https://github.com/ABDULAHAD118',
-        'https://www.linkedin.com/in/abdulahad018/',
+        'https://www.linkedin.com/in/abdulahad118/',
         'https://www.instagram.com/abdulahadhussain8/',
     ],
     knowsAbout: [
@@ -102,5 +108,17 @@ export const siteConfig = {
         'DevOps Engineer',
         'Web Application Development',
         'Zabaan-e-Kissan',
+        'Generative AI Developer',
+        'LangChain Developer',
+        'OpenAI API Integration',
+        'Google Gemini API Developer',
+        'RAG Chatbot Development',
+        'AI Agent Developer',
+        'Hire Next.js Developer',
+        'Hire React Developer',
+        'Hire Node.js Developer',
+        'Admin Dashboard Development',
+        'REST API Development',
+        'Docker CI/CD Setup',
     ],
 };
