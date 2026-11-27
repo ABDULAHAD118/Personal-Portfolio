@@ -1,29 +1,104 @@
 @import "tailwindcss";
 
-* {
-  font-family: Outfit;
-}
-
+/* Light: warm paper + ink. Dark (default): warm terminal black + amber. */
 @theme {
-  --color-lightHover: #ffeafe;
-  --color-darkHover: #2a004a;
-  --color-darkTheme: #11001f;
-  --font-Outfit: 'Outfit', sans-serif;
-  --font-ovo: 'Ovo', serif;
+  --color-bg: #f3efe7;
+  --color-panel: #fbf9f4;
+  --color-fg: #1b1915;
+  --color-muted: #6b655b;
+  --color-line: rgb(27 25 21 / 0.1);
+  --color-accent: #c2410c;
+  --color-on-accent: #ffffff;
+  --color-code-key: #1d4ed8;
+  --color-code-string: #15803d;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-grotesk), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+
+  --animate-blink: blink 1.1s steps(1) infinite;
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* Legacy tokens still used by sections not yet redesigned. */
+  --color-lightHover: #ede6da;
+  --color-darkHover: #1f1c18;
+  --color-darkTheme: #0e0d0b;
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
   --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
-
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-bg: #0e0d0b;
+  --color-panel: #171512;
+  --color-fg: #ede8de;
+  --color-muted: #9c958a;
+  --color-line: rgb(237 232 222 / 0.09);
+  --color-accent: #ff8a3d;
+  --color-on-accent: #1a0f05;
+  --color-code-key: #8ab4f8;
+  --color-code-string: #a5d6a7;
+  color-scheme: dark;
+}
+
+/* Past 1600px wide (big monitors, or zoomed out) grow every rem-based size with the screen,
+   so the page keeps the same proportions instead of spreading content to the edges. */
+@media (min-width: 1600px) {
+  html {
+    font-size: 1vw;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
 
 @layer utilities {
   .grid-cols-auto {
     grid-template-columns: var(--grid-cols-auto);
   }
 
-  .font-Ovo {
-    font-family: var(--font-ovo) !important;
+  /* Blueprint-style grid used behind sections. */
+  .bg-grid {
+    background-image:
+      linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+
+  /* Backdrop for the cut-out portrait: follows the theme, with a soft accent glow behind the head. */
+  .bg-portrait {
+    background-color: var(--color-panel);
+    background-image:
+      radial-gradient(ellipse 70% 55% at 50% 32%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
+      linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: auto, 2rem 2rem, 2rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise {
+    animation: none;
   }
 }

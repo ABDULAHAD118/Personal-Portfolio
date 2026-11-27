@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Ghost, SendHorizontal, Trash2, X } from 'lucide-react';
+import { QUICK_PROMPTS } from '@/app/lib/quick-prompts';
 
 interface Message {
     id: string;
@@ -9,13 +11,6 @@ interface Message {
     timestamp: string;
 }
 
-const QUICK_PROMPTS = [
-    { label: '💼 Experience', prompt: 'Tell me about Abdulahad’s work experience and achievements.' },
-    { label: '🚀 Projects', prompt: 'What key projects has Abdulahad built and what tech stack was used?' },
-    { label: '🛠️ Services', prompt: 'What services does Abdulahad offer to clients and teams?' },
-    { label: '🎓 Education', prompt: 'What is Abdulahad’s educational background and certifications?' },
-    { label: '📬 Contact & Hire', prompt: 'How can I get in touch with or hire Abdulahad?' },
-];
 
 let messageCounter = 0;
 const generateId = (prefix: string) => {
@@ -23,13 +18,8 @@ const generateId = (prefix: string) => {
     return `${prefix}-${messageCounter}`;
 };
 
-// Friendly Ghost Icon for Jinny 👻
-function JinnyIcon({ className = 'text-xl' }: { className?: string }) {
-    return (
-        <span className={`inline-flex items-center justify-center select-none leading-none ${className}`} aria-hidden="true">
-            👻
-        </span>
-    );
+function JinnyIcon({ className = 'size-4' }: { className?: string }) {
+    return <Ghost className={className} aria-hidden />;
 }
 
 // Inline markdown parser for bold, italics, code, links, headers, etc.
@@ -43,15 +33,17 @@ function renderInlineContent(text: string): React.ReactNode[] {
         // Links: [label](url)
         const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
         if (linkMatch) {
+            // Links to pages on this site open in place; external ones in a new tab.
+            const external = !linkMatch[2].startsWith('/');
             return (
                 <a
                     key={index}
                     href={linkMatch[2]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-purple-600 underline decoration-purple-400/50 underline-offset-2 transition-colors hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
+                    {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+                    className="text-accent font-medium underline decoration-current/40 underline-offset-2 transition-opacity hover:opacity-80"
                 >
-                    {linkMatch[1]} ↗
+                    {linkMatch[1]}
+                    {external && ' ↗'}
                 </a>
             );
         }
@@ -59,8 +51,8 @@ function renderInlineContent(text: string): React.ReactNode[] {
         // Bold: **text**
         if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
             return (
-                <strong key={index} className="font-semibold text-gray-950 dark:text-white">
-                    {part.slice(2, -2)}
+                <strong key={index} className="text-fg font-semibold">
+                    {renderInlineContent(part.slice(2, -2))}
                 </strong>
             );
         }
@@ -70,7 +62,7 @@ function renderInlineContent(text: string): React.ReactNode[] {
             return (
                 <code
                     key={index}
-                    className="rounded bg-purple-100/80 px-1.5 py-0.5 font-mono text-[11px] text-purple-800 border border-purple-200/50 dark:border-purple-800/40 dark:bg-purple-950/70 dark:text-purple-300"
+                    className="bg-panel border-line text-accent rounded border px-1.5 py-0.5 font-mono text-[0.6875rem]"
                 >
                     {part.slice(1, -1)}
                 </code>
@@ -83,7 +75,7 @@ function renderInlineContent(text: string): React.ReactNode[] {
             (part.startsWith('_') && part.endsWith('_') && part.length >= 2)
         ) {
             return (
-                <em key={index} className="italic text-gray-700 dark:text-gray-300">
+                <em key={index} className="text-muted italic">
                     {part.slice(1, -1)}
                 </em>
             );
@@ -107,8 +99,8 @@ function FormattedMarkdown({ content }: { content: string }) {
                 renderedNodes.push(
                     <ul key={`list-${renderedNodes.length}`} className="my-1.5 space-y-1 pl-1">
                         {currentList.items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[13px] leading-relaxed">
-                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-600 dark:bg-purple-400" />
+                            <li key={i} className="flex items-start gap-2 text-[0.8125rem] leading-relaxed">
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                                 <div className="flex-1">{item}</div>
                             </li>
                         ))}
@@ -118,8 +110,8 @@ function FormattedMarkdown({ content }: { content: string }) {
                 renderedNodes.push(
                     <ol key={`list-${renderedNodes.length}`} className="my-1.5 space-y-1 pl-1">
                         {currentList.items.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[13px] leading-relaxed">
-                                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-purple-100 text-[10px] font-bold text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+                            <li key={i} className="flex items-start gap-2 text-[0.8125rem] leading-relaxed">
+                                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded text-accent font-mono text-[0.6875rem]">
                                     {i + 1}
                                 </span>
                                 <div className="flex-1">{item}</div>
@@ -141,7 +133,7 @@ function FormattedMarkdown({ content }: { content: string }) {
             renderedNodes.push(
                 <hr
                     key={`hr-${lineIdx}`}
-                    className="my-2.5 border-0 border-t border-gray-200/80 dark:border-white/10"
+                    className="my-2.5 border-line border-0 border-t"
                 />
             );
             return;
@@ -163,12 +155,12 @@ function FormattedMarkdown({ content }: { content: string }) {
             renderedNodes.push(
                 <div
                     key={`head-${lineIdx}`}
-                    className={`font-semibold text-gray-950 dark:text-white ${
+                    className={`text-fg font-semibold ${
                         level === 1
                             ? 'mt-3 mb-1 text-base font-bold'
                             : level === 2
-                              ? 'mt-2.5 mb-1 text-sm font-bold text-purple-900 dark:text-purple-200'
-                              : 'mt-2 mb-0.5 text-[13px] font-semibold text-purple-900 dark:text-purple-300'
+                              ? 'mt-2.5 mb-1 text-sm font-bold'
+                              : 'mt-2 mb-0.5 text-accent text-[0.8125rem] font-semibold'
                     }`}
                 >
                     {renderInlineContent(headingText)}
@@ -202,7 +194,7 @@ function FormattedMarkdown({ content }: { content: string }) {
         // Regular paragraph line
         flushList();
         renderedNodes.push(
-            <p key={`p-${lineIdx}`} className="text-[13px] leading-relaxed text-gray-800 dark:text-gray-100">
+            <p key={`p-${lineIdx}`} className="text-[0.8125rem] leading-relaxed">
                 {renderInlineContent(trimmed)}
             </p>
         );
@@ -213,8 +205,7 @@ function FormattedMarkdown({ content }: { content: string }) {
     return <div className="space-y-1">{renderedNodes}</div>;
 }
 
-export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: boolean } = {}) {
-    void _isDarkMode;
+export default function Chatbot() {
     const [isOpen, setIsOpen] = useState(false);
     const [inputMessage, setInputMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -231,16 +222,12 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
     useEffect(() => {
-        if (isOpen) {
-            scrollToBottom();
-            inputRef.current?.focus();
-        }
-    }, [isOpen, messages]);
+        if (!isOpen) return;
+        // Follow streamed text instantly; smooth scrolling on every chunk lags behind.
+        messagesEndRef.current?.scrollIntoView({ behavior: isLoading ? 'auto' : 'smooth', block: 'end' });
+        inputRef.current?.focus();
+    }, [isOpen, messages, isLoading]);
 
     const handleOpenChat = () => {
         setIsOpen(true);
@@ -273,33 +260,33 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
         setInputMessage('');
         setIsLoading(true);
 
+        const botId = generateId('bot');
         try {
-            const apiMessages = updatedHistory.map((m) => ({
-                role: m.role,
-                text: m.text,
-            }));
-
             const res = await fetch('/api/chat', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ messages: apiMessages }),
+                headers: { 'Content-Type': 'application/json' },
+                // Give up rather than spin forever if the model provider stalls.
+                signal: AbortSignal.timeout(90_000),
+                body: JSON.stringify({
+                    messages: updatedHistory.map((m) => ({ role: m.role, text: m.text })),
+                }),
             });
+            if (!res.ok || !res.body) throw new Error(`Chat request failed (${res.status})`);
 
-            const data = await res.json();
-
-            if (data.success && data.reply) {
-                const botMsg: Message = {
-                    id: generateId('bot'),
-                    role: 'model',
-                    text: data.reply,
-                    timestamp: 'Just now',
-                };
-                setMessages((prev) => [...prev, botMsg]);
-            } else {
-                throw new Error(data.message || 'Failed to receive response');
+            // Append each streamed chunk to the reply as it arrives.
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let text = '';
+            for (let r = await reader.read(); !r.done; r = await reader.read()) {
+                text += decoder.decode(r.value, { stream: true });
+                const current = text;
+                setMessages((prev) =>
+                    prev.some((m) => m.id === botId)
+                        ? prev.map((m) => (m.id === botId ? { ...m, text: current } : m))
+                        : [...prev, { id: botId, role: 'model', text: current, timestamp: 'Just now' }]
+                );
             }
+            if (!text.trim()) throw new Error('Empty reply');
         } catch (err) {
             console.error('Chat error:', err);
             const errorMsg: Message = {
@@ -308,7 +295,7 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
                 text: 'Sorry, I could not process your request right now. Feel free to email Abdulahad directly at [abdulahadhussain60@gmail.com](mailto:abdulahadhussain60@gmail.com).',
                 timestamp: 'Just now',
             };
-            setMessages((prev) => [...prev, errorMsg]);
+            setMessages((prev) => [...prev.filter((m) => m.id !== botId), errorMsg]);
         } finally {
             setIsLoading(false);
         }
@@ -319,37 +306,36 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
             {
                 id: generateId('reset'),
                 role: 'model',
-                text: "✨ Conversation cleared! What would you like to know about Abdulahad's work?",
+                text: "Conversation cleared! What would you like to know about Abdulahad's work?",
                 timestamp: 'Just now',
             },
         ]);
     };
 
     return (
-        <aside aria-label="AI Assistant" className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <aside
+            aria-label="AI Assistant"
+            className="fixed right-4 bottom-4 z-50 flex flex-col items-end sm:right-6 sm:bottom-6"
+        >
             {/* Chat Window */}
             {isOpen && (
                 <section
                     aria-label="Jinny Portfolio AI Chatbot"
-                    className="mb-3 flex h-[540px] w-[92vw] max-w-[400px] flex-col overflow-hidden rounded-3xl border border-gray-200/90 bg-white/95 shadow-2xl backdrop-blur-xl transition-all duration-300 sm:w-[400px] dark:border-white/15 dark:bg-[#11001f]/95 dark:shadow-[0_15px_45px_rgba(0,0,0,0.85)]"
+                    className="bg-panel border-line mb-3 flex h-[min(33.75rem,calc(100dvh-6.5rem))] w-[calc(100vw-2rem)] max-w-[25rem] flex-col overflow-hidden rounded-2xl border shadow-[0_24px_60px_-20px_rgb(0_0_0/0.45)]"
                 >
                     {/* Header */}
-                    <div className="flex items-center justify-between border-b border-purple-100/50 bg-gradient-to-r from-purple-700 via-indigo-700 to-purple-800 px-4.5 py-3.5 text-white shadow-sm dark:border-white/10 dark:from-[#2a004a] dark:via-[#1a0033] dark:to-[#11001f]">
+                    <div className="border-line flex items-center justify-between border-b px-4 py-3">
                         <div className="flex items-center gap-3">
-                            <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur-md shadow-inner">
-                                <JinnyIcon className="text-2xl" />
-                                <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-purple-800 bg-emerald-400 dark:border-[#11001f]" />
+                            <div className="border-line text-accent relative grid size-9 place-items-center rounded-lg border">
+                                <JinnyIcon className="size-[1.125rem]" />
+                                <span className="border-panel absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full border-2 bg-emerald-500" />
                             </div>
-                            <div>
-                                <h3 className="font-Ovo text-sm font-bold tracking-wide text-white flex items-center gap-1.5">
+                            <div className="leading-tight">
+                                <h3 className="font-heading text-sm font-semibold">
                                     Jinny
-                                    <span className="rounded-full bg-white/20 px-1.5 py-0.2 text-[9px] font-sans font-medium tracking-normal text-purple-100">
-                                        AI
-                                    </span>
                                 </h3>
-                                <p className="text-[11px] font-light text-purple-100/80 flex items-center gap-1.5">
-                                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                    Portfolio Assistant
+                                <p className="text-muted font-mono text-[0.6875rem]">
+                                    portfolio assistant · ai
                                 </p>
                             </div>
                         </div>
@@ -359,71 +345,74 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
                                 type="button"
                                 onClick={handleClearChat}
                                 title="Clear conversation"
-                                className="rounded-xl p-1.5 text-purple-100 transition hover:bg-white/15 hover:text-white cursor-pointer"
+                                className="text-muted hover:text-fg hover:bg-bg cursor-pointer rounded-md p-1.5 transition-colors"
                                 aria-label="Clear chat"
                             >
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
+                                <Trash2 className="size-4" aria-hidden />
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setIsOpen(false)}
-                                className="rounded-xl p-1.5 text-purple-100 transition hover:bg-white/15 hover:text-white cursor-pointer"
+                                className="text-muted hover:text-fg hover:bg-bg cursor-pointer rounded-md p-1.5 transition-colors"
                                 aria-label="Close chat"
                             >
-                                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
+                                <X className="size-4" aria-hidden />
                             </button>
                         </div>
                     </div>
 
                     {/* Messages Container */}
-                    <div className="flex-1 overflow-y-auto px-4 py-3.5 space-y-3.5 text-sm">
+                    <div
+                        data-lenis-prevent
+                        className="flex-1 space-y-4 overflow-y-auto overscroll-contain px-4 py-4 text-sm"
+                    >
                         {messages.map((msg) => (
                             <div
                                 key={msg.id}
                                 className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 {msg.role === 'model' && (
-                                    <div className="mt-0.5 flex h-7.5 w-7.5 shrink-0 items-center justify-center rounded-xl bg-purple-100/90 dark:bg-[#2a004a]/90 ring-1 ring-purple-200/50 dark:ring-white/10 shadow-xs">
-                                        <JinnyIcon className="text-base" />
+                                    <div className="border-line text-accent mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border">
+                                        <JinnyIcon className="size-3.5" />
                                     </div>
                                 )}
 
-                                <div className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} max-w-[85%]`}>
+                                <div
+                                    className={`flex max-w-[85%] flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
+                                >
                                     <div
-                                        className={`rounded-2xl px-4 py-3 shadow-xs ${
+                                        className={`rounded-xl px-3.5 py-2.5 ${
                                             msg.role === 'user'
-                                                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-tr-xs shadow-purple-500/20 shadow-md dark:from-purple-700 dark:to-indigo-800'
-                                                : 'bg-rose-50/70 border border-purple-100/80 text-gray-800 rounded-tl-xs dark:bg-[#1f0038]/70 dark:border-white/10 dark:text-gray-100'
+                                                ? 'bg-accent text-on-accent rounded-tr-sm'
+                                                : 'bg-bg border-line rounded-tl-sm border'
                                         }`}
                                     >
                                         {msg.role === 'user' ? (
-                                            <p className="text-[13px] leading-relaxed break-words font-medium">{msg.text}</p>
+                                            <p className="text-[0.8125rem] leading-relaxed font-medium break-words">
+                                                {msg.text}
+                                            </p>
                                         ) : (
                                             <FormattedMarkdown content={msg.text} />
                                         )}
                                     </div>
-                                    <span className="mt-1 px-1.5 text-[10px] text-gray-400 dark:text-gray-500">
+                                    <span className="text-muted mt-1 px-1 font-mono text-[0.625rem]">
                                         {msg.timestamp}
                                     </span>
                                 </div>
                             </div>
                         ))}
 
-                        {isLoading && (
-                            <div className="flex items-center gap-2.5">
-                                <div className="flex h-7.5 w-7.5 shrink-0 items-center justify-center rounded-xl bg-purple-100/90 dark:bg-[#2a004a]/90 ring-1 ring-purple-200/50 dark:ring-white/10 shadow-xs">
-                                    <JinnyIcon className="text-base" />
+                        {isLoading && messages[messages.length - 1]?.role === 'user' && (
+                            <div className="flex items-center gap-2.5" role="status">
+                                <div className="border-line text-accent grid size-7 shrink-0 place-items-center rounded-md border">
+                                    <JinnyIcon className="size-3.5" />
                                 </div>
-                                <div className="flex items-center gap-2 rounded-2xl bg-rose-50/70 border border-purple-100/80 px-4 py-3 text-purple-700 dark:bg-[#1f0038]/70 dark:border-white/10 dark:text-purple-300">
-                                    <span className="text-xs font-medium">Jinny is thinking</span>
+                                <div className="bg-bg border-line text-muted flex items-center gap-2 rounded-xl border px-3.5 py-2.5 font-mono text-xs">
+                                    thinking
                                     <span className="flex items-center gap-1">
-                                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-purple-600 dark:bg-purple-400 [animation-delay:-0.3s]" />
-                                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-purple-600 dark:bg-purple-400 [animation-delay:-0.15s]" />
-                                        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-purple-600 dark:bg-purple-400" />
+                                        <span className="bg-accent size-1 animate-bounce rounded-full [animation-delay:-0.3s]" />
+                                        <span className="bg-accent size-1 animate-bounce rounded-full [animation-delay:-0.15s]" />
+                                        <span className="bg-accent size-1 animate-bounce rounded-full" />
                                     </span>
                                 </div>
                             </div>
@@ -433,15 +422,15 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
                     </div>
 
                     {/* Quick Suggestions */}
-                    <div className="border-t border-gray-100/80 bg-gray-50/60 px-3 py-2 dark:border-white/10 dark:bg-[#1a0033]/40">
-                        <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none text-[11px]">
-                            {QUICK_PROMPTS.map((qp, idx) => (
+                    <div className="border-line border-t px-3 py-2">
+                        <div className="scrollbar-none flex gap-1.5 overflow-x-auto pb-0.5 font-mono text-[0.6875rem]">
+                            {QUICK_PROMPTS.map((qp) => (
                                 <button
-                                    key={idx}
+                                    key={qp.label}
                                     type="button"
                                     onClick={() => handleSendMessage(qp.prompt)}
                                     disabled={isLoading}
-                                    className="shrink-0 rounded-full border border-purple-200/70 bg-white/90 px-3 py-1.5 font-medium text-gray-700 shadow-xs transition hover:border-purple-400 hover:bg-purple-50 hover:text-purple-700 dark:border-white/15 dark:bg-[#2a004a]/70 dark:text-gray-200 dark:hover:border-purple-400 dark:hover:bg-[#3b0066] dark:hover:text-white cursor-pointer disabled:opacity-50"
+                                    className="border-line text-muted hover:border-accent hover:text-fg shrink-0 cursor-pointer rounded-md border px-2.5 py-1 transition-colors disabled:opacity-50"
                                 >
                                     {qp.label}
                                 </button>
@@ -455,27 +444,29 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
                             e.preventDefault();
                             handleSendMessage();
                         }}
-                        className="flex items-center gap-2 border-t border-gray-100 bg-white p-3 dark:border-white/10 dark:bg-[#11001f]"
+                        className="border-line flex items-center gap-2 border-t p-3"
                     >
+                        <span className="text-accent font-mono text-sm" aria-hidden>
+                            &gt;
+                        </span>
                         <input
                             ref={inputRef}
                             type="text"
                             value={inputMessage}
                             onChange={(e) => setInputMessage(e.target.value)}
-                            placeholder="Ask Jinny about skills, projects, experience..."
+                            placeholder="ask about skills, projects, experience..."
+                            aria-label="Message Jinny"
                             disabled={isLoading}
-                            className="flex-1 rounded-xl border border-gray-200 bg-gray-50/80 px-3.5 py-2.5 text-xs text-gray-900 outline-none transition focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-500/20 dark:border-white/15 dark:bg-[#1f0038]/60 dark:text-white dark:focus:border-purple-400 dark:focus:bg-[#11001f]"
+                            className="placeholder:text-muted/70 min-w-0 flex-1 bg-transparent py-2 font-mono text-xs outline-none"
                             maxLength={300}
                         />
                         <button
                             type="submit"
                             disabled={!inputMessage.trim() || isLoading}
                             aria-label="Send prompt to Jinny"
-                            className="flex h-9.5 w-9.5 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20 transition hover:from-purple-700 hover:to-indigo-700 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                            className="bg-accent text-on-accent grid size-9 shrink-0 cursor-pointer place-items-center rounded-md transition-opacity hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                         >
-                            <svg className="h-4 w-4 transform rotate-90" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                            </svg>
+                            <SendHorizontal className="size-4" aria-hidden />
                         </button>
                     </form>
                 </section>
@@ -484,32 +475,35 @@ export default function Chatbot({ isDarkMode: _isDarkMode }: { isDarkMode?: bool
             {/* Launcher Button & Teaser */}
             <div className="flex items-center gap-2.5">
                 {!isOpen && hasUnread && (
-                    <div
+                    <button
+                        type="button"
                         onClick={handleOpenChat}
-                        className="hidden sm:flex items-center gap-2 rounded-full border border-purple-200/80 bg-white/95 px-4 py-1.5 text-xs font-medium text-purple-800 shadow-xl backdrop-blur-md cursor-pointer transition hover:scale-105 dark:border-white/20 dark:bg-[#1f0038]/95 dark:text-purple-200"
+                        tabIndex={-1}
+                        className="bg-panel border-line hover:border-accent hidden cursor-pointer items-center gap-2 rounded-md border px-3 py-1.5 font-mono text-xs shadow-lg transition-colors sm:flex"
                     >
-                        <span>👻 Ask Jinny</span>
-                    </div>
+                        <span className="text-accent">&gt;</span> ask jinny
+                    </button>
                 )}
 
                 <button
                     type="button"
                     onClick={handleToggleChat}
                     aria-label={isOpen ? 'Close Jinny AI Assistant' : 'Open Jinny AI Assistant'}
-                    className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-purple-600 via-indigo-600 to-purple-500 text-white shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 ring-4 ring-purple-400/30 cursor-pointer dark:ring-purple-600/30 text-2xl"
+                    aria-expanded={isOpen}
+                    className="bg-accent text-on-accent relative grid size-12 cursor-pointer place-items-center rounded-xl shadow-[0_12px_30px_-10px_rgb(0_0_0/0.5)] transition-transform hover:-translate-y-0.5 active:scale-95 sm:size-14"
                 >
                     {isOpen ? (
-                        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                        <X className="size-5" aria-hidden />
                     ) : (
-                        <div className="relative flex items-center justify-center w-full h-full">
-                            <JinnyIcon className="text-2xl" />
-                            <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-purple-600 bg-emerald-500" />
-                            </span>
-                        </div>
+                        <>
+                            <JinnyIcon className="size-6" />
+                            {hasUnread && (
+                                <span className="absolute -top-1 -right-1 flex size-3">
+                                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
+                                    <span className="border-bg relative inline-flex size-3 rounded-full border-2 bg-emerald-500" />
+                                </span>
+                            )}
+                        </>
                     )}
                 </button>
             </div>

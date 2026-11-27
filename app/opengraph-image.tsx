@@ -7,130 +7,140 @@ export const alt = `${siteConfig.name} - ${siteConfig.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
+// Same palette as the site's dark theme.
+const bg = '#0e0d0b';
+const panel = '#171512';
+const fg = '#ede8de';
+const muted = '#9c958a';
+const accent = '#ff8a3d';
+const line = 'rgba(237, 232, 222, 0.09)';
+
 export default function OpenGraphImage() {
-    let profileImageData: string;
+    let photo: string;
     try {
-        const filePath = path.join(process.cwd(), 'public', 'abdulahad-hussain.png');
-        const fileBuffer = fs.readFileSync(filePath);
-        profileImageData = `data:image/png;base64,${fileBuffer.toString('base64')}`;
+        const file = fs.readFileSync(
+            path.join(process.cwd(), 'public', 'abdulahad-hussain.png')
+        );
+        photo = `data:image/png;base64,${file.toString('base64')}`;
     } catch {
-        profileImageData = `${siteConfig.url}/abdulahad-hussain.png`;
+        photo = `${siteConfig.url}/abdulahad-hussain.png`;
     }
 
     return new ImageResponse(
-        (
+        <div
+            style={{
+                display: 'flex',
+                width: '100%',
+                height: '100%',
+                background: bg,
+                backgroundImage: `linear-gradient(${line} 1px, transparent 1px), linear-gradient(90deg, ${line} 1px, transparent 1px)`,
+                backgroundSize: '64px 64px',
+                color: fg,
+                fontFamily: 'sans-serif',
+                padding: '0 0 0 80px',
+            }}
+        >
             <div
                 style={{
-                    alignItems: 'center',
-                    background:
-                        'linear-gradient(135deg, #090014 0%, #1c0533 45%, #3b0764 80%, #581c87 100%)',
-                    color: 'white',
                     display: 'flex',
-                    height: '100%',
-                    justifyContent: 'space-between',
-                    padding: '60px 80px',
-                    width: '100%',
-                    fontFamily: 'sans-serif',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    flex: 1,
                 }}
             >
                 <div
                     style={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        maxWidth: '680px',
-                    }}
-                >
-                    <div
-                        style={{
-                            color: '#c084fc',
-                            display: 'flex',
-                            fontSize: 22,
-                            fontWeight: 600,
-                            letterSpacing: 4,
-                            marginBottom: 20,
-                            textTransform: 'uppercase',
-                        }}
-                    >
-                        Official Portfolio · Lahore, Pakistan
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            fontSize: 64,
-                            fontWeight: 800,
-                            lineHeight: 1.1,
-                            letterSpacing: '-1px',
-                            color: '#ffffff',
-                        }}
-                    >
-                        {siteConfig.name}
-                    </div>
-                    <div
-                        style={{
-                            color: '#e9d5ff',
-                            display: 'flex',
-                            fontSize: 34,
-                            fontWeight: 500,
-                            marginTop: 16,
-                        }}
-                    >
-                        {siteConfig.role}
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: '10px 16px',
-                            marginTop: 36,
-                            color: '#d8b4fe',
-                            fontSize: 20,
-                        }}
-                    >
-                        React · Next.js · Vue · Node.js · TypeScript
-                    </div>
-                </div>
-
-                <div
-                    style={{
-                        display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        color: muted,
+                        fontSize: 24,
+                        fontFamily: 'monospace',
                     }}
                 >
-                    <div
+                    {'// full stack software engineer'}
+                    <span
                         style={{
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center',
-                            width: 320,
-                            height: 320,
-                            borderRadius: 160,
-                            background:
-                                'linear-gradient(135deg, #a855f7 0%, #7e22ce 100%)',
-                            padding: 6,
-                            boxShadow: '0 0 50px rgba(168, 85, 247, 0.4)',
+                            color: '#4ade80',
+                            marginLeft: 18,
                         }}
                     >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={profileImageData}
-                            alt={siteConfig.name}
-                            width={308}
-                            height={308}
+                        ● open to work
+                    </span>
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        fontSize: 104,
+                        fontWeight: 800,
+                        lineHeight: 1,
+                        letterSpacing: '-3px',
+                        marginTop: 28,
+                    }}
+                >
+                    <span>{siteConfig.givenName}</span>
+                    <span style={{ display: 'flex', alignItems: 'flex-end' }}>
+                        {siteConfig.familyName}
+                        <span
                             style={{
-                                width: 308,
-                                height: 308,
-                                borderRadius: 154,
-                                objectFit: 'cover',
-                                objectPosition: 'top'
+                                width: 30,
+                                height: 84,
+                                background: accent,
+                                marginLeft: 12,
+                                marginBottom: 6,
                             }}
                         />
-                    </div>
+                    </span>
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        color: muted,
+                        fontSize: 28,
+                        marginTop: 32,
+                    }}
+                >
+                    React · Next.js · Vue · Node.js · TypeScript
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        color: accent,
+                        fontSize: 24,
+                        fontFamily: 'monospace',
+                        marginTop: 40,
+                    }}
+                >
+                    {siteConfig.domain} · Lahore, Pakistan
                 </div>
             </div>
-        ),
-        size,
+
+            {/* Cut-out portrait on a panel with a warm glow, like the hero */}
+            <div
+                style={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'center',
+                    width: 440,
+                    height: '100%',
+                    background: panel,
+                    backgroundImage: `radial-gradient(ellipse 70% 50% at 50% 32%, rgba(255, 138, 61, 0.28), transparent 70%)`,
+                    borderLeft: `1px solid ${line}`,
+                }}
+            >
+                { }
+                <img
+                    src={photo}
+                    alt={siteConfig.name}
+                    width={450}
+                    height={600}
+                    // Mirrored so he faces the text, same as the hero.
+                    style={{ width: 450, height: 600, transform: 'scaleX(-1)' }}
+                />
+            </div>
+        </div>,
+        size
     );
 }
-

@@ -1,3 +1,4 @@
+import { siteConfig } from '@/app/lib/site-config';
 interface ContactData {
     name: string;
     email: string;
@@ -9,14 +10,13 @@ const SOCIALS = {
     github: process.env.GITHUB_URL || 'https://github.com/ABDULAHAD118',
     linkedin:
         process.env.LINKEDIN_URL ||
-        'https://www.linkedin.com/in/abdulahad018/',
+        'https://www.linkedin.com/in/abdulahad118/',
     instagram:
         process.env.INSTAGRAM_URL ||
         'https://www.instagram.com/abdulahadhussain8/',
 };
 
-const SITE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.abdulahadhussain.tech';
+const SITE_URL = siteConfig.url;
 
 const BORDER = 'border-collapse:collapse;';
 const FONT = "font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;";

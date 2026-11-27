@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit, Ovo } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'react-hot-toast';
@@ -7,14 +7,22 @@ import { siteConfig } from './lib/site-config';
 import { generateStructuredData } from './lib/schema';
 import './globals.css';
 
-const OutfitFont = Outfit({
-    weight: ['400', '500', '600', '700'],
-    subsets: ['latin'],
-});
+import SmoothScroll from './components/providers/SmoothScroll';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import Chatbot from './components/Chatbot/Chatbot';
 
-const OvoFont = Ovo({
-    weight: ['400'],
+// Runs before paint: dark by default, light only if the visitor chose it (read by app/lib/use-theme.ts).
+const themeScript = `try{document.documentElement.classList.toggle('dark',localStorage.getItem('theme')!=='light')}catch(e){}`;
+
+const grotesk = Space_Grotesk({
     subsets: ['latin'],
+    variable: '--font-grotesk',
+});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const jetbrains = JetBrains_Mono({
+    subsets: ['latin'],
+    variable: '--font-jetbrains',
 });
 
 export const metadata: Metadata = {
@@ -40,7 +48,6 @@ export const metadata: Metadata = {
         username: 'ABDULAHAD118',
         gender: 'male',
         locale: 'en_US',
-        url: '/',
         siteName: siteConfig.siteName,
         title: siteConfig.title,
         description: siteConfig.shortDescription,
@@ -54,8 +61,8 @@ export const metadata: Metadata = {
             },
             {
                 url: '/abdulahad-hussain.png',
-                width: 800,
-                height: 800,
+                width: 675,
+                height: 900,
                 alt: `${siteConfig.name} Profile Photo`,
                 type: 'image/png',
             },
@@ -85,7 +92,9 @@ export const metadata: Metadata = {
             { url: '/profile-img.png', sizes: '192x192', type: 'image/png' },
         ],
         shortcut: '/favicon.ico',
-        apple: [{ url: '/profile-img.png', sizes: '180x180', type: 'image/png' }],
+        apple: [
+            { url: '/profile-img.png', sizes: '180x180', type: 'image/png' },
+        ],
     },
     manifest: '/manifest.webmanifest',
     verification: process.env.GOOGLE_SITE_VERIFICATION
@@ -105,16 +114,21 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="scroll-smooth">
-            <body
-                className={`${OutfitFont.className} ${OvoFont.className} dark:bg-darkTheme overflow-x-hidden leading-8 antialiased dark:text-white`}
-            >
+        <html
+            lang="en"
+            className={`dark ${grotesk.variable} ${inter.variable} ${jetbrains.variable}`}
+            suppressHydrationWarning
+        >
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
+            <body className="overflow-x-hidden font-sans leading-8 antialiased">
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify(structuredData).replace(
                             /</g,
-                            '\\u003c',
+                            '\\u003c'
                         ),
                     }}
                 />
@@ -130,7 +144,7 @@ export default function RootLayout({
                         },
                         success: {
                             iconTheme: {
-                                primary: '#7c3aed',
+                                primary: '#ff8a3d',
                                 secondary: '#fff',
                             },
                         },
@@ -142,7 +156,13 @@ export default function RootLayout({
                         },
                     }}
                 />
-                {children}
+                <SmoothScroll>
+                    <div id="top" />
+                    <Navbar />
+                    {children}
+                    <Footer />
+                    <Chatbot />
+                </SmoothScroll>
                 <Analytics />
                 <SpeedInsights />
             </body>

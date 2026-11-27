@@ -1,13 +1,26 @@
-import { assets, serviceData } from '@/assets/assets';
-import Image from 'next/image';
-import React, { FormEvent, useState } from 'react';
+'use client';
+import { siWhatsapp } from 'simple-icons';
+import { FormEvent, useState } from 'react';
 import { motion } from 'motion/react';
 import toast from 'react-hot-toast';
+import { ChevronDown, Mail, MapPin, Send } from 'lucide-react';
+import { serviceData } from '@/assets/assets';
+import { siteConfig } from '@/app/lib/site-config';
+import { socials } from '@/app/lib/content';
+import TechIcon from '../ui/TechIcon';
+import SectionHeading from '../ui/SectionHeading';
+import { slideIn } from '@/app/lib/motion';
 
-const Contact = () => {
+const field =
+    'bg-panel border-line placeholder:text-muted/70 focus:border-accent w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors';
+const label = 'text-muted mb-2 block font-mono text-xs';
+
+const Contact = ({ page = false }: { page?: boolean }) => {
     const [isSending, setIsSending] = useState(false);
 
-    const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    const onSubmit = async (
+        event: FormEvent<HTMLFormElement>
+    ): Promise<void> => {
         event.preventDefault();
         setIsSending(true);
 
@@ -33,7 +46,9 @@ const Contact = () => {
             const data = await response.json();
 
             if (data.success) {
-                toast.success('Message sent successfully!', { id: loadingToast });
+                toast.success('Message sent successfully!', {
+                    id: loadingToast,
+                });
                 form.reset();
             } else {
                 toast.error(data.message || 'Something went wrong.', {
@@ -50,153 +65,183 @@ const Contact = () => {
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{
-                duration: 1,
-            }}
-            className="w-full scroll-mt-20 bg-[url(/footer-bg-color.png)] bg-[length:90%_auto] bg-center bg-no-repeat px-[12%] py-10 dark:bg-none"
+        <section
             id="contact"
+            className={`border-line scroll-mt-20 overflow-x-clip border-t px-6 sm:px-10 lg:px-16 ${page ? 'border-t-0 pb-20 sm:pb-24' : 'py-24 sm:py-32'}`}
         >
-            <motion.p
-                initial={{ y: -20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.3,
-                }}
-                className="font-Ovo mb-2 text-center text-lg text-purple-700 dark:text-purple-300"
-            >
-                Connect With Me
-            </motion.p>
-            <motion.h2
-                initial={{ y: -20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.5,
-                }}
-                className="font-Ovo text-center text-5xl font-bold"
-            >
-                Get In Touch
-            </motion.h2>
-            <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.7,
-                }}
-                className="font-Ovo mx-auto mt-5 mb-12 max-w-2xl text-center text-gray-700 dark:text-white/80"
-            >
-                {`I'd`} love to hear from you! If you have any questions,
-                comments or feedback, please use the form below.
-            </motion.p>
-            <motion.form
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                    duration: 0.5,
-                    delay: 0.9,
-                }}
-                className="mx-auto max-w-2xl"
-                onSubmit={onSubmit}
-            >
-                <div className="grid-cols-auto mt-10 mb-8 grid gap-6">
-                    <motion.input
-                        initial={{ x: -50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{
-                            duration: 0.6,
-                            delay: 1.1,
-                        }}
-                        type="text"
-                        name="name"
-                        placeholder="Enter Your Name"
-                        className="dark:bg-darkHover/30 flex-1 rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none dark:border-white/90"
-                        required
-                    />
-                    <motion.input
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{
-                            duration: 0.6,
-                            delay: 1.1,
-                        }}
-                        type="email"
-                        name="email"
-                        className="dark:bg-darkHover/30 flex-1 rounded-md border-[0.5px] border-gray-400 bg-white p-3 outline-none dark:border-white/90"
-                        placeholder="Enter Your Email"
-                        required
-                    />
-                </div>
-                <div className="relative mb-6">
-                    <motion.select
-                        initial={{ x: -50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{
-                            duration: 0.6,
-                            delay: 1.2,
-                        }}
-                        name="service"
-                        className="dark:bg-darkHover/30 w-full appearance-none rounded-md border-[0.5px] border-gray-400 bg-white py-3 pr-10 pl-3 outline-none dark:border-white/90"
-                        required
-                        defaultValue=""
+            <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+                <div>
+                    {!page && (
+                        <SectionHeading
+                            index="08"
+                            label="contact"
+                            title={
+                                <>
+                                    Let&apos;s build
+                                    <br />
+                                    something{' '}
+                                    <span className="text-accent">
+                                        together
+                                    </span>
+                                    .
+                                </>
+                            }
+                        />
+                    )}
+                    <p
+                        className={`text-muted max-w-md leading-relaxed ${page ? 'text-lg' : 'mt-6'}`}
                     >
-                        <option value="" disabled>
-                            Select a Service
-                        </option>
-                        {serviceData.map(({ title }) => (
-                            <option key={title} value={title}>
-                                {title}
-                            </option>
-                        ))}
-                    </motion.select>
-                    <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 dark:text-white/50">
-                        <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M19 9l-7 7-7-7"
+                        Have a project, a role or just a question? Send a
+                        message and I&apos;ll get back to you, usually within a
+                        day.
+                    </p>
+
+                    <ul className="border-line mt-10 border-t font-mono text-sm">
+                        <li className="border-line border-b py-4">
+                            <a
+                                href={siteConfig.emailUrl}
+                                className="hover:text-accent flex items-center gap-3 break-all transition-colors"
+                            >
+                                <Mail
+                                    className="text-accent size-4 shrink-0"
+                                    aria-hidden
+                                />
+                                {siteConfig.email}
+                            </a>
+                        </li>
+                        <li className="border-line border-b py-4">
+                            <a
+                                href={siteConfig.whatsappUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="hover:text-accent flex items-center gap-3 transition-colors"
+                            >
+                                <TechIcon
+                                    icon={siWhatsapp}
+                                    className="text-accent size-4 shrink-0"
+                                />
+                                {siteConfig.phone} · whatsapp
+                            </a>
+                        </li>
+                        <li className="border-line text-muted flex items-center gap-3 border-b py-4">
+                            <MapPin
+                                className="text-accent size-4 shrink-0"
+                                aria-hidden
                             />
-                        </svg>
-                    </span>
+                            Lahore, Pakistan · remote friendly
+                        </li>
+                    </ul>
+
+                    <div className="mt-6 flex flex-wrap gap-3">
+                        {socials.map((s) => (
+                            <a
+                                key={s.label}
+                                href={s.href}
+                                target="_blank"
+                                rel="me noreferrer"
+                                className="border-line text-muted hover:border-accent hover:text-fg flex items-center gap-2 rounded-md border px-3 py-1.5 font-mono text-xs transition-colors"
+                            >
+                                <TechIcon icon={s.icon} className="size-3.5" />
+                                {s.label.toLowerCase()}
+                            </a>
+                        ))}
+                    </div>
                 </div>
-                <motion.textarea
-                    initial={{ y: 100, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 1.3 }}
-                    name="message"
-                    placeholder="Enter Your Message"
-                    className="dark:bg-darkHover/30 mb-6 w-full rounded-md border-[0.5px] border-gray-400 bg-white p-4 outline-none dark:border-white/90"
-                    rows={6}
-                    required
-                ></motion.textarea>
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    transition={{
-                        duration: 0.3,
-                    }}
-                    type="submit"
-                    disabled={isSending}
-                    className="dark:hover:bg-darkHover mx-auto flex w-max cursor-pointer items-center justify-between gap-2 rounded-full bg-black/80 px-8 py-3 text-white duration-500 hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 dark:border-[0.5px] dark:bg-transparent"
+
+                <motion.form
+                    {...slideIn('right')}
+                    onSubmit={onSubmit}
+                    className="bg-panel/50 border-line rounded-2xl border p-5 sm:p-8"
                 >
-                    {isSending ? 'Sending...' : 'Submit Now'}{' '}
-                    <Image
-                        src={assets.right_arrow_white}
-                        alt="Arrow Icon"
-                        className="w-4"
-                    />
-                </motion.button>
-            </motion.form>
-        </motion.div>
+                    <p className="text-muted mb-6 font-mono text-xs">
+                        <span className="text-accent">$</span> send-message --to
+                        abdulahad
+                    </p>
+
+                    <div className="grid gap-5 sm:grid-cols-2">
+                        <div>
+                            <label htmlFor="contact-name" className={label}>
+                                name
+                            </label>
+                            <input
+                                id="contact-name"
+                                type="text"
+                                name="name"
+                                autoComplete="name"
+                                placeholder="Your name"
+                                className={field}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="contact-email" className={label}>
+                                email
+                            </label>
+                            <input
+                                id="contact-email"
+                                type="email"
+                                name="email"
+                                autoComplete="email"
+                                placeholder="you@company.com"
+                                className={field}
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mt-5">
+                        <label htmlFor="contact-service" className={label}>
+                            service
+                        </label>
+                        <div className="relative">
+                            <select
+                                id="contact-service"
+                                name="service"
+                                className={`${field} appearance-none pr-10`}
+                                required
+                                defaultValue=""
+                            >
+                                <option value="" disabled>
+                                    Select a service
+                                </option>
+                                {serviceData.map(({ title }) => (
+                                    <option key={title} value={title}>
+                                        {title}
+                                    </option>
+                                ))}
+                            </select>
+                            <ChevronDown
+                                className="text-muted pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2"
+                                aria-hidden
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mt-5">
+                        <label htmlFor="contact-message" className={label}>
+                            message
+                        </label>
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            placeholder="Tell me a bit about what you need..."
+                            className={`${field} resize-y`}
+                            rows={6}
+                            required
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isSending}
+                        className="bg-accent text-on-accent mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-6 py-3 font-mono text-sm font-medium transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                    >
+                        {isSending ? 'sending...' : 'send message'}
+                        <Send className="size-4" aria-hidden />
+                    </button>
+                </motion.form>
+            </div>
+        </section>
     );
 };
 
