@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -13,12 +14,11 @@ import portrait from '@/assets/portrait.webp';
 import PageHeader from '../components/ui/PageHeader';
 import Tools from '../components/Tools/Tools';
 
-export const metadata: Metadata = {
-    title: 'About',
-    description:
-        'About Abdulahad Hussain, a full stack software engineer in Lahore, Pakistan working across frontend, backend, databases and deployment.',
-    alternates: { canonical: '/about' },
-};
+export const metadata: Metadata = pageMeta(
+    'About: Full Stack Software Engineer in Lahore',
+    'About Abdulahad Hussain, a full stack software engineer in Lahore, Pakistan with 2+ years building React, Next.js, Vue and Node.js apps, from the database to deployment.',
+    '/about'
+);
 
 const infoIcons = [CodeXml, GraduationCap, FolderGit2];
 

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import Contact from '../components/Contact/Contact';
 import PageHeader from '../components/ui/PageHeader';
 
-export const metadata: Metadata = {
-    title: 'Contact',
-    description:
-        'Get in touch with Abdulahad Hussain about a project, a role or a question.',
-    alternates: { canonical: '/contact' },
-};
+export const metadata: Metadata = pageMeta(
+    'Contact & Hire a Full Stack Developer',
+    'Hire Abdulahad Hussain for a web, mobile or AI project, or a full-time role. Reach him by email, WhatsApp or the contact form. Based in Lahore, open to remote work.',
+    '/contact'
+);
 
 const faqs = [
     {

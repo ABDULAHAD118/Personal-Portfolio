@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import { workData } from '@/assets/assets';
 import PageHeader from '../components/ui/PageHeader';
 import ProjectTile from '../components/Work/ProjectTile';
 
-export const metadata: Metadata = {
-    title: 'Work',
-    description:
-        'Projects by Abdulahad Hussain: personal full stack, backend and mobile apps, plus client work built at BitLogicx.',
-    alternates: { canonical: '/work' },
-};
+export const metadata: Metadata = pageMeta(
+    'Projects: Next.js, React, Node.js & AI Apps',
+    'Portfolio projects by Abdulahad Hussain: client platforms built at BitLogicx, full stack MERN apps, React Native mobile apps and Zabaan-e-Kissan, an AI farming app.',
+    '/work'
+);
 
 const groups = [
     {

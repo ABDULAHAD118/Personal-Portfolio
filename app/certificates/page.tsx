@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import { certificateData } from '@/assets/assets';
 import PageHeader from '../components/ui/PageHeader';
 import CertificateBook from '../components/Certificates/CertificateBook';
 
-export const metadata: Metadata = {
-    title: 'Certificates',
-    description:
-        'Certificates and internships completed by Abdulahad Hussain, from IBM, Meta, Google, MongoDB and more.',
-    alternates: { canonical: '/certificates' },
-};
+export const metadata: Metadata = pageMeta(
+    'Certificates: React, Node.js, MongoDB & AI',
+    'Certificates and internships completed by Abdulahad Hussain, from IBM, Meta, Google, MongoDB and more.',
+    '/certificates'
+);
 
 // "IBM · Coursera" -> "IBM"; internships keep their company name.
 const issuers = Object.entries(

@@ -10,6 +10,9 @@ import StackTags from '../../components/ui/StackTags';
 import TechIcon from '../../components/ui/TechIcon';
 import DemoVideo from '../../components/Education/DemoVideo';
 import AppScreens from '../../components/Education/AppScreens';
+import JsonLd from '../../components/ui/JsonLd';
+import { breadcrumbs, pageMeta, personRef } from '../../lib/seo';
+import { siteConfig } from '../../lib/site-config';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,11 +26,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const project = workData.find((p) => p.slug === slug);
     if (!project) return {};
-    return {
-        title: `${project.title} · ${project.type}`,
-        description: project.summary,
-        alternates: { canonical: `/work/${project.slug}` },
-    };
+    const title = `${project.title}: ${project.type} built with ${project.stack.slice(0, 3).join(', ')}`;
+    return pageMeta(
+        title,
+        project.summary,
+        `/work/${project.slug}`,
+        project.bgImage
+    );
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -41,8 +46,61 @@ export default async function ProjectPage({ params }: Props) {
         ? new URL(project.url).host
         : `${project.slug}.app`;
 
+    const url = `${siteConfig.url}/work/${project.slug}`;
+    const mobile = project.type.includes('Mobile');
+
     return (
         <main>
+            <JsonLd
+                data={{
+                    '@graph': [
+                        {
+                            '@type': mobile
+                                ? 'MobileApplication'
+                                : 'WebApplication',
+                            '@id': `${url}#app`,
+                            name: project.title,
+                            description: project.summary,
+                            url,
+                            applicationCategory: mobile
+                                ? 'LifestyleApplication'
+                                : 'BusinessApplication',
+                            operatingSystem: mobile ? 'Android' : 'Web browser',
+                            keywords: project.stack.join(', '),
+                            author: personRef,
+                            ...(project.bgImage && {
+                                image: `${siteConfig.url}${project.bgImage}`,
+                            }),
+                            ...(project.url && { sameAs: project.url }),
+                            ...(project.repo && {
+                                codeRepository: project.repo,
+                            }),
+                        },
+                        ...(project.demo
+                            ? [
+                                  {
+                                      '@type': 'VideoObject',
+                                      name: `${project.title} app demo`,
+                                      description: project.summary,
+                                      thumbnailUrl: `${siteConfig.url}${project.demo.poster}`,
+                                      contentUrl: `${siteConfig.url}${project.demo.video}`,
+                                      embedUrl: url,
+                                      uploadDate: '2026-11-26',
+                                      duration: 'PT4M28S',
+                                      author: personRef,
+                                  },
+                              ]
+                            : []),
+                        breadcrumbs([
+                            { name: 'Work', path: '/work' },
+                            {
+                                name: project.title,
+                                path: `/work/${project.slug}`,
+                            },
+                        ]),
+                    ],
+                }}
+            />
             <PageHeader
                 path={[
                     { label: 'work', href: '/work' },

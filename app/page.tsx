@@ -9,6 +9,8 @@ import Education from './components/Education/Education';
 import Header from './components/Header/Header';
 import Services from './components/Services/Services';
 import Work from './components/Work/Work';
+import JsonLd from './components/ui/JsonLd';
+import { homeStructuredData } from './lib/schema';
 
 export default function Home() {
     useEffect(() => {
@@ -22,6 +24,7 @@ export default function Home() {
 
     return (
         <main>
+            <JsonLd data={homeStructuredData()} />
             <Header />
             <About />
             <Work />

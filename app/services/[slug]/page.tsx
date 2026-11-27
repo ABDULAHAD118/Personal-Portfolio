@@ -6,6 +6,15 @@ import PageHeader from '../../components/ui/PageHeader';
 import StackTags from '../../components/ui/StackTags';
 import ProjectTile from '../../components/Work/ProjectTile';
 import ProcessSection from '../../components/Services/ProcessSection';
+import JsonLd from '../../components/ui/JsonLd';
+import {
+    breadcrumbs,
+    byline,
+    pageMeta,
+    personRef,
+    serviceTitles,
+} from '../../lib/seo';
+import { siteConfig } from '../../lib/site-config';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,11 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const service = serviceData.find((s) => s.slug === slug);
     if (!service) return {};
-    return {
-        title: `${service.title} services`,
-        description: service.description,
-        alternates: { canonical: `/services/${service.slug}` },
-    };
+    const title = serviceTitles[service.slug] ?? `${service.title} services`;
+    const description = `${service.description} ${byline}`;
+    return pageMeta(title, description, `/services/${service.slug}`);
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
@@ -32,8 +39,52 @@ export default async function ServiceDetailPage({ params }: Props) {
     if (!service) notFound();
     const projects = workData.filter((p) => service.projects.includes(p.slug));
 
+    const url = `${siteConfig.url}/services/${service.slug}`;
+
     return (
         <main>
+            <JsonLd
+                data={{
+                    '@graph': [
+                        {
+                            '@type': 'Service',
+                            '@id': `${url}#service`,
+                            name: serviceTitles[service.slug] ?? service.title,
+                            serviceType: service.title,
+                            description: service.intro,
+                            url,
+                            provider: personRef,
+                            areaServed: [
+                                { '@type': 'Country', name: 'Pakistan' },
+                                {
+                                    '@type': 'Place',
+                                    name: 'Worldwide (remote)',
+                                },
+                            ],
+                            hasOfferCatalog: {
+                                '@type': 'OfferCatalog',
+                                name: `${service.title} deliverables`,
+                                itemListElement: service.deliverables.map(
+                                    (d) => ({
+                                        '@type': 'Offer',
+                                        itemOffered: {
+                                            '@type': 'Service',
+                                            name: d,
+                                        },
+                                    })
+                                ),
+                            },
+                        },
+                        breadcrumbs([
+                            { name: 'Services', path: '/services' },
+                            {
+                                name: service.title,
+                                path: `/services/${service.slug}`,
+                            },
+                        ]),
+                    ],
+                }}
+            />
             <PageHeader
                 path={[
                     { label: 'services', href: '/services' },

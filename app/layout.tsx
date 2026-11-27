@@ -48,7 +48,6 @@ export const metadata: Metadata = {
         username: 'ABDULAHAD118',
         gender: 'male',
         locale: 'en_US',
-        url: '/',
         siteName: siteConfig.siteName,
         title: siteConfig.title,
         description: siteConfig.shortDescription,

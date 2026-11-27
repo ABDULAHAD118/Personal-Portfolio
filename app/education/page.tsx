@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import Education from '../components/Education/Education';
 import PageHeader from '../components/ui/PageHeader';
 
-export const metadata: Metadata = {
-    title: 'Education',
-    description:
-        'Abdulahad Hussain studied B.Sc. Computer Science at UET Lahore, with an AI-based final year project.',
-    alternates: { canonical: '/education' },
-};
+export const metadata: Metadata = pageMeta(
+    'Education: Computer Science at UET Lahore',
+    'Abdulahad Hussain studied B.Sc. Computer Science at UET Lahore. His final year project, Zabaan-e-Kissan, is an Urdu AI app for crop disease detection and market prices.',
+    '/education'
+);
 
 export default function EducationPage() {
     return (

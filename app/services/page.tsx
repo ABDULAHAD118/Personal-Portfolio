@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import Link from 'next/link';
 import { ArrowUpRight, Layers } from 'lucide-react';
 import { serviceData } from '@/assets/assets';
@@ -7,12 +8,11 @@ import PageHeader from '../components/ui/PageHeader';
 import StackTags from '../components/ui/StackTags';
 import ProcessSection from '../components/Services/ProcessSection';
 
-export const metadata: Metadata = {
-    title: 'Services',
-    description:
-        'Full stack, frontend, backend and mobile app development services by Abdulahad Hussain.',
-    alternates: { canonical: '/services' },
-};
+export const metadata: Metadata = pageMeta(
+    'Web, SaaS, Mobile & AI Development Services',
+    'Hire Abdulahad Hussain for full stack web development, SaaS, React Native apps, AI chatbots, custom CMS, e-commerce, APIs and DevOps. Lahore, Pakistan and remote.',
+    '/services'
+);
 
 export default function ServicesPage() {
     return (

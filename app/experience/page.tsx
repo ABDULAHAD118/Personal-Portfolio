@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import Link from 'next/link';
 import { ArrowUpRight, Briefcase } from 'lucide-react';
 import { experienceData } from '@/assets/assets';
 import PageHeader from '../components/ui/PageHeader';
 import StackTags from '../components/ui/StackTags';
 
-export const metadata: Metadata = {
-    title: 'Experience',
-    description:
-        'Work experience of Abdulahad Hussain, full stack software engineer at BitLogicx.',
-    alternates: { canonical: '/experience' },
-};
+export const metadata: Metadata = pageMeta(
+    'Experience: Full Stack Software Engineer at BitLogicx',
+    'Work experience of Abdulahad Hussain: full stack software engineer at BitLogicx building client platforms with Next.js, Vue, AdonisJS and Node.js, plus CI/CD and servers.',
+    '/experience'
+);
 
 export default function ExperiencePage() {
     return (

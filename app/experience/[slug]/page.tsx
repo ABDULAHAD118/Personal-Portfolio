@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/app/lib/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
@@ -19,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const job = experienceData.find((e) => e.slug === slug);
     if (!job) return {};
-    return {
-        title: `${job.role} at ${job.company}`,
-        description: job.summary,
-        alternates: { canonical: `/experience/${job.slug}` },
-    };
+    return pageMeta(
+        `${job.role} at ${job.company}`,
+        job.summary,
+        `/experience/${job.slug}`
+    );
 }
 
 export default async function ExperienceDetailPage({ params }: Props) {
