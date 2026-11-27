@@ -7,7 +7,7 @@ import {
     useSpring,
     useTransform,
 } from 'motion/react';
-import portrait from '@/assets/portrait.png';
+import portrait from '@/assets/portrait.webp';
 import { professionalStats } from '@/assets/assets';
 import { siteConfig } from '@/app/lib/site-config';
 import { heroStack } from '@/app/lib/content';

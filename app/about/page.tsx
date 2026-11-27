@@ -9,7 +9,7 @@ import {
     GraduationCap,
 } from 'lucide-react';
 import { infoList, professionalStats } from '@/assets/assets';
-import portrait from '@/assets/portrait.png';
+import portrait from '@/assets/portrait.webp';
 import PageHeader from '../components/ui/PageHeader';
 import Tools from '../components/Tools/Tools';
 
