@@ -132,6 +132,41 @@ const Contact = ({ page = false }: { page?: boolean }) => {
                         </li>
                     </ul>
 
+                    <div className="mt-10">
+                        <p className="text-muted font-mono text-xs">
+                            <span className="text-accent">{'//'}</span> prefer a
+                            freelance platform?
+                        </p>
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                            {socials
+                                .filter((s) =>
+                                    ['Fiverr', 'Upwork'].includes(s.label)
+                                )
+                                .map((s) => (
+                                    <a
+                                        key={s.label}
+                                        href={s.href}
+                                        target="_blank"
+                                        rel="me noreferrer"
+                                        className="bg-panel/50 border-line hover:border-accent group flex flex-col items-start gap-3 rounded-xl border p-4 transition-colors"
+                                    >
+                                        <TechIcon
+                                            icon={s.icon}
+                                            className="size-8 shrink-0"
+                                        />
+                                        <span>
+                                            <span className="block text-sm font-medium">
+                                                Hire me on {s.label}
+                                            </span>
+                                            <span className="text-muted group-hover:text-accent block font-mono text-xs transition-colors">
+                                                view profile →
+                                            </span>
+                                        </span>
+                                    </a>
+                                ))}
+                        </div>
+                    </div>
+
                     <div className="mt-6 flex flex-wrap gap-3">
                         {socials.map((s) => (
                             <a

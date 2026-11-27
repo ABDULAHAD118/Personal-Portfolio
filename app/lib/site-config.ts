@@ -20,7 +20,10 @@ export const siteConfig = {
     email: 'abdulahadhussain60@gmail.com',
     emailUrl: 'mailto:abdulahadhussain60@gmail.com',
     phone: '+92 307 1390118',
-    whatsappUrl: 'https://wa.me/923071390118',
+    // Opens WhatsApp with this message already typed in the chat box.
+    whatsappUrl: `https://wa.me/923071390118?text=${encodeURIComponent(
+        "Hi Abdulahad, I found your portfolio and I'd like to discuss a project."
+    )}`,
     profileImage: `${url}/abdulahad-hussain.png`,
     ogImage: `${url}/opengraph-image`,
     location: {
@@ -41,6 +44,8 @@ export const siteConfig = {
         'https://github.com/ABDULAHAD118',
         'https://www.linkedin.com/in/abdulahad118/',
         'https://www.instagram.com/abdulahadhussain8/',
+        'https://www.fiverr.com/users/abdulahad118/portfolio',
+        'https://www.upwork.com/freelancers/~0130abc9fd05a32991',
     ],
     knowsAbout: [
         'Full Stack Software Engineering',
