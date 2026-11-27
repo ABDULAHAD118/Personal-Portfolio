@@ -112,9 +112,10 @@ export function generateStructuredData() {
                 '@id': websiteId,
                 url: siteConfig.url,
                 name: siteConfig.name,
+                // Google picks the site name shown in results from these; no domain, so it never falls back to it.
                 alternateName: [
                     `${siteConfig.name} Portfolio`,
-                    siteConfig.domain,
+                    'Abdul Ahad Hussain',
                 ],
                 description: siteConfig.description,
                 publisher: personRef,
