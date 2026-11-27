@@ -35,7 +35,7 @@ export default function ProjectCover({
             className="bg-panel relative grid size-full place-items-center overflow-hidden"
             aria-hidden
         >
-            <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
+            <div className="bg-hex absolute inset-0 [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]" />
             <p className="text-muted absolute top-4 left-4 font-mono text-[0.6875rem]">
                 <span className="text-accent">●</span> {project.slug}.app
             </p>

@@ -144,7 +144,7 @@ export default function RootLayout({
                         },
                         success: {
                             iconTheme: {
-                                primary: '#ff8a3d',
+                                primary: '#ff7a6b',
                                 secondary: '#fff',
                             },
                         },

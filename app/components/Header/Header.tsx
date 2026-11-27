@@ -106,7 +106,7 @@ const Header = () => {
         >
             <div
                 aria-hidden
-                className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_75%)]"
+                className="bg-hex absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_60%)]"
             />
 
             <div className="grid w-full items-center gap-28 sm:gap-20 lg:grid-cols-[1fr_minmax(21.25rem,27.5rem)] lg:gap-16">

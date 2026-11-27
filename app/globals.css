@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Light: warm paper + ink. Dark (default): warm terminal black + amber. */
+/* Light: cool paper + navy ink. Dark (default): deep navy + coral. */
 @theme {
-  --color-bg: #f3efe7;
-  --color-panel: #fbf9f4;
-  --color-fg: #1b1915;
-  --color-muted: #6b655b;
-  --color-line: rgb(27 25 21 / 0.1);
-  --color-accent: #c2410c;
+  --color-bg: #f3f5fa;
+  --color-panel: #fbfcfe;
+  --color-fg: #0f1a2e;
+  --color-muted: #5b6478;
+  --color-line: rgb(15 26 46 / 0.1);
+  --color-accent: #c93a2b;
   --color-on-accent: #ffffff;
   --color-code-key: #1d4ed8;
   --color-code-string: #15803d;
@@ -32,9 +32,9 @@
   }
 
   /* Legacy tokens still used by sections not yet redesigned. */
-  --color-lightHover: #ede6da;
-  --color-darkHover: #1f1c18;
-  --color-darkTheme: #0e0d0b;
+  --color-lightHover: #e6eaf2;
+  --color-darkHover: #16213a;
+  --color-darkTheme: #0b1324;
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
   --grid-cols-auto: repeat(auto-fit, minmax(200px, 1fr));
@@ -43,13 +43,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
-  --color-bg: #0e0d0b;
-  --color-panel: #171512;
-  --color-fg: #ede8de;
-  --color-muted: #9c958a;
-  --color-line: rgb(237 232 222 / 0.09);
-  --color-accent: #ff8a3d;
-  --color-on-accent: #1a0f05;
+  --color-bg: #0b1324;
+  --color-panel: #111b31;
+  --color-fg: #e6ebf5;
+  --color-muted: #8d9ab3;
+  --color-line: rgb(230 235 245 / 0.09);
+  --color-accent: #ff7a6b;
+  --color-on-accent: #2a0a05;
   --color-code-key: #8ab4f8;
   --color-code-string: #a5d6a7;
   color-scheme: dark;
@@ -78,22 +78,20 @@ body {
     grid-template-columns: var(--grid-cols-auto);
   }
 
-  /* Blueprint-style grid used behind sections. */
-  .bg-grid {
-    background-image:
-      linear-gradient(var(--color-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-    background-size: 4rem 4rem;
+  /* Honeycomb: the SVG is only a mask, so the line color still follows the theme. */
+  .bg-hex::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--color-fg) 14%, transparent);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48.5'%3E%3Cpath d='M14 0 28 8.1v16.2L14 32.3 0 24.3V8.1Z M14 32.3V48.5' fill='none' stroke='%23000'/%3E%3C/svg%3E")
+      0 0 / 2.8rem 4.85rem repeat;
   }
 
   /* Backdrop for the cut-out portrait: follows the theme, with a soft accent glow behind the head. */
   .bg-portrait {
     background-color: var(--color-panel);
-    background-image:
-      radial-gradient(ellipse 70% 55% at 50% 32%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
-      linear-gradient(var(--color-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
-    background-size: auto, 2rem 2rem, 2rem 2rem;
+    background-image: radial-gradient(ellipse 70% 55% at 50% 32%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%);
   }
 }
 
