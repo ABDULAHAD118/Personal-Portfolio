@@ -85,7 +85,7 @@ function PortraitCard() {
                         quality={90}
                         priority
                         sizes="(min-width: 1024px) 440px, 80vw"
-                        className="size-full object-cover"
+                        className="size-full -scale-x-100 object-cover"
                     />
                 </div>
                 <div
